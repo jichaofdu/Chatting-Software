@@ -40,11 +40,6 @@ public class User {
         this.nickname = newNick;
     }
 
-    /**
-     * Check a string is whether the user's password.
-     * @param inputPasswd The string of the password that will be checked.
-     * @return The check result. True if ok and false is wrong.
-     */
     public boolean checkNamePasswdMatch(String inputPasswd){
         if((this.password).equals(inputPasswd) == true){
             return true;
@@ -95,11 +90,6 @@ public class User {
         this.localServerPort = newMyServerPort;
     }
 
-    /**
-     * Check whether a user is the friend of the user.
-     * @param userId The target user id you want to search.
-     * @return The check result.
-     */
     public boolean checkIsFriend(int userId){
         for(int i = 0;i < friendList.size();i++) {
             if (friendList.get(i) == userId) {
@@ -109,18 +99,10 @@ public class User {
         return false;
     }
 
-    /**
-     * Add a new friend to the user.
-     * @param userId The id of the new friend.
-     */
     public void addFriend(int userId){
         friendList.add(userId);
     }
 
-    /**
-     * Delete the a friend in the friend list.
-     * @param userId The id of the friend that will be deleted.
-     */
     public void deleteFriend(int userId){
         for(int i = 0;i < friendList.size();i++) {
             if (friendList.get(i) == userId) {

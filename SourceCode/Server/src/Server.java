@@ -1,71 +1,114 @@
-/**
- * Created by Chao Ji on 2016-06-03.
- */
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.PrintStream;
-/**
- * 测试Android客户端与PC服务器通过socket进行交互
- * 服务器端：接收客户端的信息并回送给客户
- * @author Ameyume
- *
- */
-public class Server implements Runnable {
+import java.util.Vector;
 
-    private Socket client = null;
+public class Server implements Runnable {
+    private Socket client;
+    private static int userBaseId = 0;
+
+    private Vector<User> userList; //The friend list of the user.
+
     public Server(Socket client){
         this.client = client;
+        this.userList = new Vector<>();
     }
-
     @Override
     public void run() {
         try{
-            //获取Socket的输出流，用来向客户端发送数据
-            PrintStream out = new PrintStream(client.getOutputStream());
-            //获取Socket的输入流，用来接收从客户端发送过来的数据
-            BufferedReader buf = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            boolean flag =true;
+            PrintStream sendBuf = new PrintStream(client.getOutputStream());
+            BufferedReader recvBuf = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            boolean flag = true;
             while(flag){
-                //接收从客户端发送过来的数据
-                String str =  buf.readLine();
-                if(str == null || "".equals(str)){
+                String str = receiveInfo(recvBuf);
+                String[] infoSet = str.split("\\|");
+                System.out.println("---" + infoSet[0]);
+                if("[Shutdown]".equals(infoSet[0])) {
                     flag = false;
+                }else if("[Client-Register]".equals(infoSet[0])){
+                    handleRegister(sendBuf,infoSet);
+                }else if("[Client-Login]".equals(infoSet[0])) {
+                    handleLogin(sendBuf, infoSet);
+                }else if("[Client-GetFriendList]".equals(infoSet[0])) {
+                    handleGetFriendList(sendBuf, infoSet);
+                }else if("[Client-UpdateUserInfo]".equals(infoSet[0])) {
+                    handleUpdateUserInfo(sendBuf, infoSet);
                 }else{
-                    if("bye".equals(str)){
-                        flag = false;
-                    }else{
-                        //将接收到的字符串前面加上echo，发送到对应的客户端
-                        out.println("echo:" + str);
-                    }
+                    handleEcho(sendBuf,str);
                 }
             }
-            out.close();
+            sendBuf.close();
             client.close();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws Exception{
-        //服务端在51706端口监听客户端请求的TCP连接
-        ServerSocket server = new ServerSocket(1234);
-        Socket client;
-        boolean f = true;
-        while(f){
-            //等待客户端的连接，如果没有获取连接
-            client = server.accept();
-            System.out.println("收到客户端的连接");
-            //获取客户端的地址和端口号
-            System.out.println(client.getInetAddress());
-            System.out.println(client.getLocalAddress());
-            System.out.println(client.getLocalPort());//获得client的服务器端的端口号
-            System.out.println(client.getPort());//获取到client的client那边的端口号
-            //为每个客户端连接开启一个线程
-            new Thread(new Server(client)).start();
+    private void handleLogin(PrintStream sendBuf,String[] infoSet){
+        String idString = infoSet[1];
+        int id = Integer.parseInt(idString);
+        String password = infoSet[2];
+        for(int i = 0;i < userList.size();i++){
+            if(userList.get(i).getId() == id){
+                if(userList.get(i).checkNamePasswdMatch(password) == true){
+                    //登录成功
+                    String nickname = userList.get(i).getNickname();
+                    String loginString = "[Server-LoginSuccess]" + "|" + nickname;
+                    sendInfo(sendBuf,loginString);
+                    return;
+                }else{
+                    String loginString = "[Server-LoginFail]" + "|" + "Wrong Password.";
+                    sendInfo(sendBuf,loginString);
+                    return;
+                }
+            }
         }
-        server.close();
+        String loginString = "[Server-LoginFail]" + "|" + "No such person.";
+        sendInfo(sendBuf,loginString);
     }
 
+    private void handleRegister(PrintStream sendBuf,String[] infoSet){
+        int newUserId = generateNewUserId();
+        String nickname = infoSet[1];
+        String password = infoSet[2];
+        User user = new User(newUserId,nickname,password);
+        userList.add(user);
+        String registerString = "[Server-RegisterSuccess]" + "|" + newUserId;
+        sendInfo(sendBuf,registerString);
+    }
+
+    private void handleGetFriendList(PrintStream sendBuf,String[] infoSet){
+        //将用户的所有信息拼装然后向客户端发送
+    }
+
+    private void handleUpdateUserInfo(PrintStream sendBuf,String[] infoSet){
+
+    }
+
+    private void handleEcho(PrintStream sendBuf,String sendStr){
+        sendInfo(sendBuf,sendStr);
+    }
+
+    private String receiveInfo(BufferedReader recvBuf){
+        try{
+            String str = recvBuf.readLine();
+            System.out.println("[Receive]" + str);
+            return str;
+        }catch(IOException e){
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private void sendInfo(PrintStream sendBuf,String sendStr){
+        sendBuf.println(sendStr);
+        System.out.println("[Send]" + sendStr);
+    }
+
+    private int generateNewUserId(){
+        userBaseId += 1;
+        return userBaseId;
+    }
 }
