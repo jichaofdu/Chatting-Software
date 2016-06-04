@@ -2,15 +2,10 @@
  * Created by Chao Ji on 2016-06-03.
  */
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+import java.io.PrintStream;
 /**
  * 测试Android客户端与PC服务器通过socket进行交互
  * 服务器端：接收客户端的信息并回送给客户
@@ -18,58 +13,54 @@ import java.net.Socket;
  *
  */
 public class Server implements Runnable {
-    public static final String SERVERIP = "127.0.0.1";
-    public static final int SERVERPORT = 51706;
 
+    private Socket client = null;
+    public Server(Socket client){
+        this.client = client;
+    }
+
+    @Override
     public void run() {
-        try {
-            System.out.println("Server: Connecting...");
-            ServerSocket serverSocket = new ServerSocket(SERVERPORT);
-            while (true) {
-                // 等待接受客户端请求
-                Socket client = serverSocket.accept();
-                System.out.println("Server: Receiving...");
-                try {
-                    // 接受客户端信息
-                    BufferedReader in = new BufferedReader(
-                            new InputStreamReader(client.getInputStream()));
-                    // 发送给客户端的消息
-                    PrintWriter out = new PrintWriter(new BufferedWriter(
-                            new OutputStreamWriter(client.getOutputStream())),true);
-                    System.out.println("Server: Ready for read from server");
-                    String str = in.readLine(); // 读取客户端的信息
-                    System.out.println("Server: Complete for read from server");
-                    if (str != null ) {
-                        // 设置返回信息，把从客户端接收的信息再返回给客户端
-                        out.println("You sent to server message is:" + str);
-                        out.flush();
-                        // 把客户端发送的信息保存到文件中
-                        File file = new File ("F://android.txt");
-                        FileOutputStream fops = new FileOutputStream(file);
-                        byte [] b = str.getBytes();
-                        for ( int i = 0 ; i < b.length; i++ ) {
-                            fops.write(b[i]);
-                        }
-                        System.out.println("S: Received: '" + str + "'");
-                    } else {
-                        System.out.println("Not receiver anything from client!");
+        try{
+            //获取Socket的输出流，用来向客户端发送数据
+            PrintStream out = new PrintStream(client.getOutputStream());
+            //获取Socket的输入流，用来接收从客户端发送过来的数据
+            BufferedReader buf = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            boolean flag =true;
+            while(flag){
+                //接收从客户端发送过来的数据
+                String str =  buf.readLine();
+                if(str == null || "".equals(str)){
+                    flag = false;
+                }else{
+                    if("bye".equals(str)){
+                        flag = false;
+                    }else{
+                        //将接收到的字符串前面加上echo，发送到对应的客户端
+                        out.println("echo:" + str);
                     }
-                } catch (Exception e) {
-                    System.out.println("Server: Error 1");
-                    e.printStackTrace();
-                } finally {
-                    client.close();
-                    System.out.println("Server: 在循环接受信息的过程中发生了错误");
                 }
             }
-        } catch (Exception e) {
-            System.out.println("Server Error: 包含liste的整个区块发生了错误");
+            out.close();
+            client.close();
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void main(String [] args ) {
-        Thread desktopServerThread = new Thread(new Server());
-        desktopServerThread.start();
+    public static void main(String[] args) throws Exception{
+        //服务端在20006端口监听客户端请求的TCP连接
+        ServerSocket server = new ServerSocket(51706);
+        Socket client;
+        boolean f = true;
+        while(f){
+            //等待客户端的连接，如果没有获取连接
+            client = server.accept();
+            System.out.println("与客户端连接成功！");
+            //为每个客户端连接开启一个线程
+            new Thread(new Server(client)).start();
+        }
+        server.close();
     }
+
 }
