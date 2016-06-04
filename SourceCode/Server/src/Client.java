@@ -9,7 +9,7 @@ import java.net.SocketTimeoutException;
 
 public class Client implements Runnable {
     public static final String SERVERIP = "127.0.0.1";
-    public static final int SERVERPORT = 51706;
+    public static final int SERVERPORT = 1234;
 
     public void run() {
         try{
@@ -23,6 +23,8 @@ public class Client implements Runnable {
             //获取Socket的输入流，用来接收从服务端发送过来的数据
             BufferedReader buf =  new BufferedReader(new InputStreamReader(client.getInputStream()));
             boolean flag = true;
+            System.out.println(client.getLocalPort());//获得client的服务器端的端口号
+            System.out.println(client.getPort());//获取到client的client那边的端口号
             while(flag){
                 System.out.print("输入信息：");
                 String str = input.readLine();

@@ -49,14 +49,19 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) throws Exception{
-        //服务端在20006端口监听客户端请求的TCP连接
-        ServerSocket server = new ServerSocket(51706);
+        //服务端在51706端口监听客户端请求的TCP连接
+        ServerSocket server = new ServerSocket(1234);
         Socket client;
         boolean f = true;
         while(f){
             //等待客户端的连接，如果没有获取连接
             client = server.accept();
-            System.out.println("与客户端连接成功！");
+            System.out.println("收到客户端的连接");
+            //获取客户端的地址和端口号
+            System.out.println(client.getInetAddress());
+            System.out.println(client.getLocalAddress());
+            System.out.println(client.getLocalPort());//获得client的服务器端的端口号
+            System.out.println(client.getPort());//获取到client的client那边的端口号
             //为每个客户端连接开启一个线程
             new Thread(new Server(client)).start();
         }
