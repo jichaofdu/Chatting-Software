@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InterfaceAddress;
 import java.net.Socket;
 import java.io.PrintStream;
 import java.util.Vector;
@@ -53,6 +54,12 @@ public class Server implements Runnable {
         for(int i = 0;i < userList.size();i++){
             if(userList.get(i).getId() == id){
                 if(userList.get(i).checkNamePasswdMatch(password) == true){
+                    //登录成功以后设置用户的登录状态为已经登录，并将登录的客户端的IP地址记录下来
+                    userList.get(i).setIsLogin(true);
+                    String clientAddress = client.getInetAddress().toString();
+                    int clientPort = client.getPort();
+                    userList.get(i).setLocalClientAddress(clientAddress);
+                    userList.get(i).setLocalClientPort(clientPort);
                     //登录成功
                     String nickname = userList.get(i).getNickname();
                     String loginString = "[Server-LoginSuccess]" + "|" + nickname;
@@ -84,11 +91,28 @@ public class Server implements Runnable {
     }
 
     private void handleUpdateUserInfo(PrintStream sendBuf,String[] infoSet){
-
+        String idString = infoSet[1];
+        int userId = Integer.parseInt(idString);
+        String nickname = infoSet[2];
+        String password = infoSet[3];
+        String introduction = infoSet[4];
+        for(int i = 0;i < userList.size();i++){
+            if(userList.get(i).getId() == userId) {
+                userList.get(i).setNickname(nickname);
+                userList.get(i).setPassword(password);
+                userList.get(i).setIntroduction(introduction);
+                return;
+            }
+        }
     }
 
     private void handleEcho(PrintStream sendBuf,String sendStr){
         sendInfo(sendBuf,sendStr);
+    }
+
+    private int generateNewUserId(){
+        userBaseId += 1;
+        return userBaseId;
     }
 
     private String receiveInfo(BufferedReader recvBuf){
@@ -107,8 +131,4 @@ public class Server implements Runnable {
         System.out.println("[Send]" + sendStr);
     }
 
-    private int generateNewUserId(){
-        userBaseId += 1;
-        return userBaseId;
-    }
 }

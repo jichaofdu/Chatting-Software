@@ -41,6 +41,17 @@ public class Client {
         }
     }
 
+    public void handleUpdateProfile(int id,String nickname,String password,String introduction){
+        String totalMsg = "[Client-UpdateUserInfo]" + "|" + id + "|" + nickname + "|" + password + "|" + introduction;
+        ci.sendToServer(totalMsg);
+        System.out.println("[提示]处理更新用户的资料信息已经发送");
+    }
+
+    public void uploadClientServerAddress(){
+        //获取客户端产生的用于p2p连接的自己的服务器的地址
+
+    }
+
     public Vector<User> getFriendList(int userId){
         String totalMsg = "[Client-GetFriendList]" + "|" + userId;
         ci.sendToServer(totalMsg);
