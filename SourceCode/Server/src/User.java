@@ -20,7 +20,20 @@ public class User {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
-        this.introduction = "";
+        this.introduction = "暂时没有添加用户介绍";
+        this.isLogin = false;
+        this.localClientAddress = "";
+        this.localClientPort = 0;
+        this.localServerAddress = "";
+        this.localServerPort = 0;
+        this.friendList = new Vector<>();
+    }
+
+    public User(int id,String nickname,String password,String introduction){
+        this.id = id;
+        this.nickname = nickname;
+        this.password = password;
+        this.introduction = introduction;
         this.isLogin = false;
         this.localClientAddress = "";
         this.localClientPort = 0;

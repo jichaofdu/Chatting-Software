@@ -42,7 +42,8 @@ public class Client {
         String[] replySet = loginReply.split("\\|");
         if("[Server-LoginSuccess]".equals(replySet[0])){
             String nickname = replySet[1];
-            User user = new User(userId,nickname,password);
+            String introduction = replySet[2];
+            User user = new User(userId,nickname,password,introduction);
             return user;
         }else{
             System.out.println("[错误]" + replySet[1]);
@@ -57,11 +58,13 @@ public class Client {
         System.out.println("[提示]处理更新用户的资料信息已经发送");
     }
 
+    //这个函数还没补充完整
     public void uploadClientServerAddress(){
         //获取客户端产生的用于p2p连接的自己的服务器的地址
 
     }
 
+    //这个函数还没补充完整
     public Vector<User> getFriendList(int userId){
         String totalMsg = "[Client-GetFriendList]" + "|" + userId;
         ci.sendToServer(totalMsg);
@@ -77,10 +80,19 @@ public class Client {
 
     public static void main(String[] args){
         Client c = new Client();
+        //测试注册是否有效
         User u = c.handleRegister("jichaofdu","fuckingproject");
         System.out.println("收到的用户的id:" + u.getId());
+        //测试登录是否有效
         User u2 = c.handleLogin(u.getId(),"fuckingproject");
         System.out.println("收到的用户的昵称:" + u2.getNickname());
+        System.out.println("用户的介绍:" + u.getIntroduction());
+        //测试更新用户信息是否有效。修改信息后再登录是为了获得用户昵称
+        c.handleUpdateProfile(u.getId(),"asdadasda","fuckingproject","I love travel");
+        User u3 = c.handleLogin(u.getId(),"fuckingproject");
+        System.out.println("收到的用户的昵称:" + u3.getNickname());
+        System.out.println("用户的介绍:" + u3.getIntroduction());
+        //
         c.ci.sendToServer("[Shutdown]");
     }
 

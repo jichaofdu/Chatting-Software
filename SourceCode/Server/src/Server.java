@@ -63,7 +63,8 @@ public class Server implements Runnable {
                     userList.get(i).setLocalClientPort(clientPort);
                     //登录成功
                     String nickname = userList.get(i).getNickname();
-                    String loginString = "[Server-LoginSuccess]" + "|" + nickname;
+                    String introduction = userList.get(i).getIntroduction();
+                    String loginString = "[Server-LoginSuccess]" + "|" + nickname + "|" + introduction;
                     sendInfo(sendBuf,loginString);
                     return;
                 }else{
