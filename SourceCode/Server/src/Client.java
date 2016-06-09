@@ -2,10 +2,19 @@
  * Created by Chao Ji on 2016-06-04.
  */
 
+import java.io.IOException;
 import java.util.Vector;
 
 public class Client {
     ClientInterface ci;
+
+    public Client(){
+        try{
+            ci = new ClientInterface();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public User handleRegister(String nickname,String password){
         String totalMsg = "[Client-Register]" + "|" + nickname + "|" + password;
@@ -29,8 +38,9 @@ public class Client {
         String totalMsg = "[Client-Login]" + "|" + userId + "|" + password;
         ci.sendToServer(totalMsg);
         String loginReply = ci.receiveFromServer();
+        System.out.println("--" + loginReply);
         String[] replySet = loginReply.split("\\|");
-        if(replySet[0] == "[Server-LoginSuccess]"){
+        if("[Server-LoginSuccess]".equals(replySet[0])){
             String nickname = replySet[1];
             User user = new User(userId,nickname,password);
             return user;
@@ -63,6 +73,15 @@ public class Client {
         //To-do
 
         return friendList;
+    }
+
+    public static void main(String[] args){
+        Client c = new Client();
+        User u = c.handleRegister("jichaofdu","fuckingproject");
+        System.out.println("收到的用户的id:" + u.getId());
+        User u2 = c.handleLogin(u.getId(),"fuckingproject");
+        System.out.println("收到的用户的昵称:" + u2.getNickname());
+        c.ci.sendToServer("[Shutdown]");
     }
 
 }

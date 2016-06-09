@@ -25,7 +25,7 @@ public class Server implements Runnable {
             while(flag){
                 String str = receiveInfo(recvBuf);
                 String[] infoSet = str.split("\\|");
-                System.out.println("---" + infoSet[0]);
+                System.out.println("---" + str);
                 if("[Shutdown]".equals(infoSet[0])) {
                     flag = false;
                 }else if("[Client-Register]".equals(infoSet[0])){
@@ -37,13 +37,14 @@ public class Server implements Runnable {
                 }else if("[Client-UpdateUserInfo]".equals(infoSet[0])) {
                     handleUpdateUserInfo(sendBuf, infoSet);
                 }else{
-                    handleEcho(sendBuf,str);
+                    //handleEcho(sendBuf,str);
                 }
             }
             sendBuf.close();
             client.close();
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Server外围错误");
+            //e.printStackTrace();
         }
     }
 
