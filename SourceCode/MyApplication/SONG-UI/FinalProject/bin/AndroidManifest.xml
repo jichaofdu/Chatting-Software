@@ -26,8 +26,11 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name="com.example.isweixin.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.Login" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.Register" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.blank" android:screenOrientation="portrait"/>
+        
         <activity android:name="com.example.isweixin.MyWebView" android:screenOrientation="portrait"/>
         
         <activity

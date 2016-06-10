@@ -3,6 +3,7 @@ package com.example.isweixin;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -26,10 +27,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private TextView faxian;
 	private TextView tongxunlu;
 	
-	private boolean isOpen = false;
-	
 	private ListView listview1;
 	private ListView listview2;
+	private ListView listview3;
 	
 	//自定义的弹出框类
 	SelectPicPopupWindow menuWindow; //弹出框
@@ -49,14 +49,19 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		
 		listview1 = (ListView)findViewById(R.id.listView1);
 		listview2 = (ListView)findViewById(R.id.listView2);
+		listview3 = (ListView)findViewById(R.id.listView3);
 		
 		HuihuaAdapter ha = new HuihuaAdapter(this,getHuahui());
 		listview1.setAdapter(ha);
 		listview1.setCacheColorHint(0);
 		
-		ContactAdapter hc = new ContactAdapter(this,getContact());
-		listview2.setAdapter(hc);
+		PengyouAdapter py = new PengyouAdapter(this,getPengyou());
+		listview2.setAdapter(py);
 		listview2.setCacheColorHint(0);
+		
+		ContactAdapter hc = new ContactAdapter(this,getContact());
+		listview3.setAdapter(hc);
+		listview3.setCacheColorHint(0);
 		
     	mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout); 	
     	LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);   	
@@ -88,19 +93,59 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     		}
     	});
     }
-	
+	private ArrayList<PengYou> getPengyou(){
+		ArrayList<PengYou> hhList = new ArrayList<PengYou>();
+		PengYou h1 = new PengYou();
+		h1.setTxPath(R.drawable.icon+"");
+		h1.setName("A");
+		h1.setLastContent("这是唯一一个正常的朋友");
+		h1.setLastTime("下午 18:00");
+		
+		PengYou h2 = new PengYou();
+		h2.setTxPath(R.drawable.icon+"");
+		h2.setName("B");
+		h2.setLastContent("我存在永恒的黑暗中，我喜欢吞噬光明的灵魂");
+		h2.setLastTime("下午 17:40");
+		
+		PengYou h3 = new PengYou();
+		h3.setTxPath(R.drawable.icon+"");
+		h3.setName("C");
+		h3.setLastContent("我存在永恒的黑暗中，");
+		h3.setLastTime("下午 17:00");
+		
+		PengYou h4 = new PengYou();
+		h4.setTxPath(R.drawable.icon+"");
+		h4.setName("D");
+		h4.setLastContent("我就是这么一个人，就是喜欢一个人，不管是不是一个人");
+		h4.setLastTime("下午 16:22");
+		
+		PengYou h5 = new PengYou();
+		h5.setTxPath(R.drawable.icon+"");
+		h5.setName("E");
+		h5.setLastContent("风吹得很清新，云飘荡在南边的天空");
+		h5.setLastTime("下午 16:11");
+		
+		
+		
+		hhList.add(h1);
+		hhList.add(h2);
+		hhList.add(h3);
+		hhList.add(h4);
+		hhList.add(h5);
+		return hhList;
+	} 
 	private ArrayList<ContactP> getContact(){
 		ArrayList<ContactP> hcList = new ArrayList<ContactP>();
 		ContactP c0 = new ContactP();
-		c0.setTxPath(R.drawable.bind_mcontact_reco_friends+"");
+		c0.setTxPath(R.drawable.icon+"");
 		c0.setName("服务号");
 		
 		ContactP c1 = new ContactP();
-		c1.setTxPath(R.drawable.brand_default_head+"");
+		c1.setTxPath(R.drawable.icon+"");
 		c1.setName("微信测试账号");
 		
 		ContactP c2 = new ContactP();
-		c2.setTxPath(R.drawable.bind_qq_icon+"");
+		c2.setTxPath(R.drawable.icon+"");
 		c2.setName("QQ团队");
 		
 		ContactP c3 = new ContactP();
@@ -108,45 +153,36 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		c3.setName("微信团队");
 		
 		ContactP c4 = new ContactP();
-		c4.setTxPath(R.drawable.xiaohei+"");
+		c4.setTxPath(R.drawable.icon+"");
 		c4.setName("小黑");
 		
 		ContactP c5 = new ContactP();
-		c5.setTxPath(R.drawable.voip_camerachat+"");
+		c5.setTxPath(R.drawable.icon+"");
 		c5.setName("不再禽兽");
 		
 		ContactP c6 = new ContactP();
-		c6.setTxPath(R.drawable.searadd_icon+"");
+		c6.setTxPath(R.drawable.icon+"");
 		c6.setName("傻逼不哭");
 		
 		ContactP c7 = new ContactP();
-		c7.setTxPath(R.drawable.personactivity_cover_heart+"");
+		c7.setTxPath(R.drawable.icon+"");
 		c7.setName("肖秀");
 		
 		ContactP c8 = new ContactP();
-		c8.setTxPath(R.drawable.headshow2+"");
+		c8.setTxPath(R.drawable.icon+"");
 		c8.setName("风清云南");
 		
 		ContactP c9 = new ContactP();
-		c9.setTxPath(R.drawable.headshow3+"");
+		c9.setTxPath(R.drawable.icon+"");
 		c9.setName("EatEvery");
 		
 		ContactP c10 = new ContactP();
-		c10.setTxPath(R.drawable.headshow4+"");
+		c10.setTxPath(R.drawable.icon+"");
 		c10.setName("鄙人");
 		
 		ContactP c11 = new ContactP();
-		c11.setTxPath(R.drawable.headshow5+"");
+		c11.setTxPath(R.drawable.icon+"");
 		c11.setName("人人人");
-		
-		ContactP c12 = new ContactP();
-		c12.setTxPath(R.drawable.headshow6+"");
-		c12.setName("Diacker");
-		
-		ContactP c13 = new ContactP();
-		c13.setTxPath(R.drawable.headshow1+"");
-		c13.setName("王霸");
-		
 		hcList.add(c0);
 		hcList.add(c1);
 		hcList.add(c2);
@@ -159,70 +195,69 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		hcList.add(c9);
 		hcList.add(c10);
 		hcList.add(c11);
-		hcList.add(c12);
-		hcList.add(c13);
 		
 		return hcList;
 	}
+	
 	private ArrayList<HuiHua> getHuahui(){
 		ArrayList<HuiHua> hhList = new ArrayList<HuiHua>();
 		HuiHua h1 = new HuiHua();
 		h1.setTxPath(R.drawable.icon+"");
-		h1.setName1("肖秀");
+		h1.setName("A");
 		h1.setLastContent("这是唯一一个正常的朋友");
 		h1.setLastTime("下午 18:00");
 		
 		HuiHua h2 = new HuiHua();
-		h2.setTxPath(R.drawable.xiaohei+"");
-		h2.setName1("小黑");
+		h2.setTxPath(R.drawable.icon+"");
+		h2.setName("B");
 		h2.setLastContent("我存在永恒的黑暗中，我喜欢吞噬光明的灵魂");
 		h2.setLastTime("下午 17:40");
 		
 		HuiHua h3 = new HuiHua();
-		h3.setTxPath(R.drawable.searadd_icon+"");
-		h3.setName1("傻逼不哭");
-		h3.setLastContent("傻逼不哭，站起来勇敢地撸");
+		h3.setTxPath(R.drawable.icon+"");
+		h3.setName("C");
+		h3.setLastContent("我存在永恒的黑暗中，");
 		h3.setLastTime("下午 17:00");
 		
 		HuiHua h4 = new HuiHua();
-		h4.setTxPath(R.drawable.voip_camerachat+"");
-		h4.setName1("不再当禽兽");
-		h4.setLastContent("从此不再当禽兽，我要当兽王");
+		h4.setTxPath(R.drawable.icon+"");
+		h4.setName("D");
+		h4.setLastContent("我就是这么一个人，就是喜欢一个人，不管是不是一个人");
 		h4.setLastTime("下午 16:22");
 		
 		HuiHua h5 = new HuiHua();
-		h5.setTxPath(R.drawable.headshow2+"");
-		h5.setName1("风清云南");
+		h5.setTxPath(R.drawable.icon+"");
+		h5.setName("E");
 		h5.setLastContent("风吹得很清新，云飘荡在南边的天空");
 		h5.setLastTime("下午 16:11");
 		
 		HuiHua h6 = new HuiHua();
-		h6.setTxPath(R.drawable.headshow3+"");
-		h6.setName1("EatEvery");
+		h6.setTxPath(R.drawable.icon+"");
+		h6.setName("EatEvery");
 		h6.setLastContent("Don't look me, I will eat you, Are you know");
 		h6.setLastTime("下午 15:08");
 		
 		HuiHua h7 = new HuiHua();
-		h7.setTxPath(R.drawable.headshow4+"");
-		h7.setName1("鄙人");
-		h7.setLastContent("没有那么大的屌，就不要装B");
+		h7.setTxPath(R.drawable.icon+"");
+		h7.setName("F");
+		h7.setLastContent("我就是这么一个人，就是喜欢一个人，不管是不是一个人");
 		h7.setLastTime("下午 15:01");
 		
 		HuiHua h8 = new HuiHua();
-		h8.setTxPath(R.drawable.headshow5+"");
-		h8.setName1("人人人");
+		h8.setTxPath(R.drawable.icon+"");
+		h8.setName("G");
 		h8.setLastContent("我就是这么一个人，就是喜欢一个人，不管是不是一个人");
 		h8.setLastTime("下午 14:50");
 		
 		HuiHua h9 = new HuiHua();
-		h9.setTxPath(R.drawable.headshow6+"");
-		h9.setName1("Diacker");
+		h9.setTxPath(R.drawable.icon+"");
+		h9.setName("H");
 		h9.setLastContent("this is very good fill");
 		h9.setLastTime("下午 14:00");
 		
 		HuiHua h0 = new HuiHua();
-		h0.setTxPath(R.drawable.headshow1+"");
-		h0.setName1("酒香告急");
+		h0.setTxPath(R.drawable.icon+"");
+		h0.setName("I");
 		h0.setLastContent("我是个喜欢就得人，但是你们一定要理解清楚我的名字，再跟我说话");
 		h0.setLastTime("中午 12:00");
 		

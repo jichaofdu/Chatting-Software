@@ -54,7 +54,7 @@ public class HuihuaAdapter extends BaseAdapter {
 		}
 		
 		h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
-		h.name.setText(hh.getName1());
+		h.name.setText(hh.getName());
 		h.time.setText(hh.getLastTime());
 		h.lastmsg.setText(hh.getLastContent());
 		

@@ -18,17 +18,9 @@
     			android:gravity="center"
                 >
                 <ImageView 
-                    android:layout_width="30dp" 
+                    android:layout_width="168dp" 
     				android:layout_height="30dp" 
     				android:src="@drawable/actionbar_icon"
-                    />
-                <TextView
-                    android:layout_width="wrap_content" 
-    				android:layout_height="wrap_content" 
-    				android:text="微信"
-    				android:layout_marginLeft="10dip"
-    				android:textSize="18dp"
-    				android:textColor="@color/lightgray"
                     />
             </LinearLayout>
             <LinearLayout 
@@ -38,12 +30,7 @@
     			android:layout_alignParentRight="true"
     			android:gravity="center"
                 >
-                <ImageView 
-                    android:layout_marginRight="20dip"
-                    android:layout_width="30dp" 
-    				android:layout_height="30dp" 
-    				android:src="@drawable/actionbar_search_icon"
-                    />
+                
                  <ImageView 
                     android:layout_width="30dp" 
     				android:layout_height="30dp" 

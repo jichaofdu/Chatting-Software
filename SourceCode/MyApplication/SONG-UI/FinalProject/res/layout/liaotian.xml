@@ -30,24 +30,13 @@
 		              	  android:padding="2dip"
 		              	  android:layout_weight="1"
 		              	  android:layout_marginLeft="6dp"
-		              	  android:text="下午 16:45"
+		              	  android:text=""
 		              	  android:textSize="15dip"
 		              	  android:gravity="center"
 		              	  android:singleLine="true"
 		              	  android:textColor="@color/gray"
 			              />
-			          <TextView
-			              android:id="@+id/bz"
-			              android:layout_width="wrap_content"
-		              	  android:layout_height="fill_parent"
-		              	  android:layout_weight="1"
-		              	  android:layout_marginLeft="6dp"
-		              	  android:padding="2dip"
-		              	  android:textSize="14dip"
-		              	  android:singleLine="true"
-		              	  android:gravity="center"
-		              	  android:textColor="@color/gray"
-			              />
+			          
 		          </LinearLayout>
 		          <LinearLayout 
 			          android:orientation="vertical" 
@@ -62,7 +51,7 @@
 			              android:layout_width="wrap_content"
 		              	  android:layout_height="fill_parent"
 		              	  android:layout_weight="1"
-		              	  android:text="肖秀"
+		              	  android:text=""
 		              	  android:padding="2dip"
 		              	  android:textSize="15dip"
 		              	  android:singleLine="true"
@@ -74,7 +63,7 @@
 			              android:layout_width="wrap_content"
 		              	  android:layout_height="fill_parent"
 		              	  android:padding="2dip"
-		              	  android:text="这是唯一一个正常的朋友"
+		              	  android:text=""
 		              	  android:textSize="14dip"
 		              	  android:layout_weight="1"
 		              	  android:singleLine="true"
@@ -82,6 +71,5 @@
 		              	  android:textColor="@color/gray"
 			              />
 		          </LinearLayout>
-		      </RelativeLayout>
-		      
+		      </RelativeLayout>   
 </LinearLayout>
