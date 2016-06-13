@@ -58,6 +58,54 @@ public class Client {
         System.out.println("[提示]处理更新用户的资料信息已经发送");
     }
 
+    /*
+    返回信息格式:   [报头] | [用户名] | [用户介绍]
+    报头为:  [Server-FindUserById] 的时候表示有查找到那一个用户
+             [Server-FindNoneByName] 的时候表示有查找失败
+     */
+    public User searchUserById(int id){
+        String searchRequest = "[Client-SearchUserById]" + "|" + id;
+        ci.sendToServer(searchRequest);
+        String replyStr = ci.receiveFromServer();
+        String[] replySet = replyStr.split("\\|");
+        User user;
+        if("[Server-FindUserById]".equals(replySet[0])){
+            String nickname = replySet[1];
+            String introduction = replySet[2];
+            user = new User(id,nickname,"Cannot Get Others Password",introduction);
+        }else{
+            user = new User(-1,"No such user","No such user","No such user");
+        }
+        return user;
+    }
+
+    /*
+    返回信息格式:   [报头] | [结果数量] | [用户id] | [用户介绍] | [用户id] | [用户介绍]
+    报头为:   [Server-FindUserByName] 的时候表示有查找到那一个用户
+              [Server-FindNoneByName] 的时候表示有查找失败
+    */
+    public Vector<User> searchUserByName(String nameWanted){
+        String searchRequest = "[Client-SearchUserByName]" + "|" + nameWanted;
+        ci.sendToServer(searchRequest);
+        String replyStr = ci.receiveFromServer();
+        String[] replySet = replyStr.split("\\|");
+        if("[Server-FindUserByName]".equals(replySet[0])){
+            Vector<User> retUserList = new Vector<>();
+            int num = Integer.parseInt(replySet[1]);
+            for(int i = 0;i < num;i++){
+                int id = Integer.parseInt(replySet[2 + 2*i]);
+                String introduction = replySet[2 + 2*i + 1];
+                User user = new User(id,nameWanted,"Cannot Get Others Password",introduction);
+                retUserList.add(user);
+
+            }
+            return retUserList;
+        }else{
+            Vector<User> retUserList = new Vector<>();
+            return retUserList;
+        }
+    }
+
     //这个函数还没补充完整
     public void uploadClientServerAddress(){
         //获取客户端产生的用于p2p连接的自己的服务器的地址
