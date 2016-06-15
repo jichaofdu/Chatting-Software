@@ -12,7 +12,7 @@
         />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/login_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,35 +21,39 @@
         android:ems="10"
         android:hint="@string/name" />
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignRight="@+id/name"
-        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/login_name"
+        android:layout_alignRight="@+id/login_name"
+        android:layout_below="@+id/login_name"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/login"
-        android:layout_alignBottom="@+id/login"
-        android:layout_alignRight="@+id/name"
-        android:text="register" />
+        android:layout_alignBaseline="@+id/Login"
+        android:layout_alignBottom="@+id/Login"
+        android:layout_alignRight="@+id/login_name"
+        android:text="@string/register" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/password"
-        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/login_password"
+        android:layout_below="@+id/login_password"
         android:layout_marginTop="28dp"
-        android:text="login" />
-
-    
+        android:text="@string/login" />
+    <TextView 
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Login"
+        android:text="发送"/>
 
 </RelativeLayout>

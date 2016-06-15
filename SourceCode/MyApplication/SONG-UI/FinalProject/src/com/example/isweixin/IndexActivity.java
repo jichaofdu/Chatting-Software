@@ -2,6 +2,7 @@ package com.example.isweixin;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -30,7 +31,6 @@ public class IndexActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.index);
-		
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
