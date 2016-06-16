@@ -35,7 +35,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 
 			public void onClick(View v) {
 				//Ïú»Ùµ¯³ö¿ò
-				SaveDate.saveDate(context, new OAuthV2()); 
+				//SaveDate.saveDate(context, new OAuthV2()); 
 				context.finish();
 			}
 		});

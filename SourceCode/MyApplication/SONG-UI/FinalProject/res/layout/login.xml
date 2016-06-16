@@ -49,11 +49,5 @@
         android:layout_below="@+id/login_password"
         android:layout_marginTop="28dp"
         android:text="@string/login" />
-    <TextView 
-        android:id="@+id/txt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Login"
-        android:text="发送"/>
 
 </RelativeLayout>

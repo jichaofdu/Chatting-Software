@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
@@ -19,7 +18,6 @@ public class Login extends Activity {
 	private EditText password;
 	private Button login;
 	private Button register;
-	private TextView txt1;
 	public static final String SERVERIP = "172.20.124.162";
     public static final int SERVERPORT = 12345;
 	
@@ -34,7 +32,6 @@ public class Login extends Activity {
 		password = (EditText)findViewById(R.id.login_password);
 		login = (Button)findViewById(R.id.Login);
 		register = (Button)findViewById(R.id.login_register);
-		txt1 = (TextView )findViewById(R.id.txt1);
 		login.setOnClickListener(new View.OnClickListener() {
 			String name1 ;
 			String password1 ;
