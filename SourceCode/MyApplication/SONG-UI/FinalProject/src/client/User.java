@@ -51,6 +51,11 @@ public class User {
         return username;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+
+
     public void setNickname(String newNick){
         this.nickname = newNick;
     }

@@ -126,6 +126,10 @@ public class Client {
         return friendList;
     }
 
+    public void handleLogout(){
+        ci.sendToServer("[Shutdown]");
+    }
+
     public static void main(String[] args){
         while(true) {
             Client c = new Client();

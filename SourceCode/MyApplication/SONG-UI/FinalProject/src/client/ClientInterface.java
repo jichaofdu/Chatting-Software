@@ -14,9 +14,21 @@ public class ClientInterface {
     private BufferedReader receiveBuf;
 
     public ClientInterface() throws IOException{
+        System.out.println("Begin Client Interface");
         client = new Socket(SERVERIP,SERVERPORT);
+        System.out.println("End Client Interface - 1");
         sendBuf = new PrintStream(client.getOutputStream());
+        System.out.println("End Client Interface - 2");
         receiveBuf =  new BufferedReader(new InputStreamReader(client.getInputStream()));
+        System.out.println("End Client Interface");
+    }
+
+    public void breakConnection(){
+        try{
+            client.close();
+        }catch(Exception e){
+
+        }
     }
 
     public void sendToServer(String message){

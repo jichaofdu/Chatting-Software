@@ -11,12 +11,14 @@ public class Client {
     private User localUser;
 
     private Client(){
+        System.out.println("Begin Client");
         try{
             ci = new ClientInterface();
         }catch(IOException e){
             e.printStackTrace();
         }
         this.localUser = new User(-1,"","");
+        System.out.println("End Client");
     }
 
     public static Client getClient(){
@@ -26,6 +28,11 @@ public class Client {
         }else{
             return INSTANCE;
         }
+    }
+
+    public User getLocalUser(){
+        User user = this.localUser;
+        return user;
     }
 
     public User handleRegister(String nickname,String password){
@@ -142,24 +149,12 @@ public class Client {
         return friendList;
     }
 
-    public static void main(String[] args){
-        while(true) {
-            Client c = new Client();
-            //测试注册是否有效
-            User u = c.handleRegister("jichaofdu", "fuckingproject");
-            System.out.println("收到的用户的id:" + u.getId());
-            //测试登录是否有效
-            User u2 = c.handleLogin(u.getId(), "fuckingproject");
-            System.out.println("收到的用户的昵称:" + u2.getNickname());
-            System.out.println("用户的介绍:" + u.getIntroduction());
-            //测试更新用户信息是否有效。修改信息后再登录是为了获得用户昵称
-            c.handleUpdateProfile(u.getId(), "asdadasda", "fuckingproject", "I love travel");
-            User u3 = c.handleLogin(u.getId(), "fuckingproject");
-            System.out.println("收到的用户的昵称:" + u3.getNickname());
-            System.out.println("用户的介绍:" + u3.getIntroduction());
-            //
-            //c.ci.sendToServer("[Shutdown]");
-        }
+    public void logout(){
+        String logoutString = "[Client-Logout]" + "|" + localUser.getId();
+        ci.sendToServer(logoutString);
+        this.localUser = null;
+        ci.breakConnection();
     }
+
 
 }

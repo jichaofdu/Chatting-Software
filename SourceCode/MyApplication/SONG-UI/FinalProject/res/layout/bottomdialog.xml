@@ -36,14 +36,14 @@
     		android:padding="5dp"
     		android:gravity="left|center_horizontal"
         	>
-        	<TextView
+        	<TextView android:id="@+id/topNameSlot"
         	  android:layout_width="fill_parent"
     		  android:layout_height="wrap_content"  
     		  android:text="Nickname Slot"
     		  android:textColor="@color/white"
     		  android:textSize="15dp"
         	    />
-        	<TextView
+        	<TextView android:id="@+id/topIdSlot"
         	  android:layout_width="fill_parent"
     		  android:layout_height="wrap_content"  
     		  android:text="User ID slot"

@@ -2,6 +2,7 @@ package com.example.isweixin;
 
 import java.util.ArrayList;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Button;
+import client.Client;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener{
 	private MyScrollLayout mScrollLayout;	
@@ -27,7 +28,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ListView listview1;
 	private ListView listview2;
 	private ListView listview3;
-	SelectPicPopupWindow menuWindow;
+	SelectPicPopupWindow menuInfoWindow;
 	SelectAddPopupWindow menuWindow2;
 
 	@Override
@@ -119,20 +120,41 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	} 
 	
 	 public void uploadImage(final Activity context){
-		 menuWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
-
-		menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????λ??
+		 menuInfoWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
+		 menuInfoWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230);
+		 menuInfoWindow.changeInfoButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 System.out.println("Click Change Info");
+				 Intent intent = new Intent(MainActivity.this,ModifyUserInfo.class);
+				 startActivity(intent);
+				 menuInfoWindow.dismiss();
+				 menuInfoWindow = null;
+			 }
+		 });
+		 menuInfoWindow.logoutButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 System.out.println("Click Change Logout");
+				 Client client = Client.getClient();
+				 client.logout();
+				 Intent intent = new Intent(MainActivity.this,Login.class);
+				 startActivity(intent);
+				 menuInfoWindow.dismiss();
+				 menuInfoWindow = null;
+				 finish();
+			 }
+		 });
 	 }
 	 public void uploadImage2(final Activity context){
 		 menuWindow2 = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
-
 		 menuWindow2.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????λ??
 	 }
 	 
 
 	    private OnClickListener  itemsOnClick = new OnClickListener(){
 			public void onClick(View v) {
-				menuWindow.dismiss();
+				menuInfoWindow.dismiss();
 			}
 	    };
 	    

@@ -11,12 +11,17 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+import client.Client;
+import client.User;
 
 public class SelectPicPopupWindow extends PopupWindow {
 
 	//------------------------------------------------
-	private Button changeInfoButton;
-	private Button logoutButton;
+	public Button changeInfoButton;
+	public Button logoutButton;
+	private TextView topNicknameTextView;
+	private TextView topIdTextView;
 	//------------------------------------------------
 	private View mMenuView;
 
@@ -48,20 +53,13 @@ public class SelectPicPopupWindow extends PopupWindow {
 			}
 		});
 		//------------------------
+		topNicknameTextView = (TextView)mMenuView.findViewById(R.id.topNameSlot);
+		topIdTextView = (TextView)mMenuView.findViewById(R.id.topIdSlot);
+		User localUser = Client.getClient().getLocalUser();
+		topNicknameTextView.setText(localUser.getNickname());
+		topIdTextView.setText("ID:" + localUser.getId());
 		changeInfoButton = (Button)mMenuView.findViewById(R.id.changeInfo);
 		logoutButton = (Button)mMenuView.findViewById(R.id.logout);
-		changeInfoButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("Click Change Info");
-			}
-		});
-		logoutButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("Click Change Logout");
-			}
-		});
 		//------------------------
 	}
 
