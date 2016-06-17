@@ -14,7 +14,7 @@ public class MyScrollLayout extends ViewGroup{
     private static final String TAG = "ScrollLayout";      
     private VelocityTracker mVelocityTracker;  			// 用于判断甩动手势    
     private static final int SNAP_VELOCITY = 400;        
-    private Scroller  mScroller;						// 滑动控制噄1�7	
+    private Scroller  mScroller;						// 滑动控制
     private int mCurScreen;    						    
 	private int mDefaultScreen = 0;    						 
     private float mLastMotionX;       

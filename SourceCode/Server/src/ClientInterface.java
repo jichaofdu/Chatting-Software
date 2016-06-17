@@ -5,8 +5,9 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 public class ClientInterface {
-    public static final String SERVERIP = "127.0.0.1";
-    public static final int SERVERPORT = 1234;
+
+    public static final String SERVERIP = "140.114.128.181";
+    public static final int SERVERPORT = 12345;
     public Socket client;
     PrintStream sendBuf;
     BufferedReader receiveBuf;

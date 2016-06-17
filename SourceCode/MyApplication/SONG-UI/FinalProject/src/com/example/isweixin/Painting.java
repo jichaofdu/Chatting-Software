@@ -10,6 +10,7 @@ public class Painting {
 	public String getWeixinID() {
 		return weixinID;
 	}
+
 	public void setWeixinID1(String weixinID) {
 		this.weixinID = weixinID;
 	}
@@ -17,6 +18,7 @@ public class Painting {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -24,18 +26,23 @@ public class Painting {
 	public String getLastContent() {
 		return lastContent;
 	}
+
 	public void setLastContent(String lastContent) {
 		this.lastContent = lastContent;
 	}
+
 	public String getLastTime() {
 		return lastTime;
 	}
+
 	public void setLastTime(String lastTime) {
 		this.lastTime = lastTime;
 	}
+
 	public String getTxPath() {
 		return TxPath;
 	}
+
 	public void setTxPath(String txPath) {
 		TxPath = txPath;
 	}

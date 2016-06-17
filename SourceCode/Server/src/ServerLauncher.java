@@ -1,13 +1,12 @@
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
 
 public class ServerLauncher {
 
     public static void main(String[] args) throws Exception{
 
         //Server port is 1234
-        ServerSocket server = new ServerSocket(1234);
+        ServerSocket server = new ServerSocket(12345);
         boolean f = true;
         while(f){
             Socket client = server.accept();

@@ -1,10 +1,5 @@
 package com.example.isweixin;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import client.*;
 
 public class Login extends Activity {
 	private EditText name;
 	private EditText password;
 	private Button login;
 	private Button register;
-	public static final String SERVERIP = "172.20.124.162";
-    public static final int SERVERPORT = 12345;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,42 +27,46 @@ public class Login extends Activity {
 		login = (Button)findViewById(R.id.Login);
 		register = (Button)findViewById(R.id.login_register);
 		login.setOnClickListener(new View.OnClickListener() {
-			String name1 ;
-			String password1 ;
+			String idString ;
+			String passwordString ;
 			
     		@Override
     		public void onClick(View arg0) {
-    			name1 = name.getText().toString();
-    			password1 = password.getText().toString();
+    			idString = name.getText().toString();
+    			passwordString = password.getText().toString();
     			
-    			if (name1.equals("") ||password1.equals("")){
-    				Toast.makeText(getApplicationContext(), "–≈œ¢≤ªÕÍ’˚£°",
-    					     Toast.LENGTH_SHORT).show();
-    				return;
-    			}
+    			if (idString.equals("") ||passwordString.equals("")){
+    				Toast.makeText(getApplicationContext(), "Empty String",Toast.LENGTH_SHORT).show();
+					return;
+				}
     			Thread t = new Thread(new Runnable(){  
     				public void run(){
     					try {
-    						Socket client = new Socket(SERVERIP,SERVERPORT);
-    						PrintStream sendBuf = new PrintStream(client.getOutputStream());
-    			            BufferedReader recvBuf = new BufferedReader(new InputStreamReader(client.getInputStream()));
-    						String massage = new String ("[Client-Login]|" +name1 + "|" + password1);
-    						
-    						sendToServer(sendBuf,massage) ;
-    			            String reply = "0";
-    			            receiveFromServer(recvBuf,reply);
-    			            
-    			            client.close();
-    			            
-    			            if (reply.equals("0")){
+
+							//---------------TO DO--------------------------
+							int id = Integer.parseInt(idString);
+							//ÂêëÊúçÂä°Âô®ÂèëÈÄÅÁôªÂΩï‰ø°ÊÅØ
+							Client c = Client.getClient();
+							User user = c.handleLogin(id,passwordString);
+							boolean flag = false;
+							if(user.getId() == -1){
+								flag = false;
+								//Login fail
+							}else{
+								flag = true;
+								//Login Success
+							}
+							//----------------------------------------------
+    			            if (flag == true){
         						Intent intent = new Intent(Login.this,MainActivity.class);
         		    			startActivity(intent);
         		    			finish();
-        					}
-    						
+        					}else{
+								Toast.makeText(getApplicationContext(), "Sorry,Login Fail.",Toast.LENGTH_SHORT).show();
+								return;
+							}
     					} catch (Exception e) {
     						e.printStackTrace();
-    						
     					}
     					
     				}
@@ -76,6 +74,7 @@ public class Login extends Activity {
     			t.start();
     		}
     	});
+
 		register.setOnClickListener(new View.OnClickListener() {
     		@Override
     		public void onClick(View arg0) {
@@ -85,18 +84,5 @@ public class Login extends Activity {
     		}
     	});
 	}	
-	
-	public void sendToServer(PrintStream sendBuf,String message){
-        sendBuf.println(message);
-    }
-	
-    public void receiveFromServer(BufferedReader receiveBuf,String reply){
-        try{
-            reply = receiveBuf.readLine();
-            
-        }catch(IOException e){
-            e.printStackTrace();
-           
-        }
-    }
+
 }

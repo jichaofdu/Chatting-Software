@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener{
+
 	private MyScrollLayout mScrollLayout;	
 	private LinearLayout[] mImageViews;	
 	private int mViewCount;	
@@ -28,10 +29,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ListView listview1;
 	private ListView listview2;
 	private ListView listview3;
-	
-	//?????????????
-	SelectPicPopupWindow menuWindow; //??????
-	SelectAddPopupWindow menuWindow2; //??????
+
+	SelectPicPopupWindow menuWindow;
+	SelectAddPopupWindow menuWindow2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,8 +39,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		init();
 	}
 
-	private void init()
-    {
+	private void init() {
 		liaotian = (TextView)findViewById(R.id.liaotian);
 		faxian = (TextView)findViewById(R.id.faxian);
 		tongxunlu = (TextView)findViewById(R.id.tongxunlu);
