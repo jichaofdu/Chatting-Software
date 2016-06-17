@@ -59,7 +59,7 @@ public class Register extends Activity {
 					}
 					//接受服务器注册消息并采取对应操作
 					if (flag == true){
-						Toast.makeText(getApplicationContext(), "Register Success",Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Register Success.Your id is " + user.getId(),Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(Register.this,Login.class);
 						startActivity(intent);
 						finish();

@@ -8,6 +8,7 @@ import java.util.Vector;
 public class Client {
     private static Client INSTANCE;
     private ClientInterface ci;
+    private User localUser;
 
     private Client(){
         try{
@@ -15,6 +16,7 @@ public class Client {
         }catch(IOException e){
             e.printStackTrace();
         }
+        this.localUser = new User(-1,"","");
     }
 
     public static Client getClient(){
@@ -54,6 +56,7 @@ public class Client {
             String nickname = replySet[1];
             String introduction = replySet[2];
             User user = new User(userId,nickname,password,introduction);
+            this.localUser = user;//Local user get if login success.
             return user;
         }else{
             System.out.println("[错误]" + replySet[1]);
@@ -66,6 +69,9 @@ public class Client {
         String totalMsg = "[Client-UpdateUserInfo]" + "|" + id + "|" + nickname + "|" + password + "|" + introduction;
         ci.sendToServer(totalMsg);
         System.out.println("[提示]处理更新用户的资料信息已经发送");
+        this.localUser.setNickname(nickname);
+        this.localUser.setPassword(password);
+        this.localUser.setIntroduction(introduction);
     }
 
     /*
