@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="191dp"
         android:ems="10"
-        android:hint="@string/name" />
+        android:hint="please input your id" />
     <EditText
         android:id="@+id/login_password"
         android:layout_width="wrap_content"
@@ -29,25 +29,23 @@
         android:layout_below="@+id/login_name"
         android:layout_marginTop="22dp"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="please input your password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/login_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Login"
-        android:layout_alignBottom="@+id/Login"
-        android:layout_alignRight="@+id/login_name"
-        android:text="@string/register" />
+            android:id="@+id/login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:layout_marginTop="40dp" android:layout_below="@+id/Login" android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/login_password"
-        android:layout_below="@+id/login_password"
-        android:layout_marginTop="28dp"
-        android:text="@string/login" />
+            android:id="@+id/Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/login_password"
+            android:layout_below="@+id/login_password"
+            android:layout_marginTop="28dp"
+            android:text="@string/login" android:layout_alignRight="@+id/login_password"/>
 
 </RelativeLayout>

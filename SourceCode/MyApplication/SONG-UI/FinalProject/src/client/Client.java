@@ -57,7 +57,7 @@ public class Client {
             return user;
         }else{
             System.out.println("[错误]" + replySet[1]);
-            User failUser = new User(-1,"","");
+            User failUser = new User(-1,replySet[1],"");
             return failUser;
         }
     }

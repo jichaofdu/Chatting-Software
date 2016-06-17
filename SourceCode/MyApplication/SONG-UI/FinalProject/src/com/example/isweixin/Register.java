@@ -21,16 +21,12 @@ public class Register extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.register);
-		
 		name = (EditText)findViewById(R.id.name);
 		password = (EditText)findViewById(R.id.password);
 		passwordAgain = (EditText)findViewById(R.id.password1);
-		
 		login = (Button)findViewById(R.id.login);
 		register = (Button)findViewById(R.id.register);
-		
 		login.setOnClickListener(new View.OnClickListener() {
     		@Override
     		public void onClick(View arg0) {
@@ -45,7 +41,6 @@ public class Register extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//--------------TO DO----------------------
-
 				//向服务器端发送注册消息
 				String usernameString = name.getText().toString();
 				String passwordString = password.getText().toString();
