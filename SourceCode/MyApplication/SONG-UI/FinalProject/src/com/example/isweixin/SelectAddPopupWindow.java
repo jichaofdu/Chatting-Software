@@ -1,8 +1,5 @@
 package com.example.isweixin;
 
-
-import com.tencent.weibo.oauthv2.OAuthV2;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -12,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.PopupWindow;
 
 public class SelectAddPopupWindow extends PopupWindow {
@@ -28,22 +24,22 @@ public class SelectAddPopupWindow extends PopupWindow {
 		
 		int h = context.getWindowManager().getDefaultDisplay().getHeight();
 		int w = context.getWindowManager().getDefaultDisplay().getWidth();
-		//ÉèÖÃ°´Å¥¼àÌý
-		//ÉèÖÃSelectPicPopupWindowµÄView
+		//ï¿½ï¿½ï¿½Ã°ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½View
 		this.setContentView(mMenuView);
-		//ÉèÖÃSelectPicPopupWindowµ¯³ö´°ÌåµÄ¿í
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½
 		this.setWidth(w/2+50);
-		//ÉèÖÃSelectPicPopupWindowµ¯³ö´°ÌåµÄ¸ß
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½
 		this.setHeight(LayoutParams.WRAP_CONTENT);
-		//ÉèÖÃSelectPicPopupWindowµ¯³ö´°Ìå¿Éµã»÷
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½
 		this.setFocusable(true);
-		//ÉèÖÃSelectPicPopupWindowµ¯³ö´°Ìå¶¯»­Ð§¹û
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¶¯ï¿½ï¿½Ð§ï¿½ï¿½
 		this.setAnimationStyle(R.style.mystyle);
-		//ÊµÀý»¯Ò»¸öColorDrawableÑÕÉ«Îª°ëÍ¸Ã÷
+		//Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ColorDrawableï¿½ï¿½É«Îªï¿½ï¿½Í¸ï¿½ï¿½
 		ColorDrawable dw = new ColorDrawable(0000000000);
-		//ÉèÖÃSelectPicPopupWindowµ¯³ö´°ÌåµÄ±³¾°
+		//ï¿½ï¿½ï¿½ï¿½SelectPicPopupWindowï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 		this.setBackgroundDrawable(dw);
-		//mMenuViewÌí¼ÓOnTouchListener¼àÌýÅÐ¶Ï»ñÈ¡´¥ÆÁÎ»ÖÃÈç¹ûÔÚÑ¡Ôñ¿òÍâÃæÔòÏú»Ùµ¯³ö¿ò
+		//mMenuViewï¿½ï¿½ï¿½OnTouchListenerï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½
 		mMenuView.setOnTouchListener(new OnTouchListener() {
 			
 			public boolean onTouch(View v, MotionEvent event) {

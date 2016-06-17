@@ -1,4 +1,4 @@
-package com.example.isweixin.client; /**
+package client; /**
  * Created by Chao Ji on 2016-06-04.
  */
 
@@ -6,13 +6,23 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class Client {
-    ClientInterface ci;
+    private static Client INSTANCE;
+    private ClientInterface ci;
 
-    public Client(){
+    private Client(){
         try{
             ci = new ClientInterface();
         }catch(IOException e){
             e.printStackTrace();
+        }
+    }
+
+    public static Client getClient(){
+        if(INSTANCE == null){
+            INSTANCE = new Client();
+            return INSTANCE;
+        }else{
+            return INSTANCE;
         }
     }
 

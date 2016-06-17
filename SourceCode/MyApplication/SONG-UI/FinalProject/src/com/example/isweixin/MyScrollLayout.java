@@ -1,15 +1,12 @@
 package com.example.isweixin;
 
-import android.R.bool;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.View.MeasureSpec;
 import android.widget.Scroller;
 
 public class MyScrollLayout extends ViewGroup{
@@ -17,7 +14,7 @@ public class MyScrollLayout extends ViewGroup{
     private static final String TAG = "ScrollLayout";      
     private VelocityTracker mVelocityTracker;  			// ç”¨äºŽåˆ¤æ–­ç”©åŠ¨æ‰‹åŠ¿    
     private static final int SNAP_VELOCITY = 400;        
-    private Scroller  mScroller;						// æ»‘åŠ¨æŽ§åˆ¶å™„1¤7	
+    private Scroller  mScroller;						// æ»‘åŠ¨æŽ§åˆ¶å™„1ï¿½7	
     private int mCurScreen;    						    
 	private int mDefaultScreen = 0;    						 
     private float mLastMotionX;       
@@ -129,7 +126,7 @@ public class MyScrollLayout extends ViewGroup{
 	            
 	        switch (action) {    
 	        case MotionEvent.ACTION_DOWN: 	
-	        	System.out.println("¸¸Ààµã»÷onTouchEvent");
+	        	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½onTouchEvent");
 	        	  Log.i("", "onTouchEvent  ACTION_DOWN");	        	  
 	        	if (mVelocityTracker == null) {    
 			            mVelocityTracker = VelocityTracker.obtain();    
@@ -143,7 +140,7 @@ public class MyScrollLayout extends ViewGroup{
 	            break;    
 	                
 	        case MotionEvent.ACTION_MOVE:  
-	        	System.out.println("¸¸Àà»¬¶¯onTouchEvent");
+	        	System.out.println("ï¿½ï¿½ï¿½à»¬ï¿½ï¿½onTouchEvent");
 		           int deltaX = (int)(mLastMotionX - x);	           
 	        	   if (IsCanMove(deltaX))
 	        	   {
@@ -157,7 +154,7 @@ public class MyScrollLayout extends ViewGroup{
          
 	           break;    	                
 	        case MotionEvent.ACTION_UP:       
-	        	System.out.println("¸¸Àà·Å¿ªonTouchEvent");
+	        	System.out.println("ï¿½ï¿½ï¿½ï¿½Å¿ï¿½onTouchEvent");
 	        	int velocityX = 0;
 	            if (mVelocityTracker != null)
 	            {
@@ -192,19 +189,19 @@ public class MyScrollLayout extends ViewGroup{
 	public boolean onInterceptTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN: 
-			System.out.println("¸¸Ààµã»÷onInterceptTouchEvent");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½onInterceptTouchEvent");
 			if(isPass){
 				return true;
 			}
 			break;
 		case MotionEvent.ACTION_MOVE: 
-			System.out.println("¸¸Àà»¬¶¯onInterceptTouchEvent");
+			System.out.println("ï¿½ï¿½ï¿½à»¬ï¿½ï¿½onInterceptTouchEvent");
 			if(isPass){
 				return true;
 			}
 			break;
 		case MotionEvent.ACTION_UP:
-			System.out.println("¸¸Àà·Å¿ªonInterceptTouchEvent");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¿ï¿½onInterceptTouchEvent");
 			break;
 		}
 		return super.onInterceptTouchEvent(event);
@@ -216,16 +213,16 @@ public class MyScrollLayout extends ViewGroup{
 		case MotionEvent.ACTION_DOWN: 
 			mLastMotionX = event.getX();	           
             mLastMotionY = event.getY();
-			System.out.println("¸¸Ààµã»÷dispatchTouchEvent");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dispatchTouchEvent");
 			break;
 		case MotionEvent.ACTION_MOVE: 
 			System.out.println(Math.abs(event.getX()- mLastMotionX));
 			System.out.println(Math.abs(event.getY()- mLastMotionY));
 			double tanNum = Math.atan(Math.abs(event.getY()-mLastMotionY)/Math.abs(event.getX()- mLastMotionX));
 			double retote = tanNum/3.14*180;
-			System.out.println("½Ç¶È:"+retote);
+			System.out.println("ï¿½Ç¶ï¿½:"+retote);
 			if (retote<45) {
-				System.out.println("---------¸¸Àà»¬¶¯dispatchTouchEvent");
+				System.out.println("---------ï¿½ï¿½ï¿½à»¬ï¿½ï¿½dispatchTouchEvent");
 				isPass= true;
 			}else{
 				isPass = false;
@@ -234,7 +231,7 @@ public class MyScrollLayout extends ViewGroup{
 			System.out.println("***************"+isPass);
 			break;
 		case MotionEvent.ACTION_UP:
-			System.out.println("¸¸Àà·Å¿ªdispatchTouchEvent");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Å¿ï¿½dispatchTouchEvent");
 			break;
 		}
 		return super.dispatchTouchEvent(event);

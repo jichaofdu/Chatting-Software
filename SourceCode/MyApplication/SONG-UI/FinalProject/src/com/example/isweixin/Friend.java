@@ -1,6 +1,6 @@
 package com.example.isweixin;
 
-public class HuiHua {
+public class Friend {
 	private String weixinID;
 	private String name;
 	private String lastContent;

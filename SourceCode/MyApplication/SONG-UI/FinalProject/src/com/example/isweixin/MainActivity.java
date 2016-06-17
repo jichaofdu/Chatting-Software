@@ -1,9 +1,7 @@
 package com.example.isweixin;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -31,9 +29,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ListView listview2;
 	private ListView listview3;
 	
-	//×Ô¶¨ÒåµÄµ¯³ö¿òÀà
-	SelectPicPopupWindow menuWindow; //µ¯³ö¿ò
-	SelectAddPopupWindow menuWindow2; //µ¯³ö¿ò
+	//?????????????
+	SelectPicPopupWindow menuWindow; //??????
+	SelectAddPopupWindow menuWindow2; //??????
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,11 +49,11 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		listview2 = (ListView)findViewById(R.id.listView2);
 		listview3 = (ListView)findViewById(R.id.listView3);
 		
-		HuihuaAdapter ha = new HuihuaAdapter(this,getHuahui());
+		PaintingAdapter ha = new PaintingAdapter(this,getHuahui());
 		listview1.setAdapter(ha);
 		listview1.setCacheColorHint(0);
 		
-		PengyouAdapter py = new PengyouAdapter(this,getPengyou());
+		FriendAdapter py = new FriendAdapter(this,getPengyou());
 		listview2.setAdapter(py);
 		listview2.setCacheColorHint(0);
 		
@@ -93,37 +91,37 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     		}
     	});
     }
-	private ArrayList<PengYou> getPengyou(){
-		ArrayList<PengYou> hhList = new ArrayList<PengYou>();
-		PengYou h1 = new PengYou();
+	private ArrayList<Friend> getPengyou(){
+		ArrayList<Friend> hhList = new ArrayList<Friend>();
+		Friend h1 = new Friend();
 		h1.setTxPath(R.drawable.icon+"");
 		h1.setName("A");
-		h1.setLastContent("ÕâÊÇÎ¨Ò»Ò»¸öÕı³£µÄÅóÓÑ");
-		h1.setLastTime("ÏÂÎç 18:00");
+		h1.setLastContent("????Î¨??????????????");
+		h1.setLastTime("???? 18:00");
 		
-		PengYou h2 = new PengYou();
+		Friend h2 = new Friend();
 		h2.setTxPath(R.drawable.icon+"");
 		h2.setName("B");
-		h2.setLastContent("ÎÒ´æÔÚÓÀºãµÄºÚ°µÖĞ£¬ÎÒÏ²»¶ÍÌÊÉ¹âÃ÷µÄÁé»ê");
-		h2.setLastTime("ÏÂÎç 17:40");
+		h2.setLastContent("?????????????Ğ£??????????????????");
+		h2.setLastTime("???? 17:40");
 		
-		PengYou h3 = new PengYou();
+		Friend h3 = new Friend();
 		h3.setTxPath(R.drawable.icon+"");
 		h3.setName("C");
-		h3.setLastContent("ÎÒ´æÔÚÓÀºãµÄºÚ°µÖĞ£¬");
-		h3.setLastTime("ÏÂÎç 17:00");
+		h3.setLastContent("?????????????Ğ£?");
+		h3.setLastTime("???? 17:00");
 		
-		PengYou h4 = new PengYou();
+		Friend h4 = new Friend();
 		h4.setTxPath(R.drawable.icon+"");
 		h4.setName("D");
-		h4.setLastContent("ÎÒ¾ÍÊÇÕâÃ´Ò»¸öÈË£¬¾ÍÊÇÏ²»¶Ò»¸öÈË£¬²»¹ÜÊÇ²»ÊÇÒ»¸öÈË");
-		h4.setLastTime("ÏÂÎç 16:22");
+		h4.setLastContent("?????????????????????????????????????????");
+		h4.setLastTime("???? 16:22");
 		
-		PengYou h5 = new PengYou();
+		Friend h5 = new Friend();
 		h5.setTxPath(R.drawable.icon+"");
 		h5.setName("E");
-		h5.setLastContent("·ç´µµÃºÜÇåĞÂ£¬ÔÆÆ®µ´ÔÚÄÏ±ßµÄÌì¿Õ");
-		h5.setLastTime("ÏÂÎç 16:11");
+		h5.setLastContent("?ç´µ?Ãº????????????????????");
+		h5.setLastTime("???? 16:11");
 		
 		
 		
@@ -138,39 +136,39 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		ArrayList<ContactP> hcList = new ArrayList<ContactP>();
 		ContactP c0 = new ContactP();
 		c0.setTxPath(R.drawable.icon+"");
-		c0.setName("·şÎñºÅ");
+		c0.setName("?????");
 		
 		ContactP c1 = new ContactP();
 		c1.setTxPath(R.drawable.icon+"");
-		c1.setName("Î¢ĞÅ²âÊÔÕËºÅ");
+		c1.setName("?????????");
 		
 		ContactP c2 = new ContactP();
 		c2.setTxPath(R.drawable.icon+"");
-		c2.setName("QQÍÅ¶Ó");
+		c2.setName("QQ???");
 		
 		ContactP c3 = new ContactP();
 		c3.setTxPath(R.drawable.icon+"");
-		c3.setName("Î¢ĞÅÍÅ¶Ó");
+		c3.setName("??????");
 		
 		ContactP c4 = new ContactP();
 		c4.setTxPath(R.drawable.icon+"");
-		c4.setName("Ğ¡ºÚ");
+		c4.setName("Ğ¡??");
 		
 		ContactP c5 = new ContactP();
 		c5.setTxPath(R.drawable.icon+"");
-		c5.setName("²»ÔÙÇİÊŞ");
+		c5.setName("????????");
 		
 		ContactP c6 = new ContactP();
 		c6.setTxPath(R.drawable.icon+"");
-		c6.setName("Éµ±Æ²»¿Ş");
+		c6.setName("??????");
 		
 		ContactP c7 = new ContactP();
 		c7.setTxPath(R.drawable.icon+"");
-		c7.setName("Ğ¤Ğã");
+		c7.setName("Ğ¤??");
 		
 		ContactP c8 = new ContactP();
 		c8.setTxPath(R.drawable.icon+"");
-		c8.setName("·çÇåÔÆÄÏ");
+		c8.setName("????????");
 		
 		ContactP c9 = new ContactP();
 		c9.setTxPath(R.drawable.icon+"");
@@ -178,11 +176,11 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		
 		ContactP c10 = new ContactP();
 		c10.setTxPath(R.drawable.icon+"");
-		c10.setName("±ÉÈË");
+		c10.setName("????");
 		
 		ContactP c11 = new ContactP();
 		c11.setTxPath(R.drawable.icon+"");
-		c11.setName("ÈËÈËÈË");
+		c11.setName("??????");
 		hcList.add(c0);
 		hcList.add(c1);
 		hcList.add(c2);
@@ -199,67 +197,67 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		return hcList;
 	}
 	
-	private ArrayList<HuiHua> getHuahui(){
-		ArrayList<HuiHua> hhList = new ArrayList<HuiHua>();
-		HuiHua h1 = new HuiHua();
+	private ArrayList<Painting> getHuahui(){
+		ArrayList<Painting> hhList = new ArrayList<Painting>();
+		Painting h1 = new Painting();
 		h1.setTxPath(R.drawable.icon+"");
 		h1.setName("A");
-		h1.setLastContent("ÕâÊÇÎ¨Ò»Ò»¸öÕı³£µÄÅóÓÑ");
-		h1.setLastTime("ÏÂÎç 18:00");
+		h1.setLastContent("????Î¨??????????????");
+		h1.setLastTime("???? 18:00");
 		
-		HuiHua h2 = new HuiHua();
+		Painting h2 = new Painting();
 		h2.setTxPath(R.drawable.icon+"");
 		h2.setName("B");
-		h2.setLastContent("ÎÒ´æÔÚÓÀºãµÄºÚ°µÖĞ£¬ÎÒÏ²»¶ÍÌÊÉ¹âÃ÷µÄÁé»ê");
-		h2.setLastTime("ÏÂÎç 17:40");
+		h2.setLastContent("?????????????Ğ£??????????????????");
+		h2.setLastTime("???? 17:40");
 		
-		HuiHua h3 = new HuiHua();
+		Painting h3 = new Painting();
 		h3.setTxPath(R.drawable.icon+"");
 		h3.setName("C");
-		h3.setLastContent("ÎÒ´æÔÚÓÀºãµÄºÚ°µÖĞ£¬");
-		h3.setLastTime("ÏÂÎç 17:00");
+		h3.setLastContent("?????????????Ğ£?");
+		h3.setLastTime("???? 17:00");
 		
-		HuiHua h4 = new HuiHua();
+		Painting h4 = new Painting();
 		h4.setTxPath(R.drawable.icon+"");
 		h4.setName("D");
-		h4.setLastContent("ÎÒ¾ÍÊÇÕâÃ´Ò»¸öÈË£¬¾ÍÊÇÏ²»¶Ò»¸öÈË£¬²»¹ÜÊÇ²»ÊÇÒ»¸öÈË");
-		h4.setLastTime("ÏÂÎç 16:22");
+		h4.setLastContent("?????????????????????????????????????????");
+		h4.setLastTime("???? 16:22");
 		
-		HuiHua h5 = new HuiHua();
+		Painting h5 = new Painting();
 		h5.setTxPath(R.drawable.icon+"");
 		h5.setName("E");
-		h5.setLastContent("·ç´µµÃºÜÇåĞÂ£¬ÔÆÆ®µ´ÔÚÄÏ±ßµÄÌì¿Õ");
-		h5.setLastTime("ÏÂÎç 16:11");
+		h5.setLastContent("?ç´µ?Ãº????????????????????");
+		h5.setLastTime("???? 16:11");
 		
-		HuiHua h6 = new HuiHua();
+		Painting h6 = new Painting();
 		h6.setTxPath(R.drawable.icon+"");
 		h6.setName("EatEvery");
 		h6.setLastContent("Don't look me, I will eat you, Are you know");
-		h6.setLastTime("ÏÂÎç 15:08");
+		h6.setLastTime("???? 15:08");
 		
-		HuiHua h7 = new HuiHua();
+		Painting h7 = new Painting();
 		h7.setTxPath(R.drawable.icon+"");
 		h7.setName("F");
-		h7.setLastContent("ÎÒ¾ÍÊÇÕâÃ´Ò»¸öÈË£¬¾ÍÊÇÏ²»¶Ò»¸öÈË£¬²»¹ÜÊÇ²»ÊÇÒ»¸öÈË");
-		h7.setLastTime("ÏÂÎç 15:01");
+		h7.setLastContent("?????????????????????????????????????????");
+		h7.setLastTime("???? 15:01");
 		
-		HuiHua h8 = new HuiHua();
+		Painting h8 = new Painting();
 		h8.setTxPath(R.drawable.icon+"");
 		h8.setName("G");
-		h8.setLastContent("ÎÒ¾ÍÊÇÕâÃ´Ò»¸öÈË£¬¾ÍÊÇÏ²»¶Ò»¸öÈË£¬²»¹ÜÊÇ²»ÊÇÒ»¸öÈË");
-		h8.setLastTime("ÏÂÎç 14:50");
+		h8.setLastContent("?????????????????????????????????????????");
+		h8.setLastTime("???? 14:50");
 		
-		HuiHua h9 = new HuiHua();
+		Painting h9 = new Painting();
 		h9.setTxPath(R.drawable.icon+"");
 		h9.setName("H");
 		h9.setLastContent("this is very good fill");
-		h9.setLastTime("ÏÂÎç 14:00");
+		h9.setLastTime("???? 14:00");
 		
-		HuiHua h0 = new HuiHua();
+		Painting h0 = new Painting();
 		h0.setTxPath(R.drawable.icon+"");
 		h0.setName("I");
-		h0.setLastContent("ÎÒÊÇ¸öÏ²»¶¾ÍµÃÈË£¬µ«ÊÇÄãÃÇÒ»¶¨ÒªÀí½âÇå³şÎÒµÄÃû×Ö£¬ÔÙ¸úÎÒËµ»°");
-		h0.setLastTime("ÖĞÎç 12:00");
+		h0.setLastContent("????????????????????????????????????????????????");
+		h0.setLastTime("???? 12:00");
 		
 		hhList.add(h1);
 		hhList.add(h2);
@@ -276,16 +274,16 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	
 	 public void uploadImage(final Activity context){
 		 menuWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
-			//ÏÔÊ¾´°¿Ú
-		menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230); //ÉèÖÃlayoutÔÚPopupWindowÖĞÏÔÊ¾µÄÎ»ÖÃ
+			//???????
+		menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????Î»??
 	 }
 	 public void uploadImage2(final Activity context){
 		 menuWindow2 = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
-		 //ÏÔÊ¾´°¿Ú
-		 menuWindow2.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230); //ÉèÖÃlayoutÔÚPopupWindowÖĞÏÔÊ¾µÄÎ»ÖÃ
+		 //???????
+		 menuWindow2.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????Î»??
 	 }
 	 
-	 //Îªµ¯³ö´°¿ÚÊµÏÖ¼àÌıÀà
+	 //?????????????????
 	    private OnClickListener  itemsOnClick = new OnClickListener(){
 
 			public void onClick(View v) {
@@ -293,7 +291,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			}
 	    };
 	    
-	    //Îªµ¯³ö´°¿ÚÊµÏÖ¼àÌıÀà
+	    //?????????????????
 	    private OnClickListener  itemsOnClick2 = new OnClickListener(){
 	    	
 	    	public void onClick(View v) {

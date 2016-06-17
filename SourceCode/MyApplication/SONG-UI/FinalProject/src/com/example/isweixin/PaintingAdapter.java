@@ -1,7 +1,6 @@
 package com.example.isweixin;
 
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PengyouAdapter extends BaseAdapter {
+public class PaintingAdapter extends BaseAdapter {
 	private Context context;
-	private ArrayList<PengYou> list = new ArrayList<PengYou>();
+	private ArrayList<Painting> list = new ArrayList<Painting>();
 	
-	public PengyouAdapter(Context context,ArrayList<PengYou> list){
+	public PaintingAdapter(Context context, ArrayList<Painting> list){
 		this.context = context;
 		this.list = list;
 	}
@@ -38,15 +37,15 @@ public class PengyouAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		PengYou hh = list.get(position);
+		Painting hh = list.get(position);
 		H h = null;
 		if(view==null){
 			h = new H();
-			view = LayoutInflater.from(context).inflate(R.layout.pengyouquan, parent, false);
-			h.pic = (ImageView)view.findViewById(R.id.l11);
-			h.name = (TextView)view.findViewById(R.id.name1);
-			h.time = (TextView)view.findViewById(R.id.time1);
-			h.lastmsg = (TextView)view.findViewById(R.id.lastmsg1);
+			view = LayoutInflater.from(context).inflate(R.layout.liaotian, parent, false);
+			h.pic = (ImageView)view.findViewById(R.id.l1);
+			h.name = (TextView)view.findViewById(R.id.name);
+			h.time = (TextView)view.findViewById(R.id.time);
+			h.lastmsg = (TextView)view.findViewById(R.id.lastmsg);
 			
 			view.setTag(h);
 		}else{

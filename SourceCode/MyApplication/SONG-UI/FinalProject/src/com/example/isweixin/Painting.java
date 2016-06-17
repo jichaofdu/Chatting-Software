@@ -1,12 +1,11 @@
 package com.example.isweixin;
 
-public class PengYou {
+public class Painting {
 	private String weixinID;
 	private String name;
 	private String lastContent;
 	private String lastTime;
 	private String TxPath;
-	
 	
 	public String getWeixinID() {
 		return weixinID;

@@ -1,4 +1,4 @@
-package com.example.isweixin.client; /**
+package client; /**
  * Created by Chao Ji on 2016-06-04.
  */
 

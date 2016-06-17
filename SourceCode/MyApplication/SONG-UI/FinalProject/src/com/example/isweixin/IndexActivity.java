@@ -2,7 +2,6 @@ package com.example.isweixin;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;

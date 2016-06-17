@@ -1,8 +1,7 @@
-package com.example.isweixin.client; /**
+package client; /**
  * Created by Chao Ji on 2016-06-04.
  */
 
-import java.io.File;
 import java.util.Vector;
 
 public class Group {
