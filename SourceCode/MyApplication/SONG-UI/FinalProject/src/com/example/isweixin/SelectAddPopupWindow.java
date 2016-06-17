@@ -10,9 +10,12 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
+import android.widget.Button;
 
 public class SelectAddPopupWindow extends PopupWindow {
 
+	private Button addTweetButton;
+	private Button addFriendButton;
 	private View mMenuView;
 
 	public SelectAddPopupWindow(final Activity context,OnClickListener itemsOnClick) {
@@ -40,5 +43,21 @@ public class SelectAddPopupWindow extends PopupWindow {
 				return true;
 			}
 		});
+		//------------------------
+		addTweetButton = (Button)mMenuView.findViewById(R.id.addTweet);
+		addFriendButton = (Button)mMenuView.findViewById(R.id.addFriend);
+		addTweetButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("Click Add Tweet");
+			}
+		});
+		addFriendButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("Click Add Friend");
+			}
+		});
+		//------------------------
 	}
 }

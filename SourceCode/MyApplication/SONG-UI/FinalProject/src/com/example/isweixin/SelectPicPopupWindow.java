@@ -14,7 +14,10 @@ import android.widget.PopupWindow;
 
 public class SelectPicPopupWindow extends PopupWindow {
 
-	private Button  btn_cancel;
+	//------------------------------------------------
+	private Button changeInfoButton;
+	private Button logoutButton;
+	//------------------------------------------------
 	private View mMenuView;
 
 	public SelectPicPopupWindow(final Activity context,OnClickListener itemsOnClick) {
@@ -24,13 +27,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 		mMenuView = inflater.inflate(R.layout.bottomdialog, null);
 		int h = context.getWindowManager().getDefaultDisplay().getHeight();
 		int w = context.getWindowManager().getDefaultDisplay().getWidth();
-		btn_cancel = (Button) mMenuView.findViewById(R.id.btn_cancel);
-		btn_cancel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				//SaveDate.saveDate(context, new OAuthV2()); 
-				context.finish();
-			}
-		});
+
 		this.setContentView(mMenuView);
 		this.setWidth(w/2+50);
 		this.setHeight(LayoutParams.WRAP_CONTENT);
@@ -46,10 +43,26 @@ public class SelectPicPopupWindow extends PopupWindow {
 					if(y<height){
 						dismiss();
 					}
-				}				
+				}
 				return true;
 			}
 		});
+		//------------------------
+		changeInfoButton = (Button)mMenuView.findViewById(R.id.changeInfo);
+		logoutButton = (Button)mMenuView.findViewById(R.id.logout);
+		changeInfoButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("Click Change Info");
+			}
+		});
+		logoutButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("Click Change Logout");
+			}
+		});
+		//------------------------
 	}
 
 }

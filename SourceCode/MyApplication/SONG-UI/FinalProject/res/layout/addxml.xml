@@ -29,15 +29,16 @@
 	              	  android:src="@drawable/actionbar_camera_icon"
 	              	  android:scaleType="fitCenter"
 		              />
-		          <TextView
-		              android:layout_width="wrap_content"
-	              	  android:layout_height="fill_parent"
-	              	  android:layout_marginLeft="10dp"
-	              	  android:text="发表心情"
-	              	  android:textSize="15dip"
-	              	  android:gravity="center"
-	              	  android:textColor="@color/white"
-		              />
+				<Button android:id="@+id/addTweet"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:layout_marginLeft="10dp"
+						android:text="发表心情"
+						android:textSize="15dip"
+						android:background="@null"
+						android:gravity="center"
+						android:textColor="@color/white"
+				/>
 		      </LinearLayout>
 		<TextView
 		          android:layout_width="fill_parent"
@@ -59,15 +60,16 @@
 	              	  android:src="@drawable/ofm_add_icon"
 	              	  android:scaleType="fitCenter"
 		              />
-		          <TextView
-		              android:layout_width="wrap_content"
-	              	  android:layout_height="fill_parent"
-	              	  android:layout_marginLeft="10dp"
-	              	  android:text="添加朋友"
-	              	  android:textSize="15dip"
-	              	  android:gravity="center"
-	              	  android:textColor="@color/white"
-		              />
+				 <Button android:id="@+id/addFriend"
+						 android:layout_width="wrap_content"
+						 android:layout_height="fill_parent"
+						 android:layout_marginLeft="10dp"
+						 android:text="增加好友"
+						 android:textSize="15dip"
+						 android:background="@null"
+						 android:gravity="center"
+						 android:textColor="@color/white"
+				 />
 		      </LinearLayout>
 		<TextView
 		          android:layout_width="fill_parent"

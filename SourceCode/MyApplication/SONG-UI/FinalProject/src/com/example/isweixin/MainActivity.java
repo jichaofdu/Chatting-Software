@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Button;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener{
 	private MyScrollLayout mScrollLayout;	
@@ -20,9 +21,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private int mCurSel;
 	private ImageView set;
 	private ImageView add;
-	private TextView liaotian;
-	private TextView faxian;
-	private TextView tongxunlu;
+	private TextView chatTextView;
+	private TextView discoveryTextView;
+	private TextView contactListTextView;
 	private ListView listview1;
 	private ListView listview2;
 	private ListView listview3;
@@ -37,9 +38,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	}
 
 	private void init() {
-		liaotian = (TextView)findViewById(R.id.liaotian);
-		faxian = (TextView)findViewById(R.id.faxian);
-		tongxunlu = (TextView)findViewById(R.id.tongxunlu);
+		chatTextView = (TextView)findViewById(R.id.liaotian);
+		discoveryTextView = (TextView)findViewById(R.id.faxian);
+		contactListTextView = (TextView)findViewById(R.id.tongxunlu);
 		listview1 = (ListView)findViewById(R.id.listView1);
 		listview2 = (ListView)findViewById(R.id.listView2);
 		listview3 = (ListView)findViewById(R.id.listView3);
@@ -55,8 +56,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     	mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout); 	
     	LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);   	
     	mViewCount = mScrollLayout.getChildCount();
-    	mImageViews = new LinearLayout[mViewCount];   	
-    	for(int i = 0; i < mViewCount; i++)    	{
+    	mImageViews = new LinearLayout[mViewCount];
+
+		for(int i = 0; i < mViewCount; i++)    	{
     		mImageViews[i] = (LinearLayout) linearLayout.getChildAt(i);
     		mImageViews[i].setEnabled(true);
     		mImageViews[i].setOnClickListener(this);
@@ -82,22 +84,22 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     }
 	private ArrayList<Friend> getPengyou(){
 		ArrayList<Friend> hhList = new ArrayList<>();
-		//-------------------------------------------------------------------
+		//--------------------------Loop Unit---------------------------------------
 		Friend h1 = new Friend();
 		h1.setTxPath(R.drawable.icon+"");
-		h1.setName("A");
-		h1.setLastContent("????Ψ??????????????");
-		h1.setLastTime("???? 18:00");
+		h1.setName("Name Slot");
+		h1.setLastContent("Content Slot");
+		h1.setLastTime("Time Slot");
 		//-------------------------------------------------------------------
 		hhList.add(h1);
 		return hhList;
 	} 
 	private ArrayList<ContactP> getContact(){
 		ArrayList<ContactP> hcList = new ArrayList<>();
-		//-------------------------------------------------------------------
+		//----------------------------Loop Unit---------------------------------------
 		ContactP c0 = new ContactP();
 		c0.setTxPath(R.drawable.icon+"");
-		c0.setName("?????");
+		c0.setName("Name Slot");
 		hcList.add(c0);
 		//-------------------------------------------------------------------
 		return hcList;
@@ -105,12 +107,12 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	
 	private ArrayList<Painting> getHuahui(){
 		ArrayList<Painting> hhList = new ArrayList<Painting>();
-		//-------------------------------------------------------------------
+		//----------------------------Loop Unit---------------------------------------
 		Painting h0 = new Painting();
 		h0.setTxPath(R.drawable.icon+"");
-		h0.setName("I");
-		h0.setLastContent("????????????????????????????????????????????????");
-		h0.setLastTime("???? 12:00");
+		h0.setName("Name Slot");
+		h0.setLastContent("Content Slot");
+		h0.setLastTime("Time slot");
 		hhList.add(h0);
 		//-------------------------------------------------------------------
 		return hhList;
@@ -118,52 +120,48 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	
 	 public void uploadImage(final Activity context){
 		 menuWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
-			//???????
+
 		menuWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????λ??
 	 }
 	 public void uploadImage2(final Activity context){
 		 menuWindow2 = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
-		 //???????
+
 		 menuWindow2.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????λ??
 	 }
 	 
-	 //?????????????????
-	    private OnClickListener  itemsOnClick = new OnClickListener(){
 
+	    private OnClickListener  itemsOnClick = new OnClickListener(){
 			public void onClick(View v) {
 				menuWindow.dismiss();
 			}
 	    };
 	    
-	    //?????????????????
+
 	    private OnClickListener  itemsOnClick2 = new OnClickListener(){
-	    	
 	    	public void onClick(View v) {
 	    		menuWindow2.dismiss();
 	    	}
 	    };
 	    
-	private void setCurPoint(int index)
-    {
+	private void setCurPoint(int index) {
     	if (index < 0 || index > mViewCount - 1 || mCurSel == index){
     		return ;
     	}    	
     	mImageViews[mCurSel].setEnabled(true);
     	mImageViews[index].setEnabled(false);    	
     	mCurSel = index;
-    	
     	if(index == 0){
-    		liaotian.setTextColor(0xff228B22);
-    		faxian.setTextColor(Color.BLACK);
-    		tongxunlu.setTextColor(Color.BLACK);
-    	}else if(index==1){
-    		liaotian.setTextColor(Color.BLACK);
-    		faxian.setTextColor(0xff228B22);
-    		tongxunlu.setTextColor(Color.BLACK);
+			chatTextView.setTextColor(0xff228B22);
+			discoveryTextView.setTextColor(Color.BLACK);
+			contactListTextView.setTextColor(Color.BLACK);
+    	}else if(index == 1){
+			chatTextView.setTextColor(Color.BLACK);
+			discoveryTextView.setTextColor(0xff228B22);
+			contactListTextView.setTextColor(Color.BLACK);
     	}else{
-    		liaotian.setTextColor(Color.BLACK);
-    		faxian.setTextColor(Color.BLACK);
-    		tongxunlu.setTextColor(0xff228B22);
+			chatTextView.setTextColor(Color.BLACK);
+			discoveryTextView.setTextColor(Color.BLACK);
+			contactListTextView.setTextColor(0xff228B22);
     	}
     }
 
