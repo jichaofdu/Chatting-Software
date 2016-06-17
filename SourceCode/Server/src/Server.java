@@ -26,7 +26,6 @@ public class Server implements Runnable {
             while(flag){
                 String str = receiveInfo(recvBuf);
                 String[] infoSet = str.split("\\|");
-                System.out.println("---" + str);
                 if("[Shutdown]".equals(infoSet[0])) {
                     flag = false;
                 }else if("[Client-Register]".equals(infoSet[0])){
