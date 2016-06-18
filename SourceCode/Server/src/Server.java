@@ -1,10 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InterfaceAddress;
 import java.net.Socket;
 import java.io.PrintStream;
-import java.util.Vector;
+import java.sql.Time;
 
 public class Server implements Runnable {
     private Socket client;
@@ -32,9 +31,13 @@ public class Server implements Runnable {
                     handleGetFriendList(sendBuf, infoSet);
                 }else if("[Client-UpdateUserInfo]".equals(infoSet[0])) {
                     handleUpdateUserInfo(sendBuf, infoSet);
-                }else if("[Client-Logout]".equals(infoSet[0])){
+                }else if("[Client-Logout]".equals(infoSet[0])) {
                     handleLogout(infoSet);
                     flag = false;
+                }else if("[Client-SearchUserByName]".equals(infoSet[0])) {
+                    handleSearchUserByName(sendBuf, infoSet);
+                }else if("[Client-AddTweet]".equals(infoSet[0])){
+                    handleAddTweet(infoSet);
                 }else{
                     //handleEcho(sendBuf,str);
                 }
@@ -45,6 +48,37 @@ public class Server implements Runnable {
             System.out.println("Server外围错误");
             //e.printStackTrace();
         }
+    }
+
+    private void handleAddTweet(String[] infoSet){
+        String idString = infoSet[1];
+        int id = Integer.parseInt(idString);
+        String content = infoSet[2];
+        Time newTime = new Time(System.currentTimeMillis());
+        Tweet newTweet = new Tweet(id,content,newTime);
+        ServerDatabase sd = ServerDatabase.getServerDatabase();
+        sd.tweetList.add(newTweet);
+    }
+
+
+    private void handleSearchUserByName(PrintStream sendBuf,String[] infoSet){
+        ServerDatabase sd = ServerDatabase.getServerDatabase();
+        String wantedName = infoSet[1];
+        String returnString = "[Server-FindUserByName]" + "|";
+        String actualInfo = "|";
+        int count = 0;
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getNickname().equals(wantedName)){
+                actualInfo += sd.userList.get(i).getId() + "|" + sd.userList.get(i).getNickname() + "|";
+                count += 1;
+            }
+        }
+        if(count == 0){
+            returnString = "[Server-FindUserNoneByName]";
+        }else{
+            returnString = returnString + count + actualInfo;
+        }
+        sendInfo(sendBuf,returnString);
     }
 
     private void handleLogin(PrintStream sendBuf,String[] infoSet){

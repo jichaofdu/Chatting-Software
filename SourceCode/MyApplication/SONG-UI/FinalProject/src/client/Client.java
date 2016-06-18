@@ -30,9 +30,14 @@ public class Client {
         }
     }
 
+    public void addNewTweet(String content){
+        String addTweetMsg = "[Client-AddTweet]" + "|" + localUser.getId() + "|" + content;
+        ci.sendToServer(addTweetMsg);
+        System.out.println("Add Tweet Complete");
+    }
+
     public User getLocalUser(){
-        User user = this.localUser;
-        return user;
+        return this.localUser;
     }
 
     public User handleRegister(String nickname,String password){
@@ -120,7 +125,6 @@ public class Client {
                 String introduction = replySet[2 + 2*i + 1];
                 User user = new User(id,nameWanted,"Cannot Get Others Password",introduction);
                 retUserList.add(user);
-
             }
             return retUserList;
         }else{
@@ -132,7 +136,6 @@ public class Client {
     //这个函数还没补充完整
     public void uploadClientServerAddress(){
         //获取客户端产生的用于p2p连接的自己的服务器的地址
-
     }
 
     //这个函数还没补充完整

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import client.Client;
 
 public class AddTweet extends Activity {
     private EditText tweetContentEditText;
@@ -31,6 +32,7 @@ public class AddTweet extends Activity {
                 String tweetContent = tweetContentEditText.getText().toString();
                 //将tweet内容提交到服务器
                 Toast.makeText(getApplicationContext(),"Tweet Content:" + tweetContent,Toast.LENGTH_SHORT).show();
+                Client.getClient().addNewTweet(tweetContent);
                 finish();
             }
         });
