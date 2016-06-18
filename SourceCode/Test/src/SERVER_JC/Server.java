@@ -51,7 +51,7 @@ public class Server implements Runnable {
             sendBuf.close();
         }catch(Exception e){
             System.out.println("--------------Server外围错误--------------");
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("--------------Server外围错误--------------");
         }
     }
@@ -62,6 +62,18 @@ public class Server implements Runnable {
         int idFrom = Integer.parseInt(idStringFrom);
         int idTo = Integer.parseInt(idStringTo);
         ServerDatabase sd = ServerDatabase.getServerDatabase();
+        //Clear the friend if they are already friend
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == idFrom){
+                sd.userList.get(i).deleteFriend(idTo);
+            }
+        }
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == idTo){
+                sd.userList.get(i).deleteFriend(idFrom);
+            }
+        }
+        //After clear, add friendship to them
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == idFrom){
                 sd.userList.get(i).addFriend(idTo);
@@ -211,9 +223,9 @@ public class Server implements Runnable {
                 break;
             }
         }
-        for(int i = 0;i < sd.tweetList.size();i++){
+        for(int i = sd.tweetList.size() - 1;i >= 0;i--){
             int writerId = sd.tweetList.get(i).getWriterId();
-            boolean isFriend = myUser.checkIsFriend(writerId);
+            boolean isFriend = myUser.checkIsFriend(writerId) || (writerId == id);
             if(isFriend == true){
                 count += 1;
                 for(int k = 0;k < sd.userList.size();k++){
