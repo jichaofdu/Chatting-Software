@@ -9,10 +9,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import client.Client;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener{
@@ -29,7 +26,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ListView friendListView;
 	private ListView contactListView;
 	SelectPicPopupWindow menuInfoWindow;
-	SelectAddPopupWindow menuWindow2;
+	SelectAddPopupWindow menuAddTweetOrFriend;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +144,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		 });
 	 }
 	 public void uploadImage2(final Activity context){
-		 menuWindow2 = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
-		 menuWindow2.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230); //????layout??PopupWindow???????λ??
+		 menuAddTweetOrFriend = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
+		 menuAddTweetOrFriend.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230);
 	 }
 	 
 
@@ -161,7 +158,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	    private OnClickListener  itemsOnClick2 = new OnClickListener(){
 	    	public void onClick(View v) {
-	    		menuWindow2.dismiss();
+				menuAddTweetOrFriend.dismiss();
 	    	}
 	    };
 	    

@@ -44,20 +44,7 @@ public class SelectAddPopupWindow extends PopupWindow {
 			}
 		});
 		//------------------------
-		addTweetButton = (Button)mMenuView.findViewById(R.id.addTweet);
-		addFriendButton = (Button)mMenuView.findViewById(R.id.addFriend);
-		addTweetButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("Click Add Tweet");
-			}
-		});
-		addFriendButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("Click Add Friend");
-			}
-		});
+
 		//------------------------
 	}
 }

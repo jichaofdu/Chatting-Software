@@ -10,7 +10,7 @@
             android:orientation="horizontal"
             android:padding="8dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true">
+            android:layout_alignParentLeft="true" android:id="@+id/linearLayout">
         <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -30,7 +30,7 @@
                     android:textSize="15dp"/>
             <TextView
                     android:id="@+id/idTextView"
-                    android:layout_width="fill_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="User ID slot"
                     android:textColor="@color/green"
@@ -46,13 +46,20 @@
             android:hint="Other user's Nickname"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/sendMsg"/>
+            android:layout_toLeftOf="@+id/sendButton"/>
     <Button
-            android:id="@+id/sendMsg"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"/>
+    <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            android:layout_above="@+id/inputMessage"
+            android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

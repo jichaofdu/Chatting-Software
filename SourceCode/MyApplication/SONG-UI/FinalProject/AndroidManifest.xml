@@ -31,6 +31,9 @@
         <activity android:name="com.example.isweixin.Register" android:screenOrientation="portrait"/>
         <activity android:name="com.example.isweixin.blank" android:screenOrientation="portrait"/>
         <activity android:name="com.example.isweixin.ModifyUserInfo" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.AddFriend" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.AddTweet" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.isweixin.ChatWindow" android:screenOrientation="portrait"/>
 
     </application>
 

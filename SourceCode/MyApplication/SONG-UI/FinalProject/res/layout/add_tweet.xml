@@ -5,13 +5,16 @@
                 android:orientation="vertical" >
 
     <EditText
-            android:id="@+id/searchNickname"
+            android:id="@+id/tweetContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Other user's Nickname"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/searchButton"/>
+            android:hint="Input what you want to say at here."
+            android:layout_below="@+id/cancelButton"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="101dp"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/submitButton"/>
     <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
@@ -20,12 +23,14 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
     <Button
-            android:text="Search"
-            android:id="@+id/searchButton"
+            android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:text="Submit My Tweet"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="100dp"
+            android:layout_alignParentLeft="true"/>
 
 
 </RelativeLayout>
