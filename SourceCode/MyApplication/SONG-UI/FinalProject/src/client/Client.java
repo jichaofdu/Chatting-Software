@@ -32,6 +32,12 @@ public class Client {
         }
     }
 
+    public void addFriend(int id){
+    	String addMsg = "[Client-AddFriendConfirm]" + "|" + Client.getClient().getLocalUser().getId() + "|" + id;
+        ci.sendToServer(addMsg);
+        System.out.println("Send Message");
+    }
+    
     public void addNewTweet(String content){
         String addTweetMsg = "[Client-AddTweet]" + "|" + localUser.getId() + "|" + content;
         ci.sendToServer(addTweetMsg);

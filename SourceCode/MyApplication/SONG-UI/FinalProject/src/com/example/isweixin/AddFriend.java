@@ -51,14 +51,14 @@ public class AddFriend extends Activity {
         String searchContent = searchNicknameEditText.getText().toString();
         Toast.makeText(getApplicationContext(), "Search Content:" + searchContent,Toast.LENGTH_SHORT).show();
 
-        //灏嗚幏鍙栧埌鐨勫唴瀹瑰彂閫佸埌鏈嶅姟绔紝鑾峰彇client杩斿洖鐨剉ector鐒跺悗閫愪竴鏄剧ず鍦ㄤ笅杈圭殑list view涓�
         Vector<User> searchResultList = Client.getClient().searchUserByName(searchContent);
         Toast.makeText(getApplicationContext(), "Search Result:" + searchResultList.get(0).getId(),Toast.LENGTH_SHORT).show();
         //
-        ArrayList<ContactP> hcList = new ArrayList<>();
+        ArrayList<SearchUser> hcList = new ArrayList<>();
 		int count = searchResultList.size();
 		for(int i = 0;i < count;i++){
-			ContactP c0 = new ContactP();
+			SearchUser c0 = new SearchUser();
+			c0.id = searchResultList.get(i).getId();
 			c0.setTxPath(R.drawable.icon+"");
 			c0.setName(searchResultList.get(i).getNickname());
 			c0.setDesc(searchResultList.get(i).getIntroduction());
@@ -66,10 +66,11 @@ public class AddFriend extends Activity {
 			hcList.add(c0);
 		}
         /////////////
-        ContactAdapter cz = new ContactAdapter(this,hcList);
+        SearchUserAdapter cz = new SearchUserAdapter(this,hcList);
         serchResultListView = (ListView)findViewById(R.id.listView);
         serchResultListView.setAdapter(cz);
         serchResultListView.setCacheColorHint(0);
+
 	}
 
 }
