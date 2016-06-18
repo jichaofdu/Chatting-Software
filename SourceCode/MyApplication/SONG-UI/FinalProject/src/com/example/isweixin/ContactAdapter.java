@@ -44,6 +44,7 @@ public class ContactAdapter extends BaseAdapter {
 			view = LayoutInflater.from(context).inflate(R.layout.tongxunlu, parent, false);
 			h.pic = (ImageView)view.findViewById(R.id.tx1);
 			h.name = (TextView)view.findViewById(R.id.tx2);
+			h.introduction = (TextView)view.findViewById(R.id.tx3);
 			
 			view.setTag(h);
 		}else{
@@ -52,12 +53,13 @@ public class ContactAdapter extends BaseAdapter {
 		
 		h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		h.name.setText(hh.getName());
-		
+		h.introduction.setText(hh.getDesc());
 		return view;
 	}
 
 	class H{
 		ImageView pic;
 		TextView name;
+		TextView introduction;
 	}
 }

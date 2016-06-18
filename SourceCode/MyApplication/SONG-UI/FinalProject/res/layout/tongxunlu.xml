@@ -27,5 +27,15 @@
 	              	  android:gravity="center"
 	              	  android:textColor="@color/black"
 		              />
+		          <TextView
+		              android:layout_width="wrap_content"
+	              	  android:layout_height="fill_parent"
+	              	  android:layout_marginLeft="10dp"
+	              	  android:text="团队"
+	              	  android:textSize="15dip"
+	              	  android:id="@+id/tx3"
+	              	  android:gravity="center"
+	              	  android:textColor="@color/black"
+		              />
 		      </LinearLayout>
 </LinearLayout>

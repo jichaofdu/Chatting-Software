@@ -54,7 +54,7 @@ public class Client {
             User newUser = new User(id,nickname,password);
             return newUser;
         }else{
-            System.out.println("[错误]注册失败");
+            System.out.println("[閿欒]娉ㄥ唽澶辫触");
             User failUser = new User(-1,"","");
             return failUser;
         }
@@ -73,7 +73,7 @@ public class Client {
             this.localUser = user;//Local user get if login success.
             return user;
         }else{
-            System.out.println("[错误]" + replySet[1]);
+            System.out.println("[閿欒]" + replySet[1]);
             User failUser = new User(-1,replySet[1],"");
             return failUser;
         }
@@ -82,16 +82,16 @@ public class Client {
     public void handleUpdateProfile(int id,String nickname,String password,String introduction){
         String totalMsg = "[Client-UpdateUserInfo]" + "|" + id + "|" + nickname + "|" + password + "|" + introduction;
         ci.sendToServer(totalMsg);
-        System.out.println("[提示]处理更新用户的资料信息已经发送");
+        System.out.println("[鎻愮ず]澶勭悊鏇存柊鐢ㄦ埛鐨勮祫鏂欎俊鎭凡缁忓彂閫�");
         this.localUser.setNickname(nickname);
         this.localUser.setPassword(password);
         this.localUser.setIntroduction(introduction);
     }
 
     /*
-    返回信息格式:   [报头] | [用户名] | [用户介绍]
-    报头为:  [Server-FindUserById] 的时候表示有查找到那一个用户
-             [Server-FindNoneByName] 的时候表示有查找失败
+    杩斿洖淇℃伅鏍煎紡:   [鎶ュご] | [鐢ㄦ埛鍚峕 | [鐢ㄦ埛浠嬬粛]
+    鎶ュご涓�:  [Server-FindUserById] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘鍒伴偅涓�涓敤鎴�
+             [Server-FindNoneByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘澶辫触
      */
     public User searchUserById(int id){
         String searchRequest = "[Client-SearchUserById]" + "|" + id;
@@ -110,9 +110,9 @@ public class Client {
     }
 
     /*
-    返回信息格式:   [报头] | [结果数量] | [用户id] | [用户介绍] | [用户id] | [用户介绍]
-    报头为:   [Server-FindUserByName] 的时候表示有查找到那一个用户
-              [Server-FindNoneByName] 的时候表示有查找失败
+    杩斿洖淇℃伅鏍煎紡:   [鎶ュご] | [缁撴灉鏁伴噺] | [鐢ㄦ埛id] | [鐢ㄦ埛浠嬬粛] | [鐢ㄦ埛id] | [鐢ㄦ埛浠嬬粛]
+    鎶ュご涓�:   [Server-FindUserByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘鍒伴偅涓�涓敤鎴�
+              [Server-FindNoneByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘澶辫触
     */
     public Vector<User> searchUserByName(String nameWanted){
         String searchRequest = "[Client-SearchUserByName]" + "|" + nameWanted;
@@ -123,8 +123,8 @@ public class Client {
             Vector<User> retUserList = new Vector<>();
             int num = Integer.parseInt(replySet[1]);
             for(int i = 0;i < num;i++){
-                int id = Integer.parseInt(replySet[2 + 2*i]);
-                String introduction = replySet[2 + 2*i + 1];
+                int id = Integer.parseInt(replySet[2 + 3*i]);
+                String introduction = replySet[2 + 3*i + 2];
                 User user = new User(id,nameWanted,"Cannot Get Others Password",introduction);
                 retUserList.add(user);
             }
@@ -135,13 +135,13 @@ public class Client {
         }
     }
 
-    //这个函数还没补充完整
+    //杩欎釜鍑芥暟杩樻病琛ュ厖瀹屾暣
     public void uploadClientServerAddress(){
-        //获取客户端产生的用于p2p连接的自己的服务器的地址
+        //鑾峰彇瀹㈡埛绔骇鐢熺殑鐢ㄤ簬p2p杩炴帴鐨勮嚜宸辩殑鏈嶅姟鍣ㄧ殑鍦板潃
     }
 
     /*
-     * 回报格式： 报头 | 数量 | id | nickname | introduction
+     * 鍥炴姤鏍煎紡锛� 鎶ュご | 鏁伴噺 | id | nickname | introduction
      *
      */
     public Vector<User> getFriendList(int userId){
@@ -164,7 +164,7 @@ public class Client {
     }
 
     /*
-     * 回报格式： 报头 | 数量 | 作者id | 作者昵称 | tweet内容 | 时间
+     * 鍥炴姤鏍煎紡锛� 鎶ュご | 鏁伴噺 | 浣滆�卛d | 浣滆�呮樀绉� | tweet鍐呭 | 鏃堕棿
      *
      */
     public Vector<Tweet> getTweets(int userId){

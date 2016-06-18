@@ -7,6 +7,13 @@ public class ContactP {
 	private String name;
 	private String desc;
 
+	ContactP(){
+		txPath = "";
+		weixinID= "";
+		name= "";
+		desc= "";
+	}
+	
 	public String getTxPath() {
 		return txPath;
 	}
