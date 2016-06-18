@@ -140,4 +140,8 @@ public class User {
         }
     }
 
+    public Vector<Integer> getFriendList(){
+        return this.friendList;
+    }
+
 }

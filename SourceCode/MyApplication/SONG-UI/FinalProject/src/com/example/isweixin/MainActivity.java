@@ -1,6 +1,8 @@
 package com.example.isweixin;
 
 import java.util.ArrayList;
+import java.util.Vector;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import client.Client;
+import client.Tweet;
+import client.User;
 
 public class MainActivity extends Activity implements OnViewChangeListener, OnClickListener{
 	private MyScrollLayout mScrollLayout;	
@@ -96,23 +100,31 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	private ArrayList<Friend> getFriends(){
 		ArrayList<Friend> hhList = new ArrayList<>();
+		Vector<Tweet> tweetList = Client.getClient().getTweets(Client.getClient().getLocalUser().getId());
+		int count = tweetList.size();
 		//--------------------------Loop Unit---------------------------------------
-		Friend h1 = new Friend();
-		h1.setTxPath(R.drawable.icon+"");
-		h1.setName("Name Slot");
-		h1.setLastContent("Content Slot");
-		h1.setLastTime("Time Slot");
-		hhList.add(h1);
+		for(int i = 0;i < count;i++){
+			Friend h1 = new Friend();
+			h1.setTxPath(R.drawable.icon+"");
+			h1.setName(tweetList.get(i).getWriterName());
+			h1.setLastContent(tweetList.get(i).getContent());
+			h1.setLastTime(tweetList.get(i).getPostTime());
+			hhList.add(h1);
+		}
 		//-------------------------------------------------------------------
 		return hhList;
 	} 
 	private ArrayList<ContactP> getContact(){
 		ArrayList<ContactP> hcList = new ArrayList<>();
+		Vector<User> friendList = Client.getClient().getFriendList(Client.getClient().getLocalUser().getId());
+		int count = friendList.size();
 		//----------------------------Loop Unit---------------------------------------
-		ContactP c0 = new ContactP();
-		c0.setTxPath(R.drawable.icon+"");
-		c0.setName("Name Slot");
-		hcList.add(c0);
+		for(int i = 0;i < count;i++){
+			ContactP c0 = new ContactP();
+			c0.setTxPath(R.drawable.icon+"");
+			c0.setName(friendList.get(i).getNickname());
+			hcList.add(c0);
+		}
 		//-------------------------------------------------------------------
 		return hcList;
 	}
@@ -144,6 +156,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			 }
 		 });
 	 }
+
 	 public void uploadAdd(final Activity context){
 		 menuAddTweetOrFriend = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
 		 menuAddTweetOrFriend.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230);

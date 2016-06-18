@@ -25,7 +25,7 @@ public class ClientInterface {
 
     public void breakConnection(){
         try{
-            client.close();
+            sendBuf.close();
         }catch(Exception e){
 
         }

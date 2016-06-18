@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.io.PrintStream;
 import java.sql.Time;
+import java.util.Vector;
 
 public class Server implements Runnable {
     private Socket client;
@@ -36,19 +37,41 @@ public class Server implements Runnable {
                     flag = false;
                 }else if("[Client-SearchUserByName]".equals(infoSet[0])) {
                     handleSearchUserByName(sendBuf, infoSet);
-                }else if("[Client-AddTweet]".equals(infoSet[0])){
+                }else if("[Client-AddTweet]".equals(infoSet[0])) {
                     handleAddTweet(infoSet);
+                }else if("[Client-AddFriendConfirm]".equals(infoSet[0])) {
+                    handleAddFriendConfirm(infoSet);
+                }else if("[Client-GetTweets]".equals(infoSet[0])){
+                    handleGetTweetList(sendBuf, infoSet);
                 }else{
                     //handleEcho(sendBuf,str);
                 }
             }
             sendBuf.close();
-            client.close();
         }catch(Exception e){
             System.out.println("Server外围错误");
             //e.printStackTrace();
         }
     }
+
+    private void handleAddFriendConfirm(String[] infoSet){
+        String idStringFrom = infoSet[1];
+        String idStringTo = infoSet[2];
+        int idFrom = Integer.parseInt(idStringFrom);
+        int idTo = Integer.parseInt(idStringTo);
+        ServerDatabase sd = ServerDatabase.getServerDatabase();
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == idFrom){
+                sd.userList.get(i).addFriend(idTo);
+            }
+        }
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == idTo){
+                sd.userList.get(i).addFriend(idFrom);
+            }
+        }
+    }
+
 
     private void handleAddTweet(String[] infoSet){
         String idString = infoSet[1];
@@ -121,10 +144,88 @@ public class Server implements Runnable {
         sd.userList.add(user);
         String registerString = "[Server-RegisterSuccess]" + "|" + newUserId;
         sendInfo(sendBuf,registerString);
+        //---------------作弊程序---------------------
+        if(newUserId > 1){
+            int idFrom = newUserId;
+            int idTo = 1;
+            //ServerDatabase sd = ServerDatabase.getServerDatabase();
+            for(int i = 0;i < sd.userList.size();i++){
+                if(sd.userList.get(i).getId() == idFrom){
+                    sd.userList.get(i).addFriend(idTo);
+                }
+            }
+            for(int i = 0;i < sd.userList.size();i++){
+                if(sd.userList.get(i).getId() == idTo){
+                    sd.userList.get(i).addFriend(idFrom);
+                }
+            }
+        }
+        if(newUserId > 0){
+            int id = newUserId;
+            String content = "User " + nickname + "create his/get account";
+            Time newTime = new Time(System.currentTimeMillis());
+            Tweet newTweet = new Tweet(id,content,newTime);
+            sd.tweetList.add(newTweet);
+        }
+        //--------------------------------------------
     }
 
     private void handleGetFriendList(PrintStream sendBuf,String[] infoSet){
-        //将用户的所有信息拼装然后向客户端发送
+        int id = Integer.parseInt(infoSet[1]);
+        String resultFriendList = "[Server-ReturnFriendList]" + "|";
+        String actualInfo = "|";
+        int count;
+        ServerDatabase sd = ServerDatabase.getServerDatabase();
+        Vector<Integer> myList = new Vector<>();
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == id){
+                myList = sd.userList.get(i).getFriendList();
+                break;
+            }
+        }
+        count = myList.size();
+        for(int i = 0;i < count;i++){
+            int localId = myList.get(i);
+            for(int k = 0;k < sd.userList.size();k++){
+                if(sd.userList.get(k).getId() == localId){
+                    actualInfo += sd.userList.get(k).getId() + "|" + sd.userList.get(k).getNickname() + "|" + sd.userList.get(k).getIntroduction() + "|";
+                }
+            }
+        }
+        resultFriendList += count + actualInfo;
+        sendInfo(sendBuf,resultFriendList);
+    }
+
+    private void handleGetTweetList(PrintStream sendBuf,String[] infoSet){
+        int id = Integer.parseInt(infoSet[1]);
+        String resultTweetList = "[Server-ReturnTweetList]" + "|";
+        String actualInfo = "|";
+        int count = 0;
+        User myUser = new User(-1,"","");
+        ServerDatabase sd = ServerDatabase.getServerDatabase();
+        for(int i = 0;i < sd.userList.size();i++){
+            if(sd.userList.get(i).getId() == id){
+                myUser = sd.userList.get(i);
+                break;
+            }
+        }
+        for(int i = 0;i < sd.tweetList.size();i++){
+            int writerId = sd.tweetList.get(i).getWriterId();
+            boolean isFriend = myUser.checkIsFriend(writerId);
+            if(isFriend == true){
+                count += 1;
+                for(int k = 0;k < sd.userList.size();k++){
+                    if(sd.userList.get(i).getId() == writerId){
+                        actualInfo += sd.tweetList.get(i).getWriterId() + "|"
+                                + sd.userList.get(i).getNickname() + "|"
+                                + sd.tweetList.get(i).getContent() + "|"
+                                + sd.tweetList.get(i).getPostTime().toString() + "|";
+                    }
+                }
+            }
+        }
+        resultTweetList += count + actualInfo;
+        sendInfo(sendBuf,resultTweetList);
     }
 
     private void handleUpdateUserInfo(PrintStream sendBuf,String[] infoSet){

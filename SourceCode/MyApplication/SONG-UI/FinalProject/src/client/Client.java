@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class Client {
+    private static boolean isClose = true;
     private static Client INSTANCE;
     private ClientInterface ci;
     private User localUser;
@@ -22,8 +23,9 @@ public class Client {
     }
 
     public static Client getClient(){
-        if(INSTANCE == null){
+        if(isClose == true){
             INSTANCE = new Client();
+            isClose = false;
             return INSTANCE;
         }else{
             return INSTANCE;
@@ -138,24 +140,58 @@ public class Client {
         //获取客户端产生的用于p2p连接的自己的服务器的地址
     }
 
-    //这个函数还没补充完整
+    /*
+     * 回报格式： 报头 | 数量 | id | nickname | introduction
+     *
+     */
     public Vector<User> getFriendList(int userId){
         String totalMsg = "[Client-GetFriendList]" + "|" + userId;
         ci.sendToServer(totalMsg);
         String getFriendListReply = ci.receiveFromServer();
         String[] replyList = getFriendListReply.split("\\|");
         Vector<User> friendList = new Vector<>();
-
-        //具体的整理回复方法以后再做实现
-        //To-do
-
+        String countString = replyList[1];
+        int count = Integer.parseInt(countString);
+        for(int i = 0;i < count;i++){
+            String idString = replyList[2 + 3*i + 0];
+            int tempId = Integer.parseInt(idString);
+            String nickname = replyList[2 + 3*i + 1];
+            String introduction = replyList[2 + 3*i + 2];
+            User tempUser = new User(tempId,nickname,introduction);
+            friendList.add(tempUser);
+        }
         return friendList;
+    }
+
+    /*
+     * 回报格式： 报头 | 数量 | 作者id | 作者昵称 | tweet内容 | 时间
+     *
+     */
+    public Vector<Tweet> getTweets(int userId){
+        String totalMsg = "[Client-GetTweets]" + "|" + userId;
+        ci.sendToServer(totalMsg);
+        String getTweetsListReply = ci.receiveFromServer();
+        String[] replyList = getTweetsListReply.split("\\|");
+        Vector<Tweet> tweetList = new Vector<>();
+        String countString = replyList[1];
+        int count = Integer.parseInt(countString);
+        for(int i = 0;i < count ;i++){
+            String idString = replyList[2 + 4*i + 0];
+            int tempId = Integer.parseInt(idString);
+            String nickname = replyList[2 + 4*i + 1];
+            String content = replyList[2 + 4*i + 2];
+            String time = replyList[2 + 4*i + 3];
+            Tweet tweet = new Tweet(tempId,nickname,content,time);
+            tweetList.add(tweet);
+        }
+        return tweetList;
     }
 
     public void logout(){
         String logoutString = "[Client-Logout]" + "|" + localUser.getId();
         ci.sendToServer(logoutString);
         this.localUser = null;
+        isClose = true;
         ci.breakConnection();
     }
 
