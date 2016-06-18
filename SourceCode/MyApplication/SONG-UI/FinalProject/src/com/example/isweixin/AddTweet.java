@@ -36,6 +36,5 @@ public class AddTweet extends Activity {
                 finish();
             }
         });
-
     }
 }

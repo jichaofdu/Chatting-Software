@@ -42,10 +42,10 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		paintingListView = (ListView)findViewById(R.id.listView1);
 		friendListView = (ListView)findViewById(R.id.listView2);
 		contactListView = (ListView)findViewById(R.id.listView3);
-		PaintingAdapter ha = new PaintingAdapter(this,getHuahui());
+		PaintingAdapter ha = new PaintingAdapter(this,getPainting());
 		paintingListView.setAdapter(ha);
 		paintingListView.setCacheColorHint(0);
-		FriendAdapter py = new FriendAdapter(this,getPengyou());
+		FriendAdapter py = new FriendAdapter(this,getFriends());
 		friendListView.setAdapter(py);
 		friendListView.setCacheColorHint(0);
 		ContactAdapter hc = new ContactAdapter(this,getContact());
@@ -70,17 +70,31 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     	set.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				uploadImage(MainActivity.this);
+				uploadSetting(MainActivity.this);
 			}
 		});
     	add.setOnClickListener(new View.OnClickListener() {
     		@Override
     		public void onClick(View arg0) {
-    			uploadImage2(MainActivity.this);
+    			uploadAdd(MainActivity.this);
     		}
     	});
     }
-	private ArrayList<Friend> getPengyou(){
+
+	private ArrayList<Painting> getPainting(){
+		ArrayList<Painting> hhList = new ArrayList<Painting>();
+		//----------------------------Loop Unit---------------------------------------
+		Painting h0 = new Painting();
+		h0.setTxPath(R.drawable.icon+"");
+		h0.setName("Name Slot");
+		h0.setLastContent("Content Slot");
+		h0.setLastTime("Time slot");
+		hhList.add(h0);
+		//-------------------------------------------------------------------
+		return hhList;
+	}
+
+	private ArrayList<Friend> getFriends(){
 		ArrayList<Friend> hhList = new ArrayList<>();
 		//--------------------------Loop Unit---------------------------------------
 		Friend h1 = new Friend();
@@ -88,8 +102,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		h1.setName("Name Slot");
 		h1.setLastContent("Content Slot");
 		h1.setLastTime("Time Slot");
-		//-------------------------------------------------------------------
 		hhList.add(h1);
+		//-------------------------------------------------------------------
 		return hhList;
 	} 
 	private ArrayList<ContactP> getContact(){
@@ -103,20 +117,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		return hcList;
 	}
 	
-	private ArrayList<Painting> getHuahui(){
-		ArrayList<Painting> hhList = new ArrayList<Painting>();
-		//----------------------------Loop Unit---------------------------------------
-		Painting h0 = new Painting();
-		h0.setTxPath(R.drawable.icon+"");
-		h0.setName("Name Slot");
-		h0.setLastContent("Content Slot");
-		h0.setLastTime("Time slot");
-		hhList.add(h0);
-		//-------------------------------------------------------------------
-		return hhList;
-	} 
-	
-	 public void uploadImage(final Activity context){
+	 public void uploadSetting(final Activity context){
 		 menuInfoWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);
 		 menuInfoWindow.showAtLocation(MainActivity.this.findViewById(R.id.set), Gravity.TOP|Gravity.RIGHT, 10, 230);
 		 menuInfoWindow.changeInfoButton.setOnClickListener(new OnClickListener() {
@@ -143,7 +144,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			 }
 		 });
 	 }
-	 public void uploadImage2(final Activity context){
+	 public void uploadAdd(final Activity context){
 		 menuAddTweetOrFriend = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
 		 menuAddTweetOrFriend.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230);
 		 menuAddTweetOrFriend.addFriendButton.setOnClickListener(new OnClickListener() {
@@ -167,20 +168,18 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			 }
 		 });
 	 }
-	 
 
-	    private OnClickListener  itemsOnClick = new OnClickListener(){
-			public void onClick(View v) {
+	private OnClickListener  itemsOnClick = new OnClickListener(){
+		public void onClick(View v) {
 				menuInfoWindow.dismiss();
 			}
-	    };
-	    
+	};
 
-	    private OnClickListener  itemsOnClick2 = new OnClickListener(){
-	    	public void onClick(View v) {
+	private OnClickListener  itemsOnClick2 = new OnClickListener(){
+		public void onClick(View v) {
 				menuAddTweetOrFriend.dismiss();
 	    	}
-	    };
+	};
 	    
 	private void setCurPoint(int index) {
     	if (index < 0 || index > mViewCount - 1 || mCurSel == index){
