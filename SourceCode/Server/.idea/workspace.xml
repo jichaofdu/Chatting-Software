@@ -25,8 +25,8 @@
       <file leaf-file-name="Tweet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tweet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#302#303#0" expanded="true" />
                 <element signature="e#334#335#0" expanded="true" />
@@ -48,23 +48,28 @@
       <file leaf-file-name="ServerDatabase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="38">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+            <state relative-caret-position="269">
+              <caret line="222" column="19" selection-start-line="222" selection-start-column="19" selection-end-line="222" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#334#335#0" expanded="true" />
                 <element signature="e#370#371#0" expanded="true" />
+                <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+                <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+                <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+                <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
                 <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+                <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
                 <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
                 <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
                 <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -83,11 +88,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerLauncher.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerLauncher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
               <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Group.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Group.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -582,7 +597,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="56" y="0" width="1316" height="772" extended-state="1" />
+    <frame x="56" y="0" width="1316" height="772" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -593,7 +608,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5302115" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4471299" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -624,7 +639,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -633,14 +648,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ServerDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -649,7 +656,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -692,7 +704,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -716,7 +733,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -759,7 +781,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -802,7 +829,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -859,7 +891,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -916,7 +953,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -966,7 +1008,12 @@
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
@@ -1086,18 +1133,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestSeri.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="38">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tweet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#302#303#0" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
@@ -1115,35 +1186,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestSeri.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+        <state relative-caret-position="269">
+          <caret line="222" column="19" selection-start-line="222" selection-start-column="19" selection-end-line="222" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#334#335#0" expanded="true" />
             <element signature="e#370#371#0" expanded="true" />
+            <element signature="method#handleAddFriendConfirm#0;class#Server#0" expanded="false" />
+            <element signature="method#handleSearchUserByName#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogin#0;class#Server#0" expanded="false" />
+            <element signature="method#handleGetFriendList#0;class#Server#0" expanded="false" />
             <element signature="method#handleUpdateUserInfo#0;class#Server#0" expanded="false" />
+            <element signature="method#handleLogout#0;class#Server#0" expanded="false" />
             <element signature="method#generateNewUserId#0;class#Server#0" expanded="false" />
             <element signature="method#receiveInfo#0;class#Server#0" expanded="false" />
             <element signature="method#sendInfo#0;class#Server#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerLauncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>

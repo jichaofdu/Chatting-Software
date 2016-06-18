@@ -49,8 +49,9 @@ public class Server implements Runnable {
             }
             sendBuf.close();
         }catch(Exception e){
-            System.out.println("Server外围错误");
-            //e.printStackTrace();
+            System.out.println("--------------Server外围错误--------------");
+            e.printStackTrace();
+            System.out.println("--------------Server外围错误--------------");
         }
     }
 
@@ -215,11 +216,11 @@ public class Server implements Runnable {
             if(isFriend == true){
                 count += 1;
                 for(int k = 0;k < sd.userList.size();k++){
-                    if(sd.userList.get(i).getId() == writerId){
+                    if(sd.userList.get(k).getId() == writerId){
                         actualInfo += sd.tweetList.get(i).getWriterId() + "|"
-                                + sd.userList.get(i).getNickname() + "|"
-                                + sd.tweetList.get(i).getContent() + "|"
-                                + sd.tweetList.get(i).getPostTime().toString() + "|";
+                                   + sd.userList.get(i).getNickname() + "|"
+                                   + sd.tweetList.get(i).getContent() + "|"
+                                   + sd.tweetList.get(i).getPostTime().toString() + "|";
                     }
                 }
             }
