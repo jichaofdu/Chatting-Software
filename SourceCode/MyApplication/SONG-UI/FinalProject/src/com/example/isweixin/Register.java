@@ -41,12 +41,16 @@ public class Register extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//--------------TO DO----------------------
-				//向服务器端发送注册消息
+				//鍚戞湇鍔″櫒绔彂閫佹敞鍐屾秷鎭�
+				if (name.getText().toString().equals("") ||password.getText().toString().equals("")||passwordAgain.getText().toString().equals("")){
+    				Toast.makeText(getApplicationContext(), "Empty String",Toast.LENGTH_SHORT).show();
+					return;
+				}
 				String usernameString = name.getText().toString();
 				String passwordString = password.getText().toString();
 				String passwordAgainString = passwordAgain.getText().toString();
 				if(passwordString != null && passwordAgainString != null && passwordAgainString.equals(passwordString)){
-					//向服务器发送注册信息
+					//鍚戞湇鍔″櫒鍙戦�佹敞鍐屼俊鎭�
 					Client c = Client.getClient();
 					User user = c.handleRegister(usernameString,passwordString);
 					boolean flag = false;
@@ -57,7 +61,7 @@ public class Register extends Activity {
 						flag = true;
 						//Register Success
 					}
-					//接受服务器注册消息并采取对应操作
+					//鎺ュ彈鏈嶅姟鍣ㄦ敞鍐屾秷鎭苟閲囧彇瀵瑰簲鎿嶄綔
 					if (flag == true){
 						Toast.makeText(getApplicationContext(), "Register Success.Your id is " + user.getId(),Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(Register.this,Login.class);
