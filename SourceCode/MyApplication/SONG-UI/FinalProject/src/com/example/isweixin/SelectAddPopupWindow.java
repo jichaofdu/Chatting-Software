@@ -14,8 +14,8 @@ import android.widget.Button;
 
 public class SelectAddPopupWindow extends PopupWindow {
 
-	private Button addTweetButton;
-	private Button addFriendButton;
+	public Button addTweetButton;
+	public Button addFriendButton;
 	private View mMenuView;
 
 	public SelectAddPopupWindow(final Activity context,OnClickListener itemsOnClick) {
@@ -44,7 +44,8 @@ public class SelectAddPopupWindow extends PopupWindow {
 			}
 		});
 		//------------------------
-
+		addFriendButton = (Button)mMenuView.findViewById(R.id.addFriend);
+		addTweetButton = (Button)mMenuView.findViewById(R.id.addTweet);
 		//------------------------
 	}
 }

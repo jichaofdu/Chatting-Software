@@ -146,6 +146,26 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	 public void uploadImage2(final Activity context){
 		 menuAddTweetOrFriend = new SelectAddPopupWindow(MainActivity.this, itemsOnClick2);
 		 menuAddTweetOrFriend.showAtLocation(MainActivity.this.findViewById(R.id.add), Gravity.TOP|Gravity.RIGHT, 10, 230);
+		 menuAddTweetOrFriend.addFriendButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 System.out.println("Click Add Friend");
+				 Intent intent = new Intent(MainActivity.this,AddFriend.class);
+				 startActivity(intent);
+				 menuAddTweetOrFriend.dismiss();
+				 menuAddTweetOrFriend = null;
+			 }
+		 });
+		 menuAddTweetOrFriend.addTweetButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 System.out.println("Click Add Tweet");
+				 Intent intent = new Intent(MainActivity.this,AddTweet.class);
+				 startActivity(intent);
+				 menuAddTweetOrFriend.dismiss();
+				 menuAddTweetOrFriend = null;
+			 }
+		 });
 	 }
 	 
 

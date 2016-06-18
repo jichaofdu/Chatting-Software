@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddTweet extends Activity {
     private EditText tweetContentEditText;
@@ -29,8 +30,8 @@ public class AddTweet extends Activity {
             public void onClick(View v) {
                 String tweetContent = tweetContentEditText.getText().toString();
                 //将tweet内容提交到服务器
-
-
+                Toast.makeText(getApplicationContext(),"Tweet Content:" + tweetContent,Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

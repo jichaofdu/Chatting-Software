@@ -8,6 +8,7 @@ public class ServerLauncher {
         //Server port is 1234
         ServerSocket server = new ServerSocket(12345);
         boolean f = true;
+        System.out.println("Server Open Success");
         while(f){
             Socket client = server.accept();
             System.out.println("Server:Receive a new connect.");
