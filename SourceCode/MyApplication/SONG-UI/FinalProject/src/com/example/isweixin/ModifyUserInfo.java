@@ -17,9 +17,9 @@ public class ModifyUserInfo extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modify_user_info);
-        modifyNickname = (EditText)findViewById(R.id.modifyNickname);
+        modifyNickname = (EditText)findViewById(R.id.modifyPassword);//--------!!
         modifyNickname.setText(Client.getClient().getLocalUser().getNickname());
-        modifyPassword = (EditText)findViewById(R.id.modifyPassword);
+        modifyPassword = (EditText)findViewById(R.id.modifyNickname);//-----------!!
         modifyPassword.setText(Client.getClient().getLocalUser().getPassword());
         modifyIntroduction = (EditText)findViewById(R.id.modifyIntroduction);
         modifyIntroduction.setText(Client.getClient().getLocalUser().getIntroduction());

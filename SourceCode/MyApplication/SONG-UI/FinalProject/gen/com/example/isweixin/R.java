@@ -496,18 +496,19 @@ public final class R {
         public static final int ic_launcher=0x7f020019;
         public static final int icon=0x7f02001a;
         public static final int login_bg=0x7f02001b;
-        public static final int ofm_add_icon=0x7f02001c;
-        public static final int ofm_blacklist_icon=0x7f02001d;
-        public static final int ofm_profile_icon=0x7f02001e;
-        public static final int ofm_qrcode_icon=0x7f02001f;
-        public static final int ofm_setting_icon=0x7f020020;
-        public static final int personactivity_cover_heart=0x7f020021;
-        public static final int reader_item_divider=0x7f020022;
-        public static final int register_bg=0x7f020023;
-        public static final int unbundqqtips_icon=0x7f020024;
-        public static final int welcome_bg=0x7f020025;
-        public static final int white_bigbtn_normal=0x7f020026;
-        public static final int white_bigbtn_tips_normal=0x7f020027;
+        public static final int modify_bg=0x7f02001c;
+        public static final int ofm_add_icon=0x7f02001d;
+        public static final int ofm_blacklist_icon=0x7f02001e;
+        public static final int ofm_profile_icon=0x7f02001f;
+        public static final int ofm_qrcode_icon=0x7f020020;
+        public static final int ofm_setting_icon=0x7f020021;
+        public static final int personactivity_cover_heart=0x7f020022;
+        public static final int reader_item_divider=0x7f020023;
+        public static final int register_bg=0x7f020024;
+        public static final int unbundqqtips_icon=0x7f020025;
+        public static final int welcome_bg=0x7f020026;
+        public static final int white_bigbtn_normal=0x7f020027;
+        public static final int white_bigbtn_tips_normal=0x7f020028;
     }
     public static final class id {
         public static final int Login=0x7f0a0022;
