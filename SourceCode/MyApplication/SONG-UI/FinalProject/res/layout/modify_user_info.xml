@@ -2,20 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" 
-                >
-	<ImageView
-        android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-    	android:scaleType="centerCrop"
-    	android:src="@drawable/modify_bg"
-        />
+                android:orientation="vertical" >
+
     <EditText
             android:id="@+id/modifyNickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="New Nickname"
+            android:hint="Please Input Your New Nickname"
             android:layout_marginTop="96dp"
             android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
     <EditText
@@ -23,25 +17,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="New Password"
+            android:hint="Please Input Your New Password"
             android:layout_marginTop="42dp"
-            android:layout_below="@+id/modifyNickname" 
-            android:layout_alignLeft="@+id/modifyNickname"/>
+            android:layout_below="@+id/modifyNickname" android:layout_alignLeft="@+id/modifyNickname"/>
     <EditText
             android:id="@+id/modifyIntroduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Introduction"
-            android:layout_below="@+id/modifyPassword" 
-            android:layout_alignLeft="@+id/modifyPassword"
+            android:hint="Please Input Your New Introduction"
+            android:layout_below="@+id/modifyPassword" android:layout_alignLeft="@+id/modifyPassword"
             android:layout_marginTop="47dp"/>
+  "/>
 
     <Button
             android:id="@+id/modifyConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="Submit Modification"
             android:layout_marginBottom="86dp"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/modifyIntroduction"
