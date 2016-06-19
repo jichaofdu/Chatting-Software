@@ -14,9 +14,9 @@ public class TestSeri {
             ObjectOutputStream s = new ObjectOutputStream(f);
             s.writeObject(obj); //鍐欏叆瀛楃涓插璞�;
 
+
             FileInputStream g = new FileInputStream("tmp");
             ObjectInputStream h = new ObjectInputStream(g);
-
             TestSeriObj newObj = (TestSeriObj)h.readObject();
             System.out.println(newObj.getA());
         }catch(Exception e){
