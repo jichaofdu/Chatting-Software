@@ -20,6 +20,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 	//------------------------------------------------
 	public Button changeInfoButton;
 	public Button logoutButton;
+	public Button refreshButton;
 	private TextView topNicknameTextView;
 	private TextView topIdTextView;
 	//------------------------------------------------
@@ -60,6 +61,7 @@ public class SelectPicPopupWindow extends PopupWindow {
 		topIdTextView.setText("ID:" + localUser.getId());
 		changeInfoButton = (Button)mMenuView.findViewById(R.id.changeInfo);
 		logoutButton = (Button)mMenuView.findViewById(R.id.logout);
+		refreshButton = (Button)mMenuView.findViewById(R.id.fresh);
 		//------------------------
 	}
 

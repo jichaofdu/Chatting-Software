@@ -32,6 +32,8 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ListView contactListView;
 	SelectPicPopupWindow menuInfoWindow;
 	SelectAddPopupWindow menuAddTweetOrFriend;
+	private Button sendButton;
+	private EditText massageInputEditText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,20 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
     			uploadAdd(MainActivity.this);
     		}
     	});
+    	sendButton = (Button)findViewById(R.id.sendButton);
+		massageInputEditText = (EditText)findViewById(R.id.messageInput);
+		sendButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				String inputMsg = massageInputEditText.getText().toString();
+				Client.getClient().sendChatMessage(inputMsg);
+				massageInputEditText.setText("");
+				Intent intent = new Intent(MainActivity.this,
+						MainActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
     }
 
 	private ArrayList<Painting> getPainting(){
@@ -164,6 +180,17 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 				 finish();
 			 }
 		 });
+		 menuInfoWindow.refreshButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 System.out.println("Click refresh");
+				 
+				 Intent intent = new Intent(MainActivity.this,MainActivity.class);
+				 startActivity(intent);
+			 }
+		 });
+		 
+		
 	 }
 
 	 public void uploadAdd(final Activity context){
