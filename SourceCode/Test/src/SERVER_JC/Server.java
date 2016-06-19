@@ -48,8 +48,10 @@ public class Server implements Runnable {
                     handleGetTweetList(sendBuf, infoSet);
                 }else if("[Client-ChatMessage]".equals(infoSet[0])) {
                     handleAddChatMessage(sendBuf, infoSet);
-                }else if("[Client-GetChatMessage]".equals(infoSet[0])){
+                }else if("[Client-GetChatMessage]".equals(infoSet[0])) {
                     handleGetMessages(sendBuf, infoSet);
+                }else if("[Client-DeleteFriend]".equals(infoSet[0])){
+                    handleDeleteFriend(infoSet);
                 }else{
                     //handleEcho(sendBuf,str);
                 }
@@ -57,7 +59,6 @@ public class Server implements Runnable {
             sendBuf.close();
         }catch(Exception e){
         	e.printStackTrace();
-        	
         }
     }
 
@@ -69,7 +70,6 @@ public class Server implements Runnable {
             if(newUserId > 1){
                 int idFrom = newUserId;
                 int idTo = 1;
-                //ServerDatabase sd = ServerDatabase.getServerDatabase();
                 for(int j = 0;j < ServerDatabase.getServerDatabase().userList.size();j++){
                     if(ServerDatabase.getServerDatabase().userList.get(j).getId() == idFrom){
                         ServerDatabase.getServerDatabase().userList.get(j).addFriend(idTo);
@@ -97,7 +97,14 @@ public class Server implements Runnable {
         }
     }
 
-    private void  handleGetMessages(PrintStream sendBuf,String[] infoSet){
+    private void handleDeleteFriend(String[] infoSet){
+        String fromIdString = infoSet[1];
+        String toIdString = infoSet[2];
+
+
+    }
+
+    private void handleGetMessages(PrintStream sendBuf,String[] infoSet){
         String idString = infoSet[1];
         int id = Integer.parseInt(idString);
         String sendMsgBack = "[Server-SendMsgBack]" + "|";
@@ -138,35 +145,33 @@ public class Server implements Runnable {
         String idStringTo = infoSet[2];
         int idFrom = Integer.parseInt(idStringFrom);
         int idTo = Integer.parseInt(idStringTo);
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         //Clear the friend if they are already friend
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == idFrom){
-                sd.userList.get(i).deleteFriend(idTo);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idFrom){
+                ServerDatabase.getServerDatabase().userList.get(i).deleteFriend(idTo);
                 break;
             }
         }
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == idTo){
-                sd.userList.get(i).deleteFriend(idFrom);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idTo){
+                ServerDatabase.getServerDatabase().userList.get(i).deleteFriend(idFrom);
                 break;
             }
         }
         //After clear, add friendship to them
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == idFrom){
-                sd.userList.get(i).addFriend(idTo);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idFrom){
+                ServerDatabase.getServerDatabase().userList.get(i).addFriend(idTo);
                 break;
             }
         }
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == idTo){
-                sd.userList.get(i).addFriend(idFrom);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idTo){
+                ServerDatabase.getServerDatabase().userList.get(i).addFriend(idFrom);
                 break;
             }
         }
     }
-
 
     private void handleAddTweet(String[] infoSet){
         String idString = infoSet[1];
@@ -174,20 +179,19 @@ public class Server implements Runnable {
         String content = infoSet[2];
         Time newTime = new Time(System.currentTimeMillis());
         Tweet newTweet = new Tweet(id,content,newTime);
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
-        sd.tweetList.add(newTweet);
+        ServerDatabase.getServerDatabase().tweetList.add(newTweet);
     }
 
-
     private void handleSearchUserByName(PrintStream sendBuf,String[] infoSet){
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         String wantedName = infoSet[1];
         String returnString = "[Server-FindUserByName]" + "|";
         String actualInfo = "|";
         int count = 0;
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getNickname().equals(wantedName)){
-                actualInfo += sd.userList.get(i).getId() + "|" + sd.userList.get(i).getNickname() + "|" + sd.userList.get(i).getIntroduction() + "|";
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getNickname().equals(wantedName)){
+                actualInfo += ServerDatabase.getServerDatabase().userList.get(i).getId() + "|"
+                            + ServerDatabase.getServerDatabase().userList.get(i).getNickname() + "|"
+                            + ServerDatabase.getServerDatabase().userList.get(i).getIntroduction() + "|";
                 count += 1;
             }
         }
@@ -200,22 +204,21 @@ public class Server implements Runnable {
     }
 
     private void handleLogin(PrintStream sendBuf,String[] infoSet){
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         String idString = infoSet[1];
         int id = Integer.parseInt(idString);
         String password = infoSet[2];
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == id){
-                if(sd.userList.get(i).checkNamePasswdMatch(password) == true){
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == id){
+                if(ServerDatabase.getServerDatabase().userList.get(i).checkNamePasswdMatch(password) == true){
                     //登录成功以后设置用户的登录状态为已经登录，并将登录的客户端的IP地址记录下来
-                    sd.userList.get(i).setIsLogin(true);
+                    ServerDatabase.getServerDatabase().userList.get(i).setIsLogin(true);
                     String clientAddress = client.getInetAddress().toString();
                     int clientPort = client.getPort();
-                    sd.userList.get(i).setLocalClientAddress(clientAddress);
-                    sd.userList.get(i).setLocalClientPort(clientPort);
+                    ServerDatabase.getServerDatabase().userList.get(i).setLocalClientAddress(clientAddress);
+                    ServerDatabase.getServerDatabase().userList.get(i).setLocalClientPort(clientPort);
                     //登录成功
-                    String nickname = sd.userList.get(i).getNickname();
-                    String introduction = sd.userList.get(i).getIntroduction();
+                    String nickname = ServerDatabase.getServerDatabase().userList.get(i).getNickname();
+                    String introduction = ServerDatabase.getServerDatabase().userList.get(i).getIntroduction();
                     String loginString = "[Server-LoginSuccess]" + "|" + nickname + "|" + introduction;
                     sendInfo(sendBuf,loginString);
                     return;
@@ -231,28 +234,26 @@ public class Server implements Runnable {
     }
 
     private void handleRegister(PrintStream sendBuf,String[] infoSet){
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
-        int newUserId = sd.generateNewUserId();
+        int newUserId = ServerDatabase.getServerDatabase().generateNewUserId();
         String nickname = infoSet[1];
         String password = infoSet[2];
         User user = new User(newUserId,nickname,password);
-        sd.userList.add(user);
+        ServerDatabase.getServerDatabase().userList.add(user);
         String registerString = "[Server-RegisterSuccess]" + "|" + newUserId;
         sendInfo(sendBuf,registerString);
         //---------------作弊程序---------------------
         if(newUserId > 1){
             int idFrom = newUserId;
             int idTo = 1;
-            //ServerDatabase sd = ServerDatabase.getServerDatabase();
-            for(int i = 0;i < sd.userList.size();i++){
-                if(sd.userList.get(i).getId() == idFrom){
-                    sd.userList.get(i).addFriend(idTo);
+            for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+                if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idFrom){
+                    ServerDatabase.getServerDatabase().userList.get(i).addFriend(idTo);
                     break;
                 }
             }
-            for(int i = 0;i < sd.userList.size();i++){
-                if(sd.userList.get(i).getId() == idTo){
-                    sd.userList.get(i).addFriend(idFrom);
+            for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+                if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idTo){
+                    ServerDatabase.getServerDatabase().userList.get(i).addFriend(idFrom);
                     break;
                 }
             }
@@ -263,10 +264,10 @@ public class Server implements Runnable {
             String content = "User " + nickname + "create his/get account";
             Time newTime = new Time(System.currentTimeMillis());
             Tweet newTweet = new Tweet(id,content,newTime);
-            sd.tweetList.add(newTweet);
+            ServerDatabase.getServerDatabase().tweetList.add(newTweet);
         }
 
-        sd.chatGroup.addMember(newUserId);
+        ServerDatabase.getServerDatabase().chatGroup.addMember(newUserId);
         String time = new Time(System.currentTimeMillis()).toString();
         ChatMessage msg = new ChatMessage(newUserId,nickname,"Hello World",time);
         ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
@@ -278,20 +279,21 @@ public class Server implements Runnable {
         String resultFriendList = "[Server-ReturnFriendList]" + "|";
         String actualInfo = "|";
         int count;
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         Vector<Integer> myList = new Vector<>();
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == id){
-                myList = sd.userList.get(i).getFriendList();
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == id){
+                myList = ServerDatabase.getServerDatabase().userList.get(i).getFriendList();
                 break;
             }
         }
         count = myList.size();
         for(int i = 0;i < count;i++){
             int localId = myList.get(i);
-            for(int k = 0;k < sd.userList.size();k++){
-                if(sd.userList.get(k).getId() == localId){
-                    actualInfo += sd.userList.get(k).getId() + "|" + sd.userList.get(k).getNickname() + "|" + sd.userList.get(k).getIntroduction() + "|";
+            for(int k = 0;k < ServerDatabase.getServerDatabase().userList.size();k++){
+                if(ServerDatabase.getServerDatabase().userList.get(k).getId() == localId){
+                    actualInfo += ServerDatabase.getServerDatabase().userList.get(k).getId() + "|"
+                                + ServerDatabase.getServerDatabase().userList.get(k).getNickname() + "|"
+                                + ServerDatabase.getServerDatabase().userList.get(k).getIntroduction() + "|";
                 }
             }
         }
@@ -305,24 +307,23 @@ public class Server implements Runnable {
         String actualInfo = "|";
         int count = 0;
         User myUser = new User(-1,"","");
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == id){
-                myUser = sd.userList.get(i);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == id){
+                myUser = ServerDatabase.getServerDatabase().userList.get(i);
                 break;
             }
         }
-        for(int i = sd.tweetList.size() - 1;i >= 0;i--){
-            int writerId = sd.tweetList.get(i).getWriterId();
+        for(int i = ServerDatabase.getServerDatabase().tweetList.size() - 1;i >= 0;i--){
+            int writerId = ServerDatabase.getServerDatabase().tweetList.get(i).getWriterId();
             boolean isFriend = myUser.checkIsFriend(writerId) || (writerId == id);
-            if(isFriend == true){
+            if(isFriend){
                 count += 1;
-                for(int k = 0;k < sd.userList.size();k++){
-                    if(sd.userList.get(k).getId() == writerId){
-                        actualInfo += sd.tweetList.get(i).getWriterId() + "|"
-                                   + sd.userList.get(k).getNickname() + "|"
-                                   + sd.tweetList.get(i).getContent() + "|"
-                                   + sd.tweetList.get(i).getPostTime().toString() + "|";
+                for(int k = 0;k < ServerDatabase.getServerDatabase().userList.size();k++){
+                    if(ServerDatabase.getServerDatabase().userList.get(k).getId() == writerId){
+                        actualInfo += ServerDatabase.getServerDatabase().tweetList.get(i).getWriterId() + "|"
+                                   + ServerDatabase.getServerDatabase().userList.get(k).getNickname() + "|"
+                                   + ServerDatabase.getServerDatabase().tweetList.get(i).getContent() + "|"
+                                   + ServerDatabase.getServerDatabase().tweetList.get(i).getPostTime().toString() + "|";
                     }
                 }
             }
@@ -332,28 +333,26 @@ public class Server implements Runnable {
     }
 
     private void handleUpdateUserInfo(PrintStream sendBuf,String[] infoSet){
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         String idString = infoSet[1];
         int userId = Integer.parseInt(idString);
         String nickname = infoSet[2];
         String password = infoSet[3];
         String introduction = infoSet[4];
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == userId) {
-                sd.userList.get(i).setNickname(nickname);
-                sd.userList.get(i).setPassword(password);
-                sd.userList.get(i).setIntroduction(introduction);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == userId) {
+                ServerDatabase.getServerDatabase().userList.get(i).setNickname(nickname);
+                ServerDatabase.getServerDatabase().userList.get(i).setPassword(password);
+                ServerDatabase.getServerDatabase().userList.get(i).setIntroduction(introduction);
                 break;
             }
         }
     }
 
     private void handleLogout(String[] infoSet){
-        ServerDatabase sd = ServerDatabase.getServerDatabase();
         int id = Integer.parseInt(infoSet[1]);
-        for(int i = 0;i < sd.userList.size();i++){
-            if(sd.userList.get(i).getId() == id) {
-                sd.userList.get(i).setIsLogin(false);
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == id) {
+                ServerDatabase.getServerDatabase().userList.get(i).setIsLogin(false);
                 break;
             }
         }
