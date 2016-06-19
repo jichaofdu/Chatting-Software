@@ -20,8 +20,16 @@ public class ChatMessage {
         return userId;
     }
 
+    public void setUserId(int newId){
+        this.userId = newId;
+    }
+
     public String getUsername(){
         return this.username;
+    }
+
+    public void setUsername(String newUsername){
+        this.username = newUsername;
     }
 
     public String getContent(){
@@ -36,6 +44,8 @@ public class ChatMessage {
         return time;
     }
 
-
+    public void setTime(String newTime){
+        this.time = newTime;
+    }
 
 }

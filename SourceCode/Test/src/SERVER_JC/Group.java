@@ -18,6 +18,10 @@ public class Group {
         this.messageList = new Vector<>();
     }
 
+    public int getGroupId(){
+        return id;
+    }
+
     public void addMember(int userId){
         memberList.add(userId);
     }

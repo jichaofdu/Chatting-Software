@@ -1,5 +1,4 @@
 package SERVER_JC;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +9,7 @@ import java.util.Vector;
 
 public class Server implements Runnable {
     private Socket client;
+    private static int userBaseId = 0;
 
     public Server(Socket client){
         this.client = client;
@@ -104,29 +104,26 @@ public class Server implements Runnable {
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == idFrom){
                 sd.userList.get(i).deleteFriend(idTo);
-                break;
             }
         }
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == idTo){
                 sd.userList.get(i).deleteFriend(idFrom);
-                break;
             }
         }
         //After clear, add friendship to them
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == idFrom){
                 sd.userList.get(i).addFriend(idTo);
-                break;
             }
         }
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == idTo){
                 sd.userList.get(i).addFriend(idFrom);
-                break;
             }
         }
     }
+
 
     private void handleAddTweet(String[] infoSet){
         String idString = infoSet[1];
@@ -137,6 +134,7 @@ public class Server implements Runnable {
         ServerDatabase sd = ServerDatabase.getServerDatabase();
         sd.tweetList.add(newTweet);
     }
+
 
     private void handleSearchUserByName(PrintStream sendBuf,String[] infoSet){
         ServerDatabase sd = ServerDatabase.getServerDatabase();
@@ -168,10 +166,10 @@ public class Server implements Runnable {
                 if(sd.userList.get(i).checkNamePasswdMatch(password) == true){
                     //登录成功以后设置用户的登录状态为已经登录，并将登录的客户端的IP地址记录下来
                     sd.userList.get(i).setIsLogin(true);
-                    // String clientAddress = client.getInetAddress().toString();
-                    //int clientPort = client.getPort();
-                    //sd.userList.get(i).setLocalClientAddress(clientAddress);
-                    //sd.userList.get(i).setLocalClientPort(clientPort);
+                    String clientAddress = client.getInetAddress().toString();
+                    int clientPort = client.getPort();
+                    sd.userList.get(i).setLocalClientAddress(clientAddress);
+                    sd.userList.get(i).setLocalClientPort(clientPort);
                     //登录成功
                     String nickname = sd.userList.get(i).getNickname();
                     String introduction = sd.userList.get(i).getIntroduction();
@@ -191,7 +189,7 @@ public class Server implements Runnable {
 
     private void handleRegister(PrintStream sendBuf,String[] infoSet){
         ServerDatabase sd = ServerDatabase.getServerDatabase();
-        int newUserId = sd.generateNewUserId();
+        int newUserId = generateNewUserId();
         String nickname = infoSet[1];
         String password = infoSet[2];
         User user = new User(newUserId,nickname,password);
@@ -214,14 +212,17 @@ public class Server implements Runnable {
                 }
             }
         }
+
         if(newUserId > 0){
             int id = newUserId;
-            String content = "User" + nickname + "create his/get account";
+            String content = "User " + nickname + "create his/get account";
             Time newTime = new Time(System.currentTimeMillis());
             Tweet newTweet = new Tweet(id,content,newTime);
             sd.tweetList.add(newTweet);
         }
+
         sd.chatGroup.addMember(newUserId);
+
         String time = new Time(System.currentTimeMillis()).toString();
         ChatMessage msg = new ChatMessage(newUserId,nickname,"Hello World",time);
         ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
@@ -298,7 +299,7 @@ public class Server implements Runnable {
                 sd.userList.get(i).setNickname(nickname);
                 sd.userList.get(i).setPassword(password);
                 sd.userList.get(i).setIntroduction(introduction);
-                break;
+                return;
             }
         }
     }
@@ -309,12 +310,18 @@ public class Server implements Runnable {
         for(int i = 0;i < sd.userList.size();i++){
             if(sd.userList.get(i).getId() == id) {
                 sd.userList.get(i).setIsLogin(false);
-                break;
             }
         }
     }
 
+    private void handleEcho(PrintStream sendBuf,String sendStr){
+        sendInfo(sendBuf,sendStr);
+    }
 
+    private int generateNewUserId(){
+        userBaseId += 1;
+        return userBaseId;
+    }
 
     private String receiveInfo(BufferedReader recvBuf){
         try{

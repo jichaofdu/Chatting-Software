@@ -1,5 +1,7 @@
 package client;
 
+import java.sql.Time;
+
 public class Tweet {
     private int writerId;
     private String nickname;
@@ -18,8 +20,16 @@ public class Tweet {
         return nickname;
     }
 
+    public void setWriterName(String newName){
+        this.nickname = newName;
+    }
+
     public int getWriterId(){
         return  writerId;
+    }
+
+    public void setWriterId(int id){
+        this.writerId = id;
     }
 
     public String getContent(){
@@ -32,6 +42,10 @@ public class Tweet {
 
     public String getPostTime(){
         return this.postTime;
+    }
+
+    public void setPostTime(String newTime){
+        this.postTime = newTime;
     }
 
 }

@@ -6,10 +6,14 @@ import java.util.Vector;
 
 public class User {
 
-    private int id;
-    private String nickname;
-    private String password;
+    private int id; //The id of user,used to login.
+    private String nickname; //The username of the user.
+    private String password; //The password of the user.
     private String introduction;
+    private String localClientAddress;
+    private int localClientPort;
+    private String localServerAddress;
+    private int localServerPort;
     private Vector<Integer> friendList; //The friend list of the user.
     private boolean isLogin;
 
@@ -19,6 +23,10 @@ public class User {
         this.password = password;
         this.introduction = "暂时没有添加用户介绍";
         this.isLogin = false;
+        this.localClientAddress = "";
+        this.localClientPort = 0;
+        this.localServerAddress = "";
+        this.localServerPort = 0;
         this.friendList = new Vector<>();
     }
 
@@ -28,6 +36,10 @@ public class User {
         this.password = password;
         this.introduction = introduction;
         this.isLogin = false;
+        this.localClientAddress = "";
+        this.localClientPort = 0;
+        this.localServerAddress = "";
+        this.localServerPort = 0;
         this.friendList = new Vector<>();
     }
 
@@ -65,8 +77,46 @@ public class User {
         }
     }
 
+    public boolean getIsLogin(){
+        return this.isLogin;
+    }
+
     public void setIsLogin(boolean status){
         this.isLogin = status;
+    }
+
+    public String getLocalClientAddress(){
+        String clientAddress = this.localClientAddress;
+        return clientAddress;
+    }
+
+    public void setLocalClientAddress(String newClientAddress){
+        this.localClientAddress = newClientAddress;
+    }
+
+    public int getLocalClientPort(){
+        return this.localClientPort;
+    }
+
+    public void setLocalClientPort(int newClientPort){
+        this.localClientPort  = newClientPort;
+    }
+
+    public String getLocalServerAddress(){
+        String myServerAddress = this.localServerAddress;
+        return myServerAddress;
+    }
+
+    public void setLocalServerAddress(String newServerAddress){
+        this.localServerAddress = newServerAddress;
+    }
+
+    public int getLocalServerPort(){
+        return this.localServerPort;
+    }
+
+    public void setLocalServerPort(int newMyServerPort){
+        this.localServerPort = newMyServerPort;
     }
 
     public boolean checkIsFriend(int userId){

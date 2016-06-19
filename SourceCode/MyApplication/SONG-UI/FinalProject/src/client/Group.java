@@ -8,10 +8,12 @@ public class Group {
     private int id;
     private Vector<ChatMessage> messageList;
     private Vector<Integer> memberList;
+    private Vector<FileTag> fileTagList;
 
     public Group(int newId){
         this.id = newId;
         this.memberList = new Vector<>();
+        this.fileTagList = new Vector<>();
         this.messageList = new Vector<>();
     }
 

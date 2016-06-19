@@ -1,5 +1,4 @@
 package SERVER_JC;
-
 import java.sql.Time;
 
 public class Tweet {
@@ -17,12 +16,24 @@ public class Tweet {
         return  writerId;
     }
 
+    public void setWriterId(int id){
+        this.writerId = id;
+    }
+
     public String getContent(){
         return content;
     }
 
+    public void setContent(String newContent){
+        this.content = newContent;
+    }
+
     public Time getPostTime(){
         return this.postTime;
+    }
+
+    public void setPostTime(Time newTime){
+        this.postTime = newTime;
     }
 
 }
