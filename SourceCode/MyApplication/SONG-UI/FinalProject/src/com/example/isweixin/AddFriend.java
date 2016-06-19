@@ -49,10 +49,14 @@ public class AddFriend extends Activity {
     private void getContact(){
 		
         String searchContent = searchNicknameEditText.getText().toString();
-        Toast.makeText(getApplicationContext(), "Search Content:" + searchContent,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Search Content:" + searchContent,Toast.LENGTH_SHORT).show();
 
         Vector<User> searchResultList = Client.getClient().searchUserByName(searchContent);
-        Toast.makeText(getApplicationContext(), "Search Result:" + searchResultList.get(0).getId(),Toast.LENGTH_SHORT).show();
+        if (searchResultList.size() == 0){
+        	Toast.makeText(getApplicationContext(), "NO Result!",Toast.LENGTH_SHORT).show();
+            
+        }
+        //Toast.makeText(getApplicationContext(), "Search Result:" + searchResultList.get(0).getId(),Toast.LENGTH_SHORT).show();
         //
         ArrayList<SearchUser> hcList = new ArrayList<>();
 		int count = searchResultList.size();

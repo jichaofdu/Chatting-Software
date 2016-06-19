@@ -4,18 +4,16 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-    
-   
-  
-        
       <EditText
-            android:id="@+id/searchNickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Other user's Nickname"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/searchButton"/>
+          android:id="@+id/searchNickname"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_marginTop="50dip"
+          android:layout_toLeftOf="@+id/searchButton"
+          android:ems="10"
+          android:hint="Other user&apos;s Nickname" />
+
     <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
@@ -28,7 +26,7 @@
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dip"
             android:layout_alignParentRight="true"/>
 
  	  <com.example.isweixin.MyFrame
