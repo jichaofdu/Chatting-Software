@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
+import client.ChatMessage;
 import client.Client;
 import client.Tweet;
 import client.User;
@@ -87,12 +88,14 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 
 	private ArrayList<Painting> getPainting(){
 		ArrayList<Painting> hhList = new ArrayList<Painting>();
+		Vector<ChatMessage> messageList = Client.getClient().getChatMessage();
+		int count = messageList.size();
 		//----------------------------Loop Unit---------------------------------------
-		for (int i = 0 ; i < 20 ; ++i){
+		for(int i = 0;i < count;i++){
 			Painting h0 = new Painting();
-			h0.setName("Name Slot");
-			h0.setLastContent("Content SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent Slot");
-			h0.setLastTime("Time slot");
+			h0.setName(messageList.get(i).getUsername());
+			h0.setLastContent(messageList.get(i).getContent());
+			h0.setLastTime(messageList.get(i).getTime());
 			hhList.add(h0);
 		}
 		//-------------------------------------------------------------------
