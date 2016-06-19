@@ -42,18 +42,56 @@ public class Server implements Runnable {
                     handleAddTweet(infoSet);
                 }else if("[Client-AddFriendConfirm]".equals(infoSet[0])) {
                     handleAddFriendConfirm(infoSet);
-                }else if("[Client-GetTweets]".equals(infoSet[0])){
+                }else if("[Client-GetTweets]".equals(infoSet[0])) {
                     handleGetTweetList(sendBuf, infoSet);
+                }else if("[Client-ChatMessage]".equals(infoSet[0])) {
+                    handleAddChatMessage(sendBuf, infoSet);
+                }else if("[Client-GetChatMessage]".equals(infoSet[0])){
+                    handleGetMessages(sendBuf, infoSet);
                 }else{
                     //handleEcho(sendBuf,str);
                 }
             }
             sendBuf.close();
         }catch(Exception e){
-            System.out.println("--------------Server外围错误--------------");
-            //e.printStackTrace();
-            System.out.println("--------------Server外围错误--------------");
+            System.out.println("--------------Server主循环外错误--------------");
         }
+    }
+
+    private void  handleGetMessages(PrintStream sendBuf,String[] infoSet){
+        String idString = infoSet[1];
+        int id = Integer.parseInt(idString);
+        String sendMsgBack = "[Server-SendMsgBack]" + "|";
+        int count = ServerDatabase.getServerDatabase().chatGroup.messageList.size();
+        sendMsgBack += count + "|";
+        for(int i = 0;i < count;i++){
+            sendMsgBack += ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getUserId() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getUsername() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getContent() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getTime() + "|";
+        }
+        sendInfo(sendBuf,sendMsgBack);
+    }
+
+    private void handleAddChatMessage(PrintStream sendBuf,String[] infoSet){
+        String idString = infoSet[1];
+        int id = Integer.parseInt(idString);
+        String nickname = infoSet[2];
+        String content = infoSet[3];
+        String time = new Time(System.currentTimeMillis()).toString();
+        ChatMessage msg = new ChatMessage(id,nickname,content,time);
+        ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
+        //Send All Message Back
+        String sendMsgBack = "[Server-SendMsgBack]" + "|";
+        int count = ServerDatabase.getServerDatabase().chatGroup.messageList.size();
+        sendMsgBack += count + "|";
+        for(int i = 0;i < count;i++){
+            sendMsgBack += ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getUserId() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getUsername() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getContent() + "|"
+                    + ServerDatabase.getServerDatabase().chatGroup.messageList.get(i).getTime() + "|";
+        }
+        sendInfo(sendBuf,sendMsgBack);
     }
 
     private void handleAddFriendConfirm(String[] infoSet){
@@ -174,6 +212,7 @@ public class Server implements Runnable {
                 }
             }
         }
+
         if(newUserId > 0){
             int id = newUserId;
             String content = "User " + nickname + "create his/get account";
@@ -181,6 +220,12 @@ public class Server implements Runnable {
             Tweet newTweet = new Tweet(id,content,newTime);
             sd.tweetList.add(newTweet);
         }
+
+        sd.chatGroup.addMember(newUserId);
+
+        String time = new Time(System.currentTimeMillis()).toString();
+        ChatMessage msg = new ChatMessage(newUserId,nickname,"Hello World",time);
+        ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
         //--------------------------------------------
     }
 

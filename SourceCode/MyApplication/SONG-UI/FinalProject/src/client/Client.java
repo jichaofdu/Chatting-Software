@@ -32,10 +32,52 @@ public class Client {
         }
     }
 
+    public Vector<ChatMessage> sendChatMessage(String sendContent){
+        int id = localUser.getId();
+        String nickname = localUser.getNickname();
+        String content = sendContent;
+        String sendMsg = "[Client-ChatMessage]" + "|" + id + "|" + nickname + "|" + content;
+        ci.sendToServer(sendMsg);
+        System.out.println("Send Message");
+        String replyMsg = ci.receiveFromServer();
+        String[] replySet = replyMsg.split("\\|");
+        int count = Integer.parseInt(replySet[1]);
+        Vector<ChatMessage> returnMsgs  = new Vector<>();
+        for(int i = 0;i < count;i++){
+            String tempIdString = replySet[2 + i*4 + 0];
+            int tempId = Integer.parseInt(tempIdString);
+            String tempNickname = replySet[2 + i*4 + 1];
+            String tempContent = replySet[2 + i*4 + 2];
+            String tempTime = replySet[2 + i*4 + 3];
+            ChatMessage tempMsg = new ChatMessage(tempId,tempNickname,tempContent,tempTime);
+            returnMsgs.add(tempMsg);
+        }
+        return returnMsgs;
+    }
+
+    public Vector<ChatMessage> getChatMessage(){
+        String getMsgs = "[Client-GetChatMessage]" + "|" + Client.getClient().getLocalUser().getId();
+        ci.sendToServer(getMsgs);
+        String replyMsg = ci.receiveFromServer();
+        String[] replySet = replyMsg.split("\\|");
+        int count = Integer.parseInt(replySet[1]);
+        Vector<ChatMessage> returnMsgs  = new Vector<>();
+        for(int i = 0;i < count;i++){
+            String tempIdString = replySet[2 + i*4 + 0];
+            int tempId = Integer.parseInt(tempIdString);
+            String tempNickname = replySet[2 + i*4 + 1];
+            String tempContent = replySet[2 + i*4 + 2];
+            String tempTime = replySet[2 + i*4 + 3];
+            ChatMessage tempMsg = new ChatMessage(tempId,tempNickname,tempContent,tempTime);
+            returnMsgs.add(tempMsg);
+        }
+        return returnMsgs;
+    }
+
     public void addFriend(int id){
     	String addMsg = "[Client-AddFriendConfirm]" + "|" + Client.getClient().getLocalUser().getId() + "|" + id;
         ci.sendToServer(addMsg);
-        System.out.println("Send Message");
+        System.out.println("Add friend");
     }
     
     public void addNewTweet(String content){

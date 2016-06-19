@@ -5,15 +5,17 @@ package SERVER_JC;
 import java.io.File;
 import java.util.Vector;
 
+import java.util.Vector;
+
 public class Group {
     private int id;
+    public Vector<ChatMessage> messageList;
     private Vector<Integer> memberList;
-    private Vector<FileTag> fileTagList;
 
     public Group(int newId){
         this.id = newId;
         this.memberList = new Vector<>();
-        this.fileTagList = new Vector<>();
+        this.messageList = new Vector<>();
     }
 
     public int getGroupId(){
@@ -24,8 +26,8 @@ public class Group {
         memberList.add(userId);
     }
 
-    public void addFileTag(){
-
+    public void addMessage(ChatMessage msg){
+        this.messageList.add(msg);
     }
 
 
