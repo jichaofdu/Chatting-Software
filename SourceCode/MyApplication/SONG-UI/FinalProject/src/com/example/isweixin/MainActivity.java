@@ -88,12 +88,13 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 	private ArrayList<Painting> getPainting(){
 		ArrayList<Painting> hhList = new ArrayList<Painting>();
 		//----------------------------Loop Unit---------------------------------------
-		Painting h0 = new Painting();
-		h0.setTxPath(R.drawable.icon+"");
-		h0.setName("Name Slot");
-		h0.setLastContent("Content Slot");
-		h0.setLastTime("Time slot");
-		hhList.add(h0);
+		for (int i = 0 ; i < 20 ; ++i){
+			Painting h0 = new Painting();
+			h0.setName("Name Slot");
+			h0.setLastContent("Content SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent SlotContent Slot");
+			h0.setLastTime("Time slot");
+			hhList.add(h0);
+		}
 		//-------------------------------------------------------------------
 		return hhList;
 	}

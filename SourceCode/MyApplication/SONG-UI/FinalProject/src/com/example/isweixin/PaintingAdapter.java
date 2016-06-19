@@ -42,7 +42,6 @@ public class PaintingAdapter extends BaseAdapter {
 		if(view==null){
 			h = new H();
 			view = LayoutInflater.from(context).inflate(R.layout.liaotian, parent, false);
-			h.pic = (ImageView)view.findViewById(R.id.l1);
 			h.name = (TextView)view.findViewById(R.id.name);
 			h.time = (TextView)view.findViewById(R.id.time);
 			h.lastmsg = (TextView)view.findViewById(R.id.lastmsg);
@@ -52,7 +51,6 @@ public class PaintingAdapter extends BaseAdapter {
 			h = (H)view.getTag();
 		}
 		
-		h.pic.setImageResource(Integer.parseInt(hh.getTxPath()));
 		h.name.setText(hh.getName());
 		h.time.setText(hh.getLastTime());
 		h.lastmsg.setText(hh.getLastContent());
@@ -61,7 +59,6 @@ public class PaintingAdapter extends BaseAdapter {
 	}
 
 	class H{
-		ImageView pic;
 		TextView name;
 		TextView time;
 		TextView lastmsg;

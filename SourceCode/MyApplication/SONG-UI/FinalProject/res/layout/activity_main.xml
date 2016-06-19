@@ -37,6 +37,16 @@
                     android:listSelector="@android:color/transparent"
                      >
                 </ListView>
+
+ 	     		 <Button
+ 	     		     android:id="@+id/button1"
+ 	     		     style="?android:attr/buttonStyleSmall"
+ 	     		     android:layout_width="wrap_content"
+ 	     		     android:layout_height="wrap_content"
+ 	     		     android:layout_marginLeft="250dip"
+ 	     		     android:layout_marginTop="350dip"
+ 	     		     android:text="Button" />
+
 	  </com.example.isweixin.MyFrame>   
       
 	  <com.example.isweixin.MyFrame
