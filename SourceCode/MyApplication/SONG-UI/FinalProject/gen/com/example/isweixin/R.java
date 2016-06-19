@@ -516,7 +516,7 @@ public final class R {
         public static final int add=0x7f0a0031;
         public static final int addFriend=0x7f0a000e;
         public static final int addTweet=0x7f0a000d;
-        public static final int button1=0x7f0a0003;
+        public static final int sendButton =0x7f0a0003;
         public static final int cancelButton=0x7f0a0008;
         public static final int changeInfo=0x7f0a0012;
         public static final int faxian=0x7f0a0037;

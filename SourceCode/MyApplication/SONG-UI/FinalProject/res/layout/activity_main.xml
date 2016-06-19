@@ -38,16 +38,7 @@
                      >
                 </ListView>
 
- 	     		 <Button
- 	     		     android:id="@+id/button1"
- 	     		     style="?android:attr/buttonStyleSmall"
- 	     		     android:layout_width="wrap_content"
- 	     		     android:layout_height="wrap_content"
- 	     		     android:layout_marginLeft="250dip"
- 	     		     android:layout_marginTop="350dip"
- 	     		     android:text="Button" />
-
-	  </com.example.isweixin.MyFrame>   
+	  </com.example.isweixin.MyFrame>
       
 	  <com.example.isweixin.MyFrame
  	    android:background="@color/white"
@@ -78,6 +69,19 @@
                 </ListView>
 	   	    
 	  </FrameLayout>    
-	</com.example.isweixin.MyScrollLayout> 
+	</com.example.isweixin.MyScrollLayout>
+	<Button
+			android:id="@+id/sendButton"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Send"
+			android:layout_alignBottom="@+id/ScrollLayout"
+			android:layout_alignParentRight="true"/>
+	<EditText
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/messageInput" android:layout_alignTop="@+id/sendButton"
+			android:layout_toLeftOf="@+id/sendButton" android:layout_alignParentLeft="true"/>
 </RelativeLayout>
 

@@ -5,14 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
+import client.Client;
 
 public class PaintingAdapter extends BaseAdapter {
 	private Context context;
 	private ArrayList<Painting> list = new ArrayList<Painting>();
-	
+	private Button sendButton;
+	private EditText massageInputEditText;
 	public PaintingAdapter(Context context, ArrayList<Painting> list){
 		this.context = context;
 		this.list = list;
@@ -45,7 +45,15 @@ public class PaintingAdapter extends BaseAdapter {
 			h.name = (TextView)view.findViewById(R.id.name);
 			h.time = (TextView)view.findViewById(R.id.time);
 			h.lastmsg = (TextView)view.findViewById(R.id.lastmsg);
-			
+			sendButton = (Button)view.findViewById(R.id.sendButton);
+			massageInputEditText = (EditText)view.findViewById(R.id.messageInput);
+			sendButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					String inputMsg = massageInputEditText.getText().toString();
+					Client.getClient().sendChatMessage(inputMsg);
+				}
+			});
 			view.setTag(h);
 		}else{
 			h = (H)view.getTag();

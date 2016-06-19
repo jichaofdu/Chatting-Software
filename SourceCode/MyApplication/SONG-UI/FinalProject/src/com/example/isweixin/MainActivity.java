@@ -98,6 +98,11 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 			h0.setLastTime(messageList.get(i).getTime());
 			hhList.add(h0);
 		}
+		Painting h0 = new Painting();
+		h0.setName("");
+		h0.setLastContent("");
+		h0.setLastTime("");
+		hhList.add(h0);
 		//-------------------------------------------------------------------
 		return hhList;
 	}
