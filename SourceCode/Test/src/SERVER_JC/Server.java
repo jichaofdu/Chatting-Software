@@ -1,6 +1,9 @@
 package SERVER_JC;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
+import java.io.PrintStream;
 import java.sql.Time;
 import java.util.Vector;
 
@@ -18,11 +21,6 @@ public class Server implements Runnable {
             BufferedReader recvBuf = new BufferedReader(new InputStreamReader(client.getInputStream()));
             boolean flag = true;
             while(flag){
-
-                FileOutputStream f = new FileOutputStream("serverDatabase");
-                ObjectOutputStream s = new ObjectOutputStream(f);
-                s.writeObject(ServerDatabase.getServerDatabase());
-
                 String str = receiveInfo(recvBuf);
                 String[] infoSet = str.split("\\|");
                 if("[Shutdown]".equals(infoSet[0])) {
@@ -49,27 +47,13 @@ public class Server implements Runnable {
                 }else{
                     //handleEcho(sendBuf,str);
                 }
-
-                FileInputStream g = new FileInputStream("serverDatabase");
-                ObjectInputStream h = new ObjectInputStream(g);
-                ServerDatabase newObj = (ServerDatabase)h.readObject();
-                ServerDatabase.getServerDatabase().userList = newObj.userList;
-                ServerDatabase.getServerDatabase().tweetList = newObj.tweetList;
-
             }
-
-
-
-
-
-
             sendBuf.close();
         }catch(Exception e){
             System.out.println("--------------Server外围错误--------------");
             //e.printStackTrace();
             System.out.println("--------------Server外围错误--------------");
         }
-
     }
 
     private void handleAddFriendConfirm(String[] infoSet){
