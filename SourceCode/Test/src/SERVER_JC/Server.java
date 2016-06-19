@@ -54,7 +54,8 @@ public class Server implements Runnable {
             }
             sendBuf.close();
         }catch(Exception e){
-            System.out.println("--------------Server主循环外错误--------------");
+        	e.printStackTrace();
+        	
         }
     }
 
@@ -276,7 +277,7 @@ public class Server implements Runnable {
                 for(int k = 0;k < sd.userList.size();k++){
                     if(sd.userList.get(k).getId() == writerId){
                         actualInfo += sd.tweetList.get(i).getWriterId() + "|"
-                                   + sd.userList.get(i).getNickname() + "|"
+                                   + sd.userList.get(k).getNickname() + "|"
                                    + sd.tweetList.get(i).getContent() + "|"
                                    + sd.tweetList.get(i).getPostTime().toString() + "|";
                     }
