@@ -4,6 +4,7 @@ import java.util.Vector;
 
 public class ServerDatabase implements Serializable{
     private static ServerDatabase sd;
+    private int userBaseId = 0;
     public Vector<User> userList; //The friend list of the user.
     public Vector<Tweet> tweetList;
     public Group chatGroup;
@@ -21,6 +22,11 @@ public class ServerDatabase implements Serializable{
         }else{
             return sd;
         }
+    }
+
+    public int generateNewUserId(){
+        userBaseId += 1;
+        return userBaseId;
     }
 
 }

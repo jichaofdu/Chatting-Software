@@ -7,20 +7,16 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 public class ClientInterface {
-    private static final String SERVERIP = "172.20.124.162";
-    private static final int SERVERPORT = 12345;
+    private static final String SERVER_IP = "172.20.124.162";
+    private static final int SERVER_PORT = 12345;
     private Socket client;
     private PrintStream sendBuf;
     private BufferedReader receiveBuf;
 
     public ClientInterface() throws IOException{
-        System.out.println("Begin Client Interface");
-        client = new Socket(SERVERIP,SERVERPORT);
-        System.out.println("End Client Interface - 1");
+        client = new Socket(SERVER_IP,SERVER_PORT);
         sendBuf = new PrintStream(client.getOutputStream());
-        System.out.println("End Client Interface - 2");
         receiveBuf =  new BufferedReader(new InputStreamReader(client.getInputStream()));
-        System.out.println("End Client Interface");
     }
 
     public void breakConnection(){

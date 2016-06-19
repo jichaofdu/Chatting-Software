@@ -6,11 +6,10 @@ public class ServerLauncher {
 
     public static void main(String[] args) throws Exception{
 
-        //Server port is 1234
         ServerSocket server = new ServerSocket(12345);
         boolean f = true;
         System.out.println("Server Open Success");
-        while(f){
+        while(f == true){
             Socket client = server.accept();
             System.out.println("Server:Receive a new connect.");
             System.out.println("From Tcp Address:" + client.getInetAddress());

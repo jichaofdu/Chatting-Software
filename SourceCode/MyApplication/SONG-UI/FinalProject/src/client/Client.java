@@ -1,6 +1,4 @@
-package client; /**
- * Created by Chao Ji on 2016-06-04.
- */
+package client;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -77,13 +75,11 @@ public class Client {
     public void addFriend(int id){
     	String addMsg = "[Client-AddFriendConfirm]" + "|" + Client.getClient().getLocalUser().getId() + "|" + id;
         ci.sendToServer(addMsg);
-        System.out.println("Add friend");
     }
     
     public void addNewTweet(String content){
         String addTweetMsg = "[Client-AddTweet]" + "|" + localUser.getId() + "|" + content;
         ci.sendToServer(addTweetMsg);
-        System.out.println("Add Tweet Complete");
     }
 
     public User getLocalUser(){
@@ -102,7 +98,6 @@ public class Client {
             User newUser = new User(id,nickname,password);
             return newUser;
         }else{
-            System.out.println("[閿欒]娉ㄥ唽澶辫触");
             User failUser = new User(-1,"","");
             return failUser;
         }
@@ -118,10 +113,9 @@ public class Client {
             String nickname = replySet[1];
             String introduction = replySet[2];
             User user = new User(userId,nickname,password,introduction);
-            this.localUser = user;//Local user get if login success.
+            this.localUser = user;
             return user;
         }else{
-            System.out.println("[閿欒]" + replySet[1]);
             User failUser = new User(-1,replySet[1],"");
             return failUser;
         }
@@ -130,38 +124,11 @@ public class Client {
     public void handleUpdateProfile(int id,String nickname,String password,String introduction){
         String totalMsg = "[Client-UpdateUserInfo]" + "|" + id + "|" + nickname + "|" + password + "|" + introduction;
         ci.sendToServer(totalMsg);
-        System.out.println("[鎻愮ず]澶勭悊鏇存柊鐢ㄦ埛鐨勮祫鏂欎俊鎭凡缁忓彂閫�");
         this.localUser.setNickname(nickname);
         this.localUser.setPassword(password);
         this.localUser.setIntroduction(introduction);
     }
 
-    /*
-    杩斿洖淇℃伅鏍煎紡:   [鎶ュご] | [鐢ㄦ埛鍚峕 | [鐢ㄦ埛浠嬬粛]
-    鎶ュご涓�:  [Server-FindUserById] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘鍒伴偅涓�涓敤鎴�
-             [Server-FindNoneByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘澶辫触
-     */
-    public User searchUserById(int id){
-        String searchRequest = "[Client-SearchUserById]" + "|" + id;
-        ci.sendToServer(searchRequest);
-        String replyStr = ci.receiveFromServer();
-        String[] replySet = replyStr.split("\\|");
-        User user;
-        if("[Server-FindUserById]".equals(replySet[0])){
-            String nickname = replySet[1];
-            String introduction = replySet[2];
-            user = new User(id,nickname,"Cannot Get Others Password",introduction);
-        }else{
-            user = new User(-1,"No such user","No such user","No such user");
-        }
-        return user;
-    }
-
-    /*
-    杩斿洖淇℃伅鏍煎紡:   [鎶ュご] | [缁撴灉鏁伴噺] | [鐢ㄦ埛id] | [鐢ㄦ埛浠嬬粛] | [鐢ㄦ埛id] | [鐢ㄦ埛浠嬬粛]
-    鎶ュご涓�:   [Server-FindUserByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘鍒伴偅涓�涓敤鎴�
-              [Server-FindNoneByName] 鐨勬椂鍊欒〃绀烘湁鏌ユ壘澶辫触
-    */
     public Vector<User> searchUserByName(String nameWanted){
         String searchRequest = "[Client-SearchUserByName]" + "|" + nameWanted;
         ci.sendToServer(searchRequest);
@@ -171,7 +138,7 @@ public class Client {
             Vector<User> retUserList = new Vector<>();
             int num = Integer.parseInt(replySet[1]);
             for(int i = 0;i < num;i++){
-                int id = Integer.parseInt(replySet[2 + 3*i]);
+                int id = Integer.parseInt(replySet[2 + 3*i + 0]);
                 String introduction = replySet[2 + 3*i + 2];
                 User user = new User(id,nameWanted,"Cannot Get Others Password",introduction);
                 retUserList.add(user);
@@ -183,15 +150,6 @@ public class Client {
         }
     }
 
-    //杩欎釜鍑芥暟杩樻病琛ュ厖瀹屾暣
-    public void uploadClientServerAddress(){
-        //鑾峰彇瀹㈡埛绔骇鐢熺殑鐢ㄤ簬p2p杩炴帴鐨勮嚜宸辩殑鏈嶅姟鍣ㄧ殑鍦板潃
-    }
-
-    /*
-     * 鍥炴姤鏍煎紡锛� 鎶ュご | 鏁伴噺 | id | nickname | introduction
-     *
-     */
     public Vector<User> getFriendList(int userId){
         String totalMsg = "[Client-GetFriendList]" + "|" + userId;
         ci.sendToServer(totalMsg);
@@ -211,10 +169,6 @@ public class Client {
         return friendList;
     }
 
-    /*
-     * 鍥炴姤鏍煎紡锛� 鎶ュご | 鏁伴噺 | 浣滆�卛d | 浣滆�呮樀绉� | tweet鍐呭 | 鏃堕棿
-     *
-     */
     public Vector<Tweet> getTweets(int userId){
         String totalMsg = "[Client-GetTweets]" + "|" + userId;
         ci.sendToServer(totalMsg);
@@ -242,6 +196,5 @@ public class Client {
         isClose = true;
         ci.breakConnection();
     }
-
 
 }

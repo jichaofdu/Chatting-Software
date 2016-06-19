@@ -12,7 +12,7 @@ public class TestSeri {
             obj.setA(13213123);
             FileOutputStream f = new FileOutputStream("tmp");
             ObjectOutputStream s = new ObjectOutputStream(f);
-            s.writeObject(obj); //鍐欏叆瀛楃涓插璞�;
+            s.writeObject(obj);
 
             FileInputStream g = new FileInputStream("tmp");
             ObjectInputStream h = new ObjectInputStream(g);

@@ -1,6 +1,5 @@
-package client; /**
- * Created by Chao Ji on 2016-06-03.
- */
+package client;
+
 import java.util.Vector;
 
 public class User {
@@ -20,7 +19,7 @@ public class User {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
-        this.introduction = "暂时没有添加用户介绍";
+        this.introduction = "No Introduction Yet";
         this.isLogin = false;
         this.localClientAddress = "";
         this.localClientPort = 0;
@@ -55,7 +54,6 @@ public class User {
         return this.password;
     }
 
-
     public void setNickname(String newNick){
         this.nickname = newNick;
     }
@@ -78,70 +76,6 @@ public class User {
             return true;
         }else{
             return false;
-        }
-    }
-
-    public boolean getIsLogin(){
-        return this.isLogin;
-    }
-
-    public void setIsLogin(boolean status){
-        this.isLogin = status;
-    }
-
-    public String getLocalClientAddress(){
-        String clientAddress = this.localClientAddress;
-        return clientAddress;
-    }
-
-    public void setLocalClientAddress(String newClientAddress){
-        this.localClientAddress = newClientAddress;
-    }
-
-    public int getLocalClientPort(){
-        return this.localClientPort;
-    }
-
-    public void setLocalClientPort(int newClientPort){
-        this.localClientPort  = newClientPort;
-    }
-
-    public String getLocalServerAddress(){
-        String myServerAddress = this.localServerAddress;
-        return myServerAddress;
-    }
-
-    public void setLocalServerAddress(String newServerAddress){
-        this.localServerAddress = newServerAddress;
-    }
-
-    public int getLocalServerPort(){
-        return this.localServerPort;
-    }
-
-    public void setLocalServerPort(int newMyServerPort){
-        this.localServerPort = newMyServerPort;
-    }
-
-    public boolean checkIsFriend(int userId){
-        for(int i = 0;i < friendList.size();i++) {
-            if (friendList.get(i) == userId) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void addFriend(int userId){
-        friendList.add(userId);
-    }
-
-    public void deleteFriend(int userId){
-        for(int i = 0;i < friendList.size();i++) {
-            if (friendList.get(i) == userId) {
-                friendList.remove(i);
-                break;
-            }
         }
     }
 

@@ -20,32 +20,17 @@ public class ChatMessage {
         return userId;
     }
 
-    public void setUserId(int newId){
-        this.userId = newId;
-    }
-
     public String getUsername(){
         return this.username;
-    }
-
-    public void setUsername(String newUsername){
-        this.username = newUsername;
     }
 
     public String getContent(){
         return this.content;
     }
 
-    public void setContent(String newContent){
-        this.content = newContent;
-    }
-
     public String getTime(){
         return time;
     }
 
-    public void setTime(String newTime){
-        this.time = newTime;
-    }
 
 }
