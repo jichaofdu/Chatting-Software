@@ -6,7 +6,7 @@ public class ServerLauncher {
 
     public static void main(String[] args) throws Exception{
 
-        ServerSocket server = new ServerSocket(8888);
+        ServerSocket server = new ServerSocket(12345);
         boolean f = true;
         System.out.println("Server Open Success");
         while(f){
