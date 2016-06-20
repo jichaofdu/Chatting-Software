@@ -74,7 +74,7 @@ public class Server implements Runnable {
             ServerDatabase.getServerDatabase().userList.add(user);
             if(newUserId > 1){
                 int idFrom = newUserId;
-                int idTo = 1;
+                int idTo = 10001;
                 for(int j = 0;j < ServerDatabase.getServerDatabase().userList.size();j++){
                     if(ServerDatabase.getServerDatabase().userList.get(j).getId() == idFrom){
                         ServerDatabase.getServerDatabase().userList.get(j).addFriend(idTo);
