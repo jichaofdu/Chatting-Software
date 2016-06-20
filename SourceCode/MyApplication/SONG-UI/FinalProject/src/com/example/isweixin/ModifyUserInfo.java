@@ -1,6 +1,7 @@
 package com.example.isweixin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +18,9 @@ public class ModifyUserInfo extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modify_user_info);
-        modifyNickname = (EditText)findViewById(R.id.modifyNickname);//-----------!!
+        modifyNickname = (EditText)findViewById(R.id.modifyNickname);
         modifyNickname.setText(Client.getClient().getLocalUser().getNickname());
-        modifyPassword = (EditText)findViewById(R.id.modifyPassword);//--------!!
+        modifyPassword = (EditText)findViewById(R.id.modifyPassword);
         		
         modifyPassword.setText(Client.getClient().getLocalUser().getPassword());
         modifyIntroduction = (EditText)findViewById(R.id.modifyIntroduction);
@@ -36,6 +37,8 @@ public class ModifyUserInfo extends Activity{
                 id = c.getLocalUser().getId();
                 c.handleUpdateProfile(id,newNickname,newPassword,newIntroduction);
                 Toast.makeText(getApplicationContext(), "Update User Information Complete",Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(ModifyUserInfo.this,MainActivity.class);
+				startActivity(intent);
                 finish();
             }
         });
