@@ -23,7 +23,7 @@
             <TextView 
                 android:padding="10dip"
                 android:id="@+id/liaotian"
-                android:text="聊天"
+                android:text="聊天室"
                 android:gravity="center"
                 android:textSize="15dip"
                 android:textColor="@color/green"
