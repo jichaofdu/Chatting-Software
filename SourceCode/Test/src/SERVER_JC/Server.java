@@ -72,7 +72,7 @@ public class Server implements Runnable {
             int newUserId = ServerDatabase.getServerDatabase().generateNewUserId();
             User user = new User(newUserId,"Test User.No." + newUserId,"123456");
             ServerDatabase.getServerDatabase().userList.add(user);
-            if(newUserId > 1){
+            if(newUserId > 10001){
                 int idFrom = newUserId;
                 int idTo = 10001;
                 for(int j = 0;j < ServerDatabase.getServerDatabase().userList.size();j++){

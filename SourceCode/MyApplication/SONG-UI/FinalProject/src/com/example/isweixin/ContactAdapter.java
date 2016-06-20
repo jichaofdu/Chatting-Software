@@ -46,12 +46,6 @@ public class ContactAdapter extends BaseAdapter {
 			h = new H();
 			view = LayoutInflater.from(context).inflate(R.layout.tongxunlu, parent, false);
 			deletButton = (Button)view.findViewById(R.id.delete);
-	        deletButton.setOnClickListener(new View.OnClickListener() {
-	    		@Override
-	    		public void onClick(View arg0) {
-					//Client.getClient().deleteFriend(hh.getID());
-	    		}
-	    	});
 			h.pic = (ImageView)view.findViewById(R.id.tx1);
 			h.name = (TextView)view.findViewById(R.id.tx2);
 			h.introduction = (TextView)view.findViewById(R.id.tx3);
