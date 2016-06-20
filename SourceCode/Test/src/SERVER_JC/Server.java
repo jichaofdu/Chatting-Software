@@ -100,8 +100,21 @@ public class Server implements Runnable {
     private void handleDeleteFriend(String[] infoSet){
         String fromIdString = infoSet[1];
         String toIdString = infoSet[2];
-
-
+        int idFrom = Integer.parseInt(fromIdString);
+        int idTo = Integer.parseInt(toIdString);
+        //Clear the friend if they are already friend
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idFrom){
+                ServerDatabase.getServerDatabase().userList.get(i).deleteFriend(idTo);
+                break;
+            }
+        }
+        for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
+            if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idTo){
+                ServerDatabase.getServerDatabase().userList.get(i).deleteFriend(idFrom);
+                break;
+            }
+        }
     }
 
     private void handleGetMessages(PrintStream sendBuf,String[] infoSet){
