@@ -50,7 +50,7 @@ public class Login extends Activity {
 					}
 					//----------------------------------------------
 					if (flag == true){
-						Toast.makeText(getApplicationContext(), "Login Success.Name:" + user.getNickname(),Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Login Success.Name:" + user.getNickname(),Toast.LENGTH_LONG).show();
 						Intent intent = new Intent(Login.this,MainActivity.class);
 						startActivity(intent);
 						finish();

@@ -1,7 +1,10 @@
 package com.example.isweixin;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +53,10 @@ public class SearchUserAdapter extends BaseAdapter {
 	    		@Override
 	    		public void onClick(View arg0) {
 					Client.getClient().addFriend(hh.getID());
+					Activity act = (Activity)context;
+					Intent intent = new Intent(context,MainActivity.class);
+					act.startActivity(intent);
+					act.finish();
 	    		}
 	    	});
 			

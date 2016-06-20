@@ -56,14 +56,9 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		friendListView.setAdapter(py);
 		friendListView.setCacheColorHint(0);
 
-
-
 		ContactAdapter hc = new ContactAdapter(this,getContact());
 		contactListView.setAdapter(hc);
 		contactListView.setCacheColorHint(0);
-
-
-
 
     	mScrollLayout = (MyScrollLayout) findViewById(R.id.ScrollLayout); 	
     	LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lllayout);   	
