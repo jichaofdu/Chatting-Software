@@ -7,7 +7,7 @@ public class ServerDatabase implements Serializable{
     public Vector<User> userList; //The friend list of the user.
     public Vector<Tweet> tweetList;
     public Group chatGroup;
-    private int userBaseId = 0;
+    private int userBaseId = 10000;
 
     private ServerDatabase(){
         this.userList = new Vector<>();
