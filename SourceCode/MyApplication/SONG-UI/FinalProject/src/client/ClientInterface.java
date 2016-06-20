@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 public class ClientInterface {
-    private static final String SERVERIP = "140.114.128.155";
+    private static final String SERVERIP = "10.0.2.2";
     private static final int SERVERPORT = 12345;
     private Socket client;
     private PrintStream sendBuf;

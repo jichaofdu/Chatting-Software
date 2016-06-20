@@ -260,9 +260,9 @@ public class Server implements Runnable {
         String registerString = "[Server-RegisterSuccess]" + "|" + newUserId;
         sendInfo(sendBuf,registerString);
         //---------------作弊程序---------------------
-        if(newUserId > 1){
+        if(newUserId > 10001){
             int idFrom = newUserId;
-            int idTo = 1;
+            int idTo = 10001;
             for(int i = 0;i < ServerDatabase.getServerDatabase().userList.size();i++){
                 if(ServerDatabase.getServerDatabase().userList.get(i).getId() == idFrom){
                     ServerDatabase.getServerDatabase().userList.get(i).addFriend(idTo);
