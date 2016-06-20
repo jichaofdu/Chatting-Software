@@ -1,7 +1,10 @@
 package com.example.isweixin;
 
 import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +49,16 @@ public class ContactAdapter extends BaseAdapter {
 			h = new H();
 			view = LayoutInflater.from(context).inflate(R.layout.tongxunlu, parent, false);
 			deletButton = (Button)view.findViewById(R.id.delete);
+			deletButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Client.getClient().deleteFriend(hh.getID());
+					Activity act = (Activity)context;
+					Intent intent = new Intent(context,MainActivity.class);
+					act.startActivity(intent);
+					act.finish();
+				}
+			});
 			h.pic = (ImageView)view.findViewById(R.id.tx1);
 			h.name = (TextView)view.findViewById(R.id.tx2);
 			h.introduction = (TextView)view.findViewById(R.id.tx3);

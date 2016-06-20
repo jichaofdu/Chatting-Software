@@ -59,7 +59,8 @@ public class Login extends Activity {
 						return;
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), "ID you input must be DIGIT.",Toast.LENGTH_SHORT).show();
+					return;
 				}
     		}
     	});

@@ -1,5 +1,5 @@
 package com.example.isweixin;
 
 public interface OnViewChangeListener {
-	public void OnViewChange(int view);
+	void OnViewChange(int view);
 }
