@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.Vector;
 
 public class Server implements Runnable {
+    private static boolean afterDefault = false;
     private Socket client;
 
     public Server(Socket client){
@@ -20,7 +21,11 @@ public class Server implements Runnable {
             BufferedReader recvBuf = new BufferedReader(new InputStreamReader(client.getInputStream()));
             boolean flag = true;
             //Add default user
-            addDefaultUser();
+            if(afterDefault == false){
+                addDefaultUser();
+                afterDefault = true;
+            }
+
             //
             while(flag){
                 String str = receiveInfo(recvBuf);
@@ -85,14 +90,14 @@ public class Server implements Runnable {
             }
             if(newUserId > 0){
                 int id = newUserId;
-                String content = "User " + "Test User.No." + newUserId + "create his/get account";
+                String content = "Hey " + "Test User.No." + newUserId + "The following is our Minecraft Address 127.128.129.130 !";
                 Time newTime = new Time(System.currentTimeMillis());
                 Tweet newTweet = new Tweet(id,content,newTime);
                 ServerDatabase.getServerDatabase().tweetList.add(newTweet);
             }
             ServerDatabase.getServerDatabase().chatGroup.addMember(newUserId);
             String time = new Time(System.currentTimeMillis()).toString();
-            ChatMessage msg = new ChatMessage(newUserId,"Test User.No." + newUserId,"Hello World",time);
+            ChatMessage msg = new ChatMessage(newUserId,"Test User.No." + newUserId,"Join our [Server Group] now !!!!! Add [" + "Test User.No." + newUserId + "] as friend and see our Circle !!" ,time);
             ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
         }
     }
@@ -274,7 +279,7 @@ public class Server implements Runnable {
 
         if(newUserId > 0){
             int id = newUserId;
-            String content = "User " + nickname + "create his/get account";
+            String content = "Hey, my name is " + nickname + " !";
             Time newTime = new Time(System.currentTimeMillis());
             Tweet newTweet = new Tweet(id,content,newTime);
             ServerDatabase.getServerDatabase().tweetList.add(newTweet);
@@ -282,7 +287,7 @@ public class Server implements Runnable {
 
         ServerDatabase.getServerDatabase().chatGroup.addMember(newUserId);
         String time = new Time(System.currentTimeMillis()).toString();
-        ChatMessage msg = new ChatMessage(newUserId,nickname,"Hello World",time);
+        ChatMessage msg = new ChatMessage(newUserId,nickname,"Hello World!" ,time);
         ServerDatabase.getServerDatabase().chatGroup.addMessage(msg);
         //--------------------------------------------
     }
