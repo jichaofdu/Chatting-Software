@@ -15,7 +15,6 @@ import java.util.Vector;
 
 public class AddFriend extends Activity {
     private EditText searchNicknameEditText;
-    private Button cancelButton;
     private Button searchButton;
     private ListView serchResultListView;
 
@@ -23,25 +22,14 @@ public class AddFriend extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_friend);
-        
-
-        
+               
         this.searchNicknameEditText = (EditText)findViewById(R.id.searchNickname);
-        this.cancelButton = (Button)findViewById(R.id.cancelButton);
         this.searchButton = (Button)findViewById(R.id.searchButton);
-        this.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        
         this.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             	getContact();
-
-
-
                 //finish();
             }
         });
@@ -49,15 +37,12 @@ public class AddFriend extends Activity {
     private void getContact(){
 		
         String searchContent = searchNicknameEditText.getText().toString();
-        //Toast.makeText(getApplicationContext(), "Search Content:" + searchContent,Toast.LENGTH_SHORT).show();
-
+        
         Vector<User> searchResultList = Client.getClient().searchUserByName(searchContent);
         if (searchResultList.size() == 0){
         	Toast.makeText(getApplicationContext(), "NO Result!",Toast.LENGTH_SHORT).show();
             
         }
-        //Toast.makeText(getApplicationContext(), "Search Result:" + searchResultList.get(0).getId(),Toast.LENGTH_SHORT).show();
-        //
         ArrayList<SearchUser> hcList = new ArrayList<>();
 		int count = searchResultList.size();
 		for(int i = 0;i < count;i++){

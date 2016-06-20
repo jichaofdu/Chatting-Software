@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
         android:ems="10"
-        android:hint="Please Input Your New Nickname" >
+        android:hint="Please Input Your New Nickname" />
     
     <EditText
         android:id="@+id/modifyPassword"
@@ -52,10 +52,5 @@
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/modifyIntroduction"
             android:layout_alignRight="@+id/modifyIntroduction"/>
-
-
-
-        <requestFocus />
-    </EditText>
 
 </RelativeLayout>
