@@ -1,7 +1,7 @@
 package com.example.isweixin;
 
 public class ContactP {
-
+	public int id;
 	private String txPath;
 	private String weixinID;
 	private String name;
@@ -13,7 +13,9 @@ public class ContactP {
 		name= "";
 		desc= "";
 	}
-	
+	public int getID(){
+		return id;
+	}
 	public String getTxPath() {
 		return txPath;
 	}

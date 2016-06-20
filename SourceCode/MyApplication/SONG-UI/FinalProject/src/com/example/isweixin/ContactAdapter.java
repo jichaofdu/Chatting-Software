@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import client.Client;
 
 public class ContactAdapter extends BaseAdapter {
 	private Context context;
+	public Button deletButton;
 	private ArrayList<ContactP> list = new ArrayList<ContactP>();
 	
 	public ContactAdapter(Context context,ArrayList<ContactP> list){
@@ -42,6 +45,13 @@ public class ContactAdapter extends BaseAdapter {
 		if(view==null){
 			h = new H();
 			view = LayoutInflater.from(context).inflate(R.layout.tongxunlu, parent, false);
+			deletButton = (Button)view.findViewById(R.id.delete);
+	        deletButton.setOnClickListener(new View.OnClickListener() {
+	    		@Override
+	    		public void onClick(View arg0) {
+					//Client.getClient().deleteFriend(hh.getID());
+	    		}
+	    	});
 			h.pic = (ImageView)view.findViewById(R.id.tx1);
 			h.name = (TextView)view.findViewById(R.id.tx2);
 			h.introduction = (TextView)view.findViewById(R.id.tx3);
@@ -58,6 +68,7 @@ public class ContactAdapter extends BaseAdapter {
 	}
 
 	class H{
+		int id;
 		ImageView pic;
 		TextView name;
 		TextView introduction;

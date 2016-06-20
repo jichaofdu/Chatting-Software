@@ -515,13 +515,14 @@ public final class R {
     public static final class id {
         public static final int Login=0x7f0a0022;
         public static final int ScrollLayout=0x7f0a0001;
-        public static final int action_settings=0x7f0a0039;
+        public static final int action_settings=0x7f0a003a;
         public static final int add=0x7f0a0031;
         public static final int addFriend=0x7f0a000e;
         public static final int addTweet=0x7f0a000d;
         public static final int cancelButton=0x7f0a0019;
         public static final int changeInfo=0x7f0a0012;
-        public static final int faxian=0x7f0a0037;
+        public static final int delete=0x7f0a0034;
+        public static final int faxian=0x7f0a0038;
         public static final int fresh=0x7f0a0013;
         public static final int idTextView=0x7f0a0017;
         public static final int inputMessage=0x7f0a0018;
@@ -530,7 +531,7 @@ public final class R {
         public static final int l21=0x7f0a0028;
         public static final int lastmsg=0x7f0a001d;
         public static final int lastmsg1=0x7f0a002b;
-        public static final int liaotian=0x7f0a0036;
+        public static final int liaotian=0x7f0a0037;
         public static final int linearLayout=0x7f0a0015;
         public static final int listView=0x7f0a0009;
         public static final int listView1=0x7f0a0002;
@@ -538,7 +539,7 @@ public final class R {
         public static final int listView3=0x7f0a0006;
         public static final int list_item=0x7f0a001e;
         public static final int llayout=0x7f0a0000;
-        public static final int lllayout=0x7f0a0035;
+        public static final int lllayout=0x7f0a0036;
         public static final int login=0x7f0a002f;
         public static final int login_name=0x7f0a001f;
         public static final int login_password=0x7f0a0020;
@@ -560,11 +561,11 @@ public final class R {
         public static final int searchButton=0x7f0a0008;
         public static final int searchNickname=0x7f0a0007;
         public static final int sendButton=0x7f0a0004;
-        public static final int set=0x7f0a0034;
+        public static final int set=0x7f0a0035;
         public static final int submitButton=0x7f0a000b;
         public static final int time=0x7f0a001b;
         public static final int time1=0x7f0a0029;
-        public static final int tongxunlu=0x7f0a0038;
+        public static final int tongxunlu=0x7f0a0039;
         public static final int topIdSlot=0x7f0a0011;
         public static final int topNameSlot=0x7f0a0010;
         public static final int tweetContent=0x7f0a000a;

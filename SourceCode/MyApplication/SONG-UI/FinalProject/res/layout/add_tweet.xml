@@ -15,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="0dip"
+            android:layout_centerHorizontal="true"
+            
+            android:layout_marginBottom="130dp"
             
             android:hint="Input what you want to say at here."
             android:layout_above="@+id/submitButton"/>

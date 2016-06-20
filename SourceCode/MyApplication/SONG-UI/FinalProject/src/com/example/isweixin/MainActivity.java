@@ -147,6 +147,7 @@ public class MainActivity extends Activity implements OnViewChangeListener, OnCl
 		for(int i = 0;i < count;i++){
 			ContactP c0 = new ContactP();
 			c0.setTxPath(R.drawable.icon+"");
+			c0.id = friendList.get(i).getId();
 			c0.setName(friendList.get(i).getNickname());
 			hcList.add(c0);
 		}
